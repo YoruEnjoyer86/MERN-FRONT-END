@@ -1,0 +1,7 @@
+.mainSearchBar{
+    height: 100%;
+    background-color: blue;
+    width: 20vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}

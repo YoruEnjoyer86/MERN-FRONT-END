@@ -1,0 +1,18 @@
+.growingElement{
+    flex : 1 ;
+    flex-shrink: 0;
+}
+
+.grow{
+    flex : 1 ;
+}
+
+.noShrink{
+    flex-shrink: 0;
+}
+
+
+.centered{
+    justify-content: center;
+    align-items: center;
+}
