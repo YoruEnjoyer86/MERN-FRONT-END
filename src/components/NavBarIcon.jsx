@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Row from './Row'
 import './Row.css'
 import './NavBarIcon.css'
 
-const NavBarIcon = ({text,imgSrc,className, onClick}) => {
+
+
+const HandleMouseEnter = (setSrc,newImage) => {
+  setSrc(newImage) ;
+}
+
+const HandleMouseLeave = (setSrc,newImage) => {
+  setSrc(newImage) ;
+}
+
+const NavBarIcon = ({text,imgSrc,hoverImgSrc,className, onClick}) => {
+  const [src,setSrc] = useState(imgSrc) ;
   return (
-    <Row onClick = {onClick} className={"navBarIcon " + className}>
-        <img src={imgSrc} className='navBarIconImage' />
+    <Row onClick = {onClick} className={"navBarIcon " + className} onMouseEnter= {() => {HandleMouseEnter(setSrc,hoverImgSrc)}} onMouseLeave={() => {HandleMouseLeave(setSrc,imgSrc)}}>
+        <img src={src} className='navBarIconImage' />
         <p className='navBarIconText'>{text}</p>
     </Row>
   )

@@ -1,14 +1,15 @@
 .mainSearchBar{
     height: 100%;
-    background-color: blue;
     width: 20vw;
     padding-left: 2vw;
     padding-right: 2vw;
+    flex-grow: 1;
 }
 
 .input{
+    box-sizing: border-box;
     height: 60%;
     width: 95%;
     font-size: 1.5em;
-    border-radius: 20px;
+    background-color: rgb(41, 40, 40);
 }

@@ -7,22 +7,32 @@
   width: 100%;
 }
 
+@font-face {
+  font-family: thiccboy;
+  src: url('../../assets/fonts/THICCCBOI-Black.ttf');
+}
+
+p{
+  font-family: thiccboy;
+  color: rgb(18, 18, 18);
+}
+
 .navBar{
   display : flex ;
   box-sizing: border-box;
   flex-wrap: nowrap ;
   justify-content : start;
   align-items : start;
-  height : 20%;
+  height : 10%;
   width: 100%;
-  background-color : rgb(37, 55, 153);
+  background-color : rgb(18, 18, 18);
   padding: 0vh 10% 0vh 10%;
   margin-bottom: 3%;
 }
 
 .imagineLogo{
-  height:100%;
+  height:80%;
   width:20%;
-  object-fit : fill;
+  object-fit : contain;
   margin-right: 20px
 }

@@ -1,6 +1,25 @@
 .product_icon{
-    height: 90%;
-    width: 100px;
-    background-color:blueviolet;
+    height: 100;
+    box-sizing:border-box;
+    background-color:rgb(143,75,216);
     margin: 10px;
+    align-items: start;
+    padding: 1%;
+}
+
+.product_icon_image{
+    object-fit: contain;
+    height: 70%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product_icon_text{
+    box-sizing: border-box;
+    color: black;
+    font-size: 2em;
+    font-weight: 750;
+    height: fit-content;
+    width: fit-content;
+    margin: 0;
 }
