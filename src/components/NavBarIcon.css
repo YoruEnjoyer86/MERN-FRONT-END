@@ -1,0 +1,20 @@
+.navBarIcon{
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    margin-left: 3%;
+    background-color: rebeccapurple;
+}
+
+.navBarIconImage{
+    height: 100%;
+    width:50% ;
+    object-fit : contain
+}
+
+.navBarIconText{
+    height: 100%;
+    width:50%;
+}

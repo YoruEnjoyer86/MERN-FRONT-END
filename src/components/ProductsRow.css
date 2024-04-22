@@ -1,0 +1,15 @@
+.products_row{
+    display: flex;
+    background-color: honeydew;
+    box-sizing: border-box;
+    width: calc(90%);
+    height: 25vh;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: space-between;
+}
+
+.products_row_item{
+    flex-shrink: 0;
+    flex-grow: 1;
+}

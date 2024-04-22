@@ -1,8 +1,28 @@
 .home {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   height: 100vh;
   width: 100%;
+}
+
+.navBar{
+  display : flex ;
+  box-sizing: border-box;
+  flex-wrap: nowrap ;
+  justify-content : start;
+  align-items : start;
+  height : 20%;
+  width: 100%;
+  background-color : rgb(37, 55, 153);
+  padding: 0vh 10% 0vh 10%;
+  margin-bottom: 3%;
+}
+
+.imagineLogo{
+  height:100%;
+  width:20%;
+  object-fit : fill;
+  margin-right: 20px
 }

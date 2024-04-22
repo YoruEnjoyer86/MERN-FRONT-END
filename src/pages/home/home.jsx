@@ -1,12 +1,21 @@
 import React from "react";
-import "./home.css";
 import { useNavigate } from 'react-router-dom';
 import Row from "../../components/Row.jsx"
 import "../../components/Row.css"
-import "../../components/IconWithText.css"
+import "../../components/NavBarIcon.css"
 import "../../components/SearchBar.css";
+import "../../components/ProductsRow.css";
+import "./home.css";
 import SearchBar from "../../components/SearchBar.jsx";
-import IconWithText from "../../components/IconWithText.jsx";
+import NavBarIcon from "../../components/NavBarIcon.jsx";
+import Column from "../../components/Column.jsx" ;
+import ProductsRow from "../../components/ProductsRow.jsx"
+
+const GetProducts = () => {
+  //TODO IA PRODUSE
+  const products =[{name: "Bec"},{name: "Cutit"},{name: "Hartie"},{name: "Stilou"} ] ;
+  return products ;
+}
 
 const Home = () => {
   const navigate = useNavigate() ;
@@ -27,16 +36,17 @@ const Home = () => {
   }
 
   return (
-    <>
-    <Row style = {{display : "flex",flexWrap: "nowrap",justifyContent : "start",  alignItems : "center", height : "10vh", width: "100vw",  backgroundColor : "green", padding: "0vh 20vh 0vh 20vh" }}>
-      <img src = "../../../public/logo.png" style={{height: "100%", width:"10%", objectFit : 'contain', marginRight: '20px'}}/>
-      <SearchBar className="mainSearchBar centered"></SearchBar>
-      <IconWithText onClick = {HandleProfileClick} className = "noShrink navBarIcon" text="Profile" imgSrc="../../../public/profile.png"></IconWithText>
-      <IconWithText onClick = {HandleFavoritesClick} className = "noShrink navBarIcon" text="Favorites" imgSrc="../../../public/favorites.png"></IconWithText>
-      <IconWithText onClick = {HandleShoppingCartClick} className = "noShrink navBarIcon" text="Shopping Cart" imgSrc="../../../public/shopping_cart.png"></IconWithText>
-    </Row>
-    
-    </>
+    <div className="home">
+      <Row className='navBar'>
+        <img className="imagineLogo" src = "../../../public/logo.png" />
+        <SearchBar className="mainSearchBar centered growingElement"></SearchBar>
+        <NavBarIcon onClick = {HandleProfileClick} className = "noShrink" text="Profile" imgSrc="../../../public/profile.png"></NavBarIcon>
+        <NavBarIcon onClick = {HandleFavoritesClick} className = "noShrink" text="Favorites" imgSrc="../../../public/favorites.png"></NavBarIcon>
+        <NavBarIcon onClick = {HandleShoppingCartClick} className = "noShrink" text="Shopping Cart" imgSrc="../../../public/shopping_cart.png"></NavBarIcon>
+      </Row>
+      
+      <ProductsRow className='products_row' products={GetProducts()}/>
+    </div>
   );
 };
 
