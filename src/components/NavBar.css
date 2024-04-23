@@ -1,0 +1,13 @@
+
+.nav_bar{
+    display : flex ;
+    box-sizing: border-box;
+    flex-wrap: nowrap ;
+    justify-content : start;
+    align-items : start;
+    height : 10%;
+    width: 100%;
+    background-color : rgb(18, 18, 18);
+    padding: 0vh 10% 0vh 10%;
+    margin-bottom: 3%;
+  }

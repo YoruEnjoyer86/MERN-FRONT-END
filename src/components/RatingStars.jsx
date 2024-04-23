@@ -5,11 +5,11 @@ import Row from './Row.jsx'
 const emptyStarPath = '../../public/empty_star.png' ;
 const fullStarPath = '../../public/full_star.png' ;
 
-const RatingStars = ({value}) => {
+const RatingStars = ({value, className}) => {
     const stars = [1,2,3,4,5] ;
     const nrReviews = Math.floor(Math.random() * 100) ;
   return (
-    <Row className='rating_stars_row'>
+    <Row className={'rating_stars_row ' + className}>
         {stars.map((nr) => (
             <img src={(value >= nr) ? fullStarPath : emptyStarPath} className='rating_star' key={nr}/>
         ))}

@@ -6,12 +6,22 @@
     width: 15%;
     margin-left: 3%;
     /* background-color: rebeccapurple; */
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.navBarIcon :hover{
+    cursor: pointer;
 }
 
 .navBarIconImage{
     height: 60%;
     width:50% ;
-    object-fit : contain ;
+    object-fit : contain ;  
+    position: relative ;
+    top:0 ;
+    left:0 ;
 }
 
 .navBarIconText{
@@ -19,4 +29,22 @@
     width:fit-content;
     text-align: center;
     color: rgb(184, 181, 176);
+}
+
+.notification_text{
+    color: white;
+}
+
+.notification_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    left: 80px;
 }

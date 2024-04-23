@@ -1,15 +1,16 @@
 .product_icon{
-    height: 100;
+    height: 400px;
     box-sizing:border-box;
     background-color:rgb(143,75,216);
     margin: 10px;
     align-items: start;
+    width: 300px;
     padding: 1%;
 }
 
 .product_icon_image{
     object-fit: contain;
-    height: 70%;
+    height: 55%;
     width: 100%;
     box-sizing: border-box;
 }
@@ -22,4 +23,8 @@
     height: fit-content;
     width: fit-content;
     margin: 0;
+}
+
+.margin_bottom{
+    margin-bottom: 5%;
 }

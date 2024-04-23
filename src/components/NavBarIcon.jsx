@@ -13,11 +13,18 @@ const HandleMouseLeave = (setSrc,newImage) => {
   setSrc(newImage) ;
 }
 
-const NavBarIcon = ({text,imgSrc,hoverImgSrc,className, onClick}) => {
+const NavBarIcon = ({text,imgSrc,hoverImgSrc,className, onClick, nrNotifications}) => {
   const [src,setSrc] = useState(imgSrc) ;
   return (
     <Row onClick = {onClick} className={"navBarIcon " + className} onMouseEnter= {() => {HandleMouseEnter(setSrc,hoverImgSrc)}} onMouseLeave={() => {HandleMouseLeave(setSrc,imgSrc)}}>
-        <img src={src} className='navBarIconImage' />
+        <div>
+          <img src={src} className='navBarIconImage' />
+          {(nrNotifications > 0) && 
+            <div className='notification_container'>
+              <p className='notification_text'>{nrNotifications}</p>
+            </div>
+          }
+        </div>
         <p className='navBarIconText'>{text}</p>
     </Row>
   )
