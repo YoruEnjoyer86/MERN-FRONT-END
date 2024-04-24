@@ -10,6 +10,7 @@ import NavBar from "../../components/NavBar.jsx";
 
 const GetProducts = () => {
   //TODO IA PRODUSE
+  // Ana are mere
   const placeHolderImage = "../../../public/item.png" ;
   const products =[
   {name: "Bec", image: placeHolderImage},
