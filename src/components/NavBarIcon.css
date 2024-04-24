@@ -6,7 +6,6 @@
     align-items: center;
     width: 15%;
     margin-left: 3%;
-    /* background-color: rebeccapurple; */
     position: relative;
     top: 0;
     left: 0;
@@ -36,6 +35,12 @@
     color: white;
 }
 
+.cls{
+    position: relative ;
+    display: flex;
+    flex-direction: row;
+}
+
 .notification_container{
     display: flex;
     justify-content: center;
@@ -47,5 +52,6 @@
     background-color: red;
     position: absolute;
     top: 0px;
-    left: 80px;
+    transform: translateX(50px) translateY(-5px);
+    
 }

@@ -1,7 +1,6 @@
 .products_row{
     display: flex;
     align-items: center;
-    display: flex;
     box-sizing: border-box;
     width: fit-content;
     height: fit-content;

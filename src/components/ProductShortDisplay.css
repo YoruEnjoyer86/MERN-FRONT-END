@@ -1,4 +1,4 @@
-.product_icon{
+.product_short_display{
     display: flex;
     flex-direction: column;
     height: 400px;
@@ -7,17 +7,18 @@
     margin: 10px;
     align-items: start;
     width: 300px;
+    flex-shrink: 1;
     padding: 1%;
 }
 
-.product_icon_image{
+.product_short_display_image{
     object-fit: contain;
     height: 55%;
     width: 100%;
     box-sizing: border-box;
 }
 
-.product_icon_text{
+.product_short_display_text{
     box-sizing: border-box;
     color: black;
     font-size: 2em;

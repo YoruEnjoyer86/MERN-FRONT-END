@@ -23,7 +23,7 @@
     border-radius: 50%;
 }
 
-.cart_image_container :hover{
+.cart_image_container:hover{
     cursor: pointer;
 }
 
