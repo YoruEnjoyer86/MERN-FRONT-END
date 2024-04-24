@@ -1,15 +1,10 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import Row from "../../components/Row.jsx"
-import "../../components/Row.css"
 import "../../components/NavBarIcon.css"
 import "../../components/SearchBar.css";
 import "../../components/ProductsRow.css";
 import "./home.css";
-import SearchBar from "../../components/SearchBar.jsx";
-import NavBarIcon from "../../components/NavBarIcon.jsx";
-import Column from "../../components/Column.jsx" ;
 import ProductsRow from "../../components/ProductsRow.jsx"
 import NavBar from "../../components/NavBar.jsx";
 

@@ -1,4 +1,6 @@
 .product_icon{
+    display: flex;
+    flex-direction: column;
     height: 400px;
     box-sizing:border-box;
     background-color:rgb(143,75,216);

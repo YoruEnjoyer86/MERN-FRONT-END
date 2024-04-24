@@ -1,4 +1,3 @@
-import Row from './Row'
 import React, {useState} from 'react'
 import "./SearchBar.css"
 
@@ -22,9 +21,9 @@ const HandleSearch = () => {
 const SearchBar = ({style,className}) => {
 
   return (
-    <Row className = {className} style={{...style}}>
+    <div className = {'main_search_bar ' + className} style={{...style}}>
         <input className="input" type="text" onChange={() => {HandleOnChange(event)}} onKeyUp={() => {HandleOnKeyUp(event)}} placeholder='Search something!'/>
-        </Row>
+        </div>
   )
 }
 

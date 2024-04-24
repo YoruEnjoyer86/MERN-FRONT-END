@@ -1,4 +1,5 @@
-.navBarIcon{
+.nav_bar_icon{
+    display: flex;
     height: 100%;
     box-sizing: border-box;
     justify-content: center;
@@ -11,11 +12,11 @@
     left: 0;
 }
 
-.navBarIcon :hover{
+.nav_bar_icon :hover{
     cursor: pointer;
 }
 
-.navBarIconImage{
+.nav_bar_icon_image{
     height: 60%;
     width:50% ;
     object-fit : contain ;  

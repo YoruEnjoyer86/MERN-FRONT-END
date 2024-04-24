@@ -1,9 +1,12 @@
-.mainSearchBar{
+.main_search_bar{
+    display: flex;
     height: 100%;
     width: 20vw;
     padding-left: 2vw;
     padding-right: 2vw;
     flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .input{

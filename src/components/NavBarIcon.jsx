@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Row from './Row'
-import './Row.css'
 import './NavBarIcon.css'
 
 
@@ -16,9 +14,9 @@ const HandleMouseLeave = (setSrc,newImage) => {
 const NavBarIcon = ({text,imgSrc,hoverImgSrc,className, onClick, nrNotifications}) => {
   const [src,setSrc] = useState(imgSrc) ;
   return (
-    <Row onClick = {onClick} className={"navBarIcon " + className} onMouseEnter= {() => {HandleMouseEnter(setSrc,hoverImgSrc)}} onMouseLeave={() => {HandleMouseLeave(setSrc,imgSrc)}}>
+    <div onClick = {onClick} className={"nav_bar_icon " + className} onMouseEnter= {() => {HandleMouseEnter(setSrc,hoverImgSrc)}} onMouseLeave={() => {HandleMouseLeave(setSrc,imgSrc)}}>
         <div>
-          <img src={src} className='navBarIconImage' />
+          <img src={src} className='nav_bar_icon_image' />
           {(nrNotifications > 0) && 
             <div className='notification_container'>
               <p className='notification_text'>{nrNotifications}</p>
@@ -26,7 +24,7 @@ const NavBarIcon = ({text,imgSrc,hoverImgSrc,className, onClick, nrNotifications
           }
         </div>
         <p className='navBarIconText'>{text}</p>
-    </Row>
+    </div>
   )
 }
 
