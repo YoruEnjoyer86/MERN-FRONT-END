@@ -1,0 +1,10 @@
+.modal_container {
+  position: fixed;
+  left: 1.25rem;
+  top: 3rem;
+  background-color: rgb(68, 68, 75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}

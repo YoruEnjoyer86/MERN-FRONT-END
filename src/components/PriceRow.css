@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;    
-    border-radius: 50%;
+    border-radius: 25%;
 }
 
 .cart_image_container:hover{

@@ -28,6 +28,44 @@ const GetProducts = () => {
   return products ;
 }
 
+const GetFoodProducts = () => { //FUNCTIE PLACEHOLDER
+  const placeHolderImage = "../../../public/item.png" ;
+  const products =[
+  {name: "Carne de pui", image: placeHolderImage},
+  {name: "Ou", image: placeHolderImage},
+  {name: "Lapte", image: placeHolderImage},
+  {name: "Sare", image: placeHolderImage},
+  {name: "Orez", image: placeHolderImage},
+  {name: "Paste", image: placeHolderImage},
+  {name: "Cartof", image: placeHolderImage},
+  {name: "Ciuperca", image: placeHolderImage},
+  {name: "Cipsuri Lay's", image: placeHolderImage}
+ ] ;
+  return products ;
+}
+
+const GetClothingProducts = () => { //FUNCTIE PLACEHOLDER
+  const placeHolderImage = "../../../public/item.png" ;
+  const products =[
+    {name: "Pantof Gucci", image: placeHolderImage},
+    {name: "Rochie Chanel", image: placeHolderImage},
+    {name: "Cămașă Armani", image: placeHolderImage},
+    {name: "Fustă Versace", image: placeHolderImage},
+    {name: "Pantaloni Adidas", image: placeHolderImage},
+    {name: "Geacă Burberry", image: placeHolderImage},
+    {name: "Pulover Louis Vuitton", image: placeHolderImage},
+    {name: "Șapcă Nike", image: placeHolderImage},
+    {name: "Ciorapi Dior", image: placeHolderImage},
+    {name: "Palton Gucci", image: placeHolderImage},
+    {name: "Sacou Prada", image: placeHolderImage},
+    {name: "Pantaloni scurți Calvin Klein", image: placeHolderImage},
+    {name: "Cămașă cu mânecă lungă Tommy Hilfiger", image: placeHolderImage},
+    {name: "Pijama Victoria's Secret", image: placeHolderImage},
+    {name: "Costum de baie Dolce & Gabbana", image: placeHolderImage}
+ ] ;
+  return products ;
+}
+
 const Home = () => {
   const navigate = useNavigate() ;
   
@@ -64,7 +102,9 @@ const Home = () => {
         HandleShoppingCartClick = {HandleShoppingCartClick}
         notifications={[profileNotifications,favoritesNotifications,cartNotifications]}
       />
-      <ProductsRow maxDisplayedItems={5} products={GetProducts()} HandleAddItemToCart = {HandleAddItemToCart}/>
+      <ProductsRow maxDisplayedItems={5} products={GetProducts()} HandleAddItemToCart = {HandleAddItemToCart} category='Chestii random'/>
+      <ProductsRow maxDisplayedItems={5} products={GetFoodProducts()} HandleAddItemToCart = {HandleAddItemToCart} category='Mancare'/>
+      <ProductsRow maxDisplayedItems={5} products={GetClothingProducts()} HandleAddItemToCart = {HandleAddItemToCart} category='Haine'/>
     </div>
   );
 };
