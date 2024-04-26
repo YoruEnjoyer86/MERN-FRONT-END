@@ -1,0 +1,11 @@
+.subcategories_column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: green; */
+  margin-right: 10px;
+}
+
+.subcategory_text {
+  margin: 0;
+}

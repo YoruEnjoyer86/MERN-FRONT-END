@@ -12,6 +12,7 @@
   justify-content: start;
   align-items: center;
   padding: 30px 20px 30px 10px;
+  width: 200px;
 }
 
 .category_row_container:hover > :first-child {
@@ -24,4 +25,16 @@
   height: 30px;
   width: 30px;
   margin-right: 10%;
+}
+
+.category_and_subcategories {
+  display: flex;
+  flex-direction: row;
+}
+
+.subcategories_row {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(68, 68, 75);
+  width: 600px;
 }

@@ -16,12 +16,32 @@ const NavBar = ({
   return (
     <div className="nav_bar">
       <DropdownButton img="../../public/three_lines.png">
-        <CategoryRow name="Laptop/Tablete" image={placeHolderCategoryImage} />
-        <CategoryRow name="PC/Periferice" image={placeHolderCategoryImage} />
-        <CategoryRow name="Alimente" image={placeHolderCategoryImage} />
-        <CategoryRow name="Îmbrăcăminte" image={placeHolderCategoryImage} />
+        <CategoryRow
+          name="Laptop/Tablete"
+          image={placeHolderCategoryImage}
+          subcategories={["Laptop", "Telefoane Mobile"]}
+        />
+        <CategoryRow
+          name="PC/Periferice"
+          image={placeHolderCategoryImage}
+          subcategories={["Mouse", "Tastatura", "Monitoare"]}
+        />
+        <CategoryRow
+          name="Alimente"
+          image={placeHolderCategoryImage}
+          subcategories={["Lactate", "Carne", "Snacks-uri"]}
+        />
+        <CategoryRow
+          name="Îmbrăcăminte"
+          image={placeHolderCategoryImage}
+          subcategories={["Pantofi", "Paltoane", "Slapi"]}
+        />
       </DropdownButton>
-      <img className="imagineLogo" src="../../../public/logo.png" />
+      <img
+        className="imagineLogo"
+        src="../../../public/logo.png"
+        subcategories={[]}
+      />
       <SearchBar />
       <NavBarIcon
         nrNotifications={notifications[0]}
