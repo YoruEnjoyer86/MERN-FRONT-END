@@ -1,0 +1,20 @@
+.input_label_row {
+  display: flex;
+  justify-content: center;
+  object-fit: contain;
+}
+
+@font-face {
+  font-family: thiccboy;
+  src: url("../../assets/fonts/THICCCBOI-Black.ttf");
+}
+
+.input_label_text {
+  margin: 0;
+  margin-right: 10px;
+  font-family: thiccboy;
+}
+
+.input_text {
+  font-size: 1.5em;
+}

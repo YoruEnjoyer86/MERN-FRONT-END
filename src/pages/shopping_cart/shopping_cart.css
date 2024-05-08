@@ -1,0 +1,15 @@
+.pagina {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.add_product_button {
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 2em;
+  padding: 5px;
+  box-sizing: border-box;
+}

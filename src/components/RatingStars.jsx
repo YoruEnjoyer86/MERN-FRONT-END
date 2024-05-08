@@ -1,23 +1,26 @@
-import React from 'react'
-import './RatingStars.css'
+import React from "react";
+import "./RatingStars.css";
 
-const emptyStarPath = '../../public/empty_star.png' ;
-const fullStarPath = '../../public/full_star.png' ;
+const emptyStarPath = "../../public/empty_star.png";
+const fullStarPath = "../../public/full_star.png";
 
-const RatingStars = ({value, className}) => {
-    const stars = [1,2,3,4,5] ;
-    const nrReviews = Math.floor(Math.random() * 100) ;
+const RatingStars = ({ value, className, nrReviews }) => {
+  const stars = [1, 2, 3, 4, 5];
   return (
-    <div className={'rating_stars_row ' + className}>
-        {stars.map((nr) => (
-            <img src={(value >= nr) ? fullStarPath : emptyStarPath} className='rating_star' key={nr}/>
-        ))}
-        <div className='row'>
-            <p className='rating_stars_number'>{value}</p>
-            <p className='rating_stars_nr_reviews'>{'(' + nrReviews + ')'}</p>
-        </div>
+    <div className={"rating_stars_row " + className}>
+      {stars.map((nr) => (
+        <img
+          src={value >= nr ? fullStarPath : emptyStarPath}
+          className="rating_star"
+          key={nr}
+        />
+      ))}
+      <div className="row">
+        <p className="rating_stars_number">{value}</p>
+        <p className="rating_stars_nr_reviews">{"(" + nrReviews + ")"}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RatingStars
+export default RatingStars;

@@ -9,14 +9,6 @@ import ProductsRow from "../../components/ProductsRow.jsx";
 import NavBar from "../../components/NavBar.jsx";
 import axios from "axios";
 
-const products = [];
-
-const GetProductsFromBackend = async () => {
-  const res = await axios.get("http://localhost:3001/api/products");
-  console.log(res);
-  products += res;
-};
-
 const GetProducts = () => {
   //TODO IA PRODUSE
   // asat sfjsilhfishfhsbfshfojshfhsjfwjefjer 0000000000000000000000000000000000000000000000000000000000
@@ -71,6 +63,19 @@ const Home = () => {
     GetProductsFromBackend();
   }, []);
 
+  const GetProductsFromBackend = async () => {
+    let res = await axios.get("http://localhost:3001/api/products");
+    console.log(res);
+    setProductsFromBackEnd(
+      res.data.map((product) => ({
+        ...product,
+        image: "../../../public/item.png",
+      }))
+    );
+  };
+
+  let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
+
   const navigate = useNavigate();
 
   const HandleProfileClick = () => {
@@ -108,7 +113,7 @@ const Home = () => {
       />
       <ProductsRow
         maxDisplayedItems={5}
-        products={products}
+        products={productsFromBackEnd}
         HandleAddItemToCart={HandleAddItemToCart}
         category="Chestii random"
       />
