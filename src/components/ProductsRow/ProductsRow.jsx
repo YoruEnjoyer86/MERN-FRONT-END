@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import ProductShortDisplay from "./ProductShortDisplay.jsx";
+import ProductShortDisplay from "../ProductShortDisplay/ProductShortDisplay.jsx";
 import "./ProductsRow.css";
-import "./DotsRow/DotsRow.jsx";
-import DotsRow from "./DotsRow/DotsRow.jsx";
+import "../DotsRow/DotsRow.jsx";
+import DotsRow from "../DotsRow/DotsRow.jsx";
 
 const rigtArrowImg = "../../public/right_arrow.png";
 const leftArrowImg = "../../public/left_arrow.png";

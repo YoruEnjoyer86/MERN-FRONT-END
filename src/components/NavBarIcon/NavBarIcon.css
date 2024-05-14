@@ -1,0 +1,56 @@
+.nav_bar_icon {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  margin-left: 3%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.nav_bar_icon :hover {
+  cursor: pointer;
+}
+
+.nav_bar_icon_image {
+  height: 60%;
+  width: 50%;
+  object-fit: contain;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.navBarIconText {
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  color: rgb(184, 181, 176);
+}
+
+.notification_text {
+  color: white;
+}
+
+.cls {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.notification_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  transform: translateX(50px) translateY(-5px);
+}

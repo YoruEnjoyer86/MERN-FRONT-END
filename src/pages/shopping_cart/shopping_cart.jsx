@@ -35,6 +35,8 @@ const shopping_cart = () => {
     setQuantity("");
     setSeller("");
     setPrice("");
+    setCategory("");
+    setUploadedImage(noImageUploadedImage);
 
     DownloadProductImage();
   };

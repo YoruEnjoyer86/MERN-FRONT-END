@@ -1,9 +1,9 @@
 import React from "react";
-import SearchBar from "./SearchBar.jsx";
-import NavBarIcon from "./NavBarIcon";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import NavBarIcon from "../NavBarIcon/NavBarIcon.jsx";
 import "./NavBar.css";
-import DropdownButton from "./DropdownButton/DropdownButton.jsx";
-import CategoryRow from "./CategoryRow/CategoryRow.jsx";
+import DropdownButton from "../DropdownButton/DropdownButton.jsx";
+import CategoryRow from "../CategoryRow/CategoryRow.jsx";
 
 const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
 

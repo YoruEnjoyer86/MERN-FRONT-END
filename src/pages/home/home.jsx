@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../../components/NavBarIcon.css";
-import "../../components/SearchBar.css";
-import "../../components/ProductsRow.css";
+import "../../components/NavBarIcon/NavBarIcon.css";
+import "../../components/SearchBar/SearchBar.css";
+import "../../components/ProductsRow/ProductsRow.css";
 import "./home.css";
-import ProductsRow from "../../components/ProductsRow.jsx";
-import NavBar from "../../components/NavBar.jsx";
+import ProductsRow from "../../components/ProductsRow/ProductsRow.jsx";
+import NavBar from "../../components/NavBar/NavBar.jsx";
 import axios from "axios";
 
 const GetImageForProduct = (product) => {
@@ -119,13 +119,13 @@ const Home = () => {
       />
       <ProductsRow
         maxDisplayedItems={5}
-        products={GetFoodProducts()}
+        products={[]}
         HandleAddItemToCart={HandleAddItemToCart}
         category="Mancare"
       />
       <ProductsRow
         maxDisplayedItems={5}
-        products={GetClothingProducts()}
+        products={[]}
         HandleAddItemToCart={HandleAddItemToCart}
         category="Haine"
       />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProductShortDisplay.css";
-import RatingStars from "./RatingStars.jsx";
-import PriceRow from "./PriceRow.jsx";
+import RatingStars from "../RatingStars/RatingStars.jsx";
+import PriceRow from "../PriceRow/PriceRow.jsx";
 import axios from "axios";
 
 const favoriteImage = "../../public/favorites_hover.png";
@@ -54,6 +54,7 @@ const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
       />
       <PriceRow
         className="price_row_in_product"
+        price={product.price}
         HandleAddItemToCart={() => {
           HandleAddItemToCart(product.name);
         }}
