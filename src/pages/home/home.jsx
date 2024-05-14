@@ -9,29 +9,16 @@ import ProductsRow from "../../components/ProductsRow.jsx";
 import NavBar from "../../components/NavBar.jsx";
 import axios from "axios";
 
+const GetImageForProduct = (product) => {
+  return "../../../" + product.name + "_" + product.seller + ".png";
+};
+
 const GetProducts = () => {
   //TODO IA PRODUSE
   // asat sfjsilhfishfhsbfshfojshfhsjfwjefjer 0000000000000000000000000000000000000000000000000000000000
   //ana are mere
   //ana nu are mere e adhsahdashasd
 
-  return products;
-};
-
-const GetFoodProducts = () => {
-  //FUNCTIE PLACEHOLDER
-  const placeHolderImage = "../../../public/item.png";
-  const products = [
-    { name: "Carne de pui", image: placeHolderImage },
-    { name: "Ou", image: placeHolderImage },
-    { name: "Lapte", image: placeHolderImage },
-    { name: "Sare", image: placeHolderImage },
-    { name: "Orez", image: placeHolderImage },
-    { name: "Paste", image: placeHolderImage },
-    { name: "Cartof", image: placeHolderImage },
-    { name: "Ciuperca", image: placeHolderImage },
-    { name: "Cipsuri Lay's", image: placeHolderImage },
-  ];
   return products;
 };
 
@@ -63,18 +50,31 @@ const Home = () => {
     GetProductsFromBackend();
   }, []);
 
+  const GetFoodProducts = () => {
+    //FUNCTIE PLACEHOLDER
+    const placeHolderImage = "../../../public/item.png";
+    const products = [
+      { name: "Carne de pui", image: placeHolderImage },
+      { name: "Ou", image: placeHolderImage },
+      { name: "Lapte", image: placeHolderImage },
+      { name: "Sare", image: placeHolderImage },
+      { name: "Orez", image: placeHolderImage },
+      { name: "Paste", image: placeHolderImage },
+      { name: "Cartof", image: placeHolderImage },
+      { name: "Ciuperca", image: placeHolderImage },
+      { name: "Cipsuri Lay's", image: placeHolderImage },
+    ];
+    return products;
+  };
+
   const GetProductsFromBackend = async () => {
     let res = await axios.get("http://localhost:3001/api/products");
     console.log(res);
-    setProductsFromBackEnd(
-      res.data.map((product) => ({
-        ...product,
-        image: "../../../public/item.png",
-      }))
-    );
+    setProductsFromBackEnd(res.data);
   };
 
   let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
+  let [foodProducts, setFoodProducts] = useState([]);
 
   const navigate = useNavigate();
 

@@ -3,11 +3,16 @@ import "./shopping_cart.css";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import axios from "axios";
 
+const noImageUploadedImage = "../../public/no_image.png";
+
 const shopping_cart = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [seller, setSeller] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [uploadedImage, setUploadedImage] = useState(noImageUploadedImage);
 
   const OnAddProduct = async () => {
     axios
@@ -17,6 +22,8 @@ const shopping_cart = () => {
           description,
           quantity,
           seller,
+          price,
+          category,
         }),
       })
       .then((res) => {
@@ -27,6 +34,22 @@ const shopping_cart = () => {
     setDescription("");
     setQuantity("");
     setSeller("");
+    setPrice("");
+
+    DownloadProductImage();
+  };
+
+  // post request catre backend sa salveze imaginea incarcata
+  const DownloadProductImage = async () => {
+    let response = await axios.post(
+      "http://localhost:3001/api/download_product_image",
+      {
+        img_src: uploadedImage,
+        name: name,
+        seller: seller,
+      }
+    );
+    console.log(response);
   };
 
   return (
@@ -44,6 +67,18 @@ const shopping_cart = () => {
         setValue={setQuantity}
       />
       <InputWithLabel label="seller" value={seller} setValue={setSeller} />
+      <InputWithLabel label="price" value={price} setValue={setPrice} />
+      <InputWithLabel
+        label="category"
+        value={category}
+        setValue={setCategory}
+      />
+      <InputWithLabel
+        label="image"
+        inputType="image"
+        uploadedImage={uploadedImage}
+        setUploadedImage={setUploadedImage}
+      />
       <button className="add_product_button" onClick={OnAddProduct}>
         ADD PRODUCT
       </button>

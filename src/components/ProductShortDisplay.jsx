@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductShortDisplay.css";
 import RatingStars from "./RatingStars.jsx";
 import PriceRow from "./PriceRow.jsx";
+import axios from "axios";
 
 const favoriteImage = "../../public/favorites_hover.png";
 const notFavoriteImage = "../../public/favorites.png";
+const noImage = "../../public/no_image.png";
 
 const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
   const [isFavorite, setFavorite] = useState(false); // TODO MOVE STATE UP
+  const [imageSrc, setImageSrc] = useState(noImage);
+
+  const RequestImageFromBackend = async () => {
+    let response = await axios.post(
+      "http://localhost:3001/api/get_product_image",
+      {
+        productDetails: JSON.stringify({
+          name: product.name,
+          seller: product.seller,
+        }),
+      }
+    );
+    if (response.data.ok != false) {
+      console.log(response.data.img);
+      setImageSrc(response.data.img);
+    }
+  };
+
+  useEffect(() => {
+    RequestImageFromBackend();
+  }, []);
 
   return (
     <div className={"product_short_display " + className}>
@@ -22,7 +45,7 @@ const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
           src={isFavorite ? favoriteImage : notFavoriteImage}
         />
       </div>
-      <img className="product_short_display_image" src={product.image} />
+      <img className="product_short_display_image" src={imageSrc} />
       <p className="product_short_display_text">{product.name}</p>
       <RatingStars
         className="margin_bottom"

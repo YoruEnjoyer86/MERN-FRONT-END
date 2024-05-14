@@ -1,6 +1,7 @@
 .input_label_row {
   display: flex;
   justify-content: center;
+  align-items: center;
   object-fit: contain;
 }
 
@@ -15,6 +16,53 @@
   font-family: thiccboy;
 }
 
+.image_button {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
 .input_text {
   font-size: 1.5em;
+}
+
+.button_with_image_text {
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(71, 58, 70);
+  border: 2px;
+  border-style: solid;
+  border-color: rgb(82, 80, 80);
+}
+
+.margin_down_for_button {
+  margin-bottom: 10px;
+}
+
+.uploaded_image {
+  object-fit: contain;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.input_buttons_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button_with_image_text:hover {
+  cursor: pointer;
+}
+
+h1,
+h3 {
+  margin: 0;
 }

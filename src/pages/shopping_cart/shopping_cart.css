@@ -6,10 +6,44 @@
   align-items: center;
 }
 
+@font-face {
+  font-family: thiccboy;
+  src: url("../../assets/fonts/THICCCBOI-Black.ttf");
+}
+
+.normal_button {
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 2em;
+  padding: 5px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.normal_button:hover {
+  cursor: pointer;
+}
+
 .add_product_button {
   background-color: rebeccapurple;
   color: white;
   font-size: 2em;
   padding: 5px;
   box-sizing: border-box;
+}
+
+.add_product_button:hover {
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file_input_label {
+  box-sizing: border-box;
+  padding: 5px;
+  color-scheme: rebeccapurple;
 }
