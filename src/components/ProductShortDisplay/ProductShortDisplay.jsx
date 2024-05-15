@@ -25,7 +25,7 @@ const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
     if (response.data.ok != false) {
       console.log(response.data.img);
       setImageSrc(response.data.img);
-    }
+    } else console.log(response.data.error);
   };
 
   useEffect(() => {

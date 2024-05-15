@@ -24,34 +24,22 @@ const shopping_cart = () => {
           seller,
           price,
           category,
+          img_src: uploadedImage,
         }),
       })
-      .then((res) => {
-        alert(res.body);
-        console.log(res);
+      .then((err, res) => {
+        if (!err) {
+          setName("");
+          setDescription("");
+          setQuantity("");
+          setSeller("");
+          setPrice("");
+          setCategory("");
+          setUploadedImage(noImageUploadedImage);
+          alert(res.data);
+          console.log(res.data);
+        }
       });
-    setName("");
-    setDescription("");
-    setQuantity("");
-    setSeller("");
-    setPrice("");
-    setCategory("");
-    setUploadedImage(noImageUploadedImage);
-
-    DownloadProductImage();
-  };
-
-  // post request catre backend sa salveze imaginea incarcata
-  const DownloadProductImage = async () => {
-    let response = await axios.post(
-      "http://localhost:3001/api/download_product_image",
-      {
-        img_src: uploadedImage,
-        name: name,
-        seller: seller,
-      }
-    );
-    console.log(response);
   };
 
   return (
