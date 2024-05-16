@@ -1,0 +1,30 @@
+.user_options_column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  object-fit: contain;
+  box-sizing: content-box;
+  margin-right: 30px;
+}
+
+.user_option {
+  background-color: rgb(18, 18, 18);
+  padding: 10px;
+  border-color: gray;
+  border-radius: 10px;
+  border: 2px;
+  border-style: solid;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.user_option:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+p {
+  font-size: 2em;
+  color: white;
+  margin: 0px;
+}

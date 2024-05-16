@@ -3,9 +3,10 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/home/home";
-import Profile from "./pages/profile/profile"
-import Favorites from "./pages/favorites/favorites"
-import Shopping_Cart from "./pages/shopping_cart/shopping_cart"
+import Profile from "./pages/profile/profile";
+import Favorites from "./pages/favorites/favorites";
+import Shopping_Cart from "./pages/shopping_cart/shopping_cart";
+import Add_product_to_database from "./pages/add_product_to_database/add_product_to_database";
 
 const router = createBrowserRouter([
   {
@@ -14,15 +15,19 @@ const router = createBrowserRouter([
   },
   {
     path: "profile",
-    element: <Profile/>,
+    element: <Profile />,
   },
   {
     path: "favorites",
-    element: <Favorites/>,
+    element: <Favorites />,
   },
   {
     path: "shopping_cart",
-    element: <Shopping_Cart/>,
+    element: <Shopping_Cart />,
+  },
+  {
+    path: "add_product_to_database",
+    element: <Add_product_to_database />,
   },
 ]);
 

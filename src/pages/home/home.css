@@ -6,20 +6,3 @@
   height: 100vh;
   width: 100%;
 }
-
-@font-face {
-  font-family: thiccboy;
-  src: url('../../assets/fonts/THICCCBOI-Black.ttf');
-}
-
-p{
-  font-family: thiccboy;
-  color: rgb(18, 18, 18);
-}
-
-.imagineLogo{
-  height:80%;
-  width:20%;
-  object-fit : contain;
-  margin-right: 20px
-}

@@ -1,14 +1,24 @@
+.nav_bar {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+  background-color: rgb(18, 18, 18);
+  padding: 0vh 10% 0vh 10%;
+  margin-bottom: 3%;
+  position: relative;
+}
 
-.nav_bar{
-    display : flex ;
-    box-sizing: border-box;
-    flex-wrap: nowrap ;
-    justify-content : start;
-    align-items : center;
-    height : 10%;
-    width: 100%;
-    background-color : rgb(18, 18, 18);
-    padding: 0vh 10% 0vh 10%;
-    margin-bottom: 3%;
-    position: relative;
-  }
+.logo_image {
+  height: 80%;
+  width: 20%;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.logo_image:hover {
+  cursor: pointer;
+}

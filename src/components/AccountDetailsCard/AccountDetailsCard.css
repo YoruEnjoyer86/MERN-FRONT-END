@@ -1,0 +1,97 @@
+.account_details_card {
+  width: 50%;
+  background-color: rgb(143, 75, 216);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 0px 0px;
+}
+
+.main_text {
+  margin-left: 20px;
+}
+
+.information_part {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit_information_button {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 10px;
+  border-top-color: white;
+  width: 100%;
+  border-top: 2px;
+  border-top-style: solid;
+}
+
+.edit_information_button:hover {
+  cursor: pointer;
+  background-color: rgba(172, 121, 226, 255);
+}
+
+.data_row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.profile_picture {
+  object-fit: contain;
+  aspect-ratio: 1/ 1;
+  height: 120px;
+  border-radius: 100%;
+  background-color: white;
+  margin-right: 20px;
+  position: relative;
+}
+
+.text_fields_column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field_row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field_row_text {
+  font-size: 1.3em;
+  font-weight: 100;
+}
+
+.field_row_phone_number {
+  font-size: 1.3em;
+  color: rgb(18, 18, 18);
+}
+.field_row_clickable_text {
+  font-size: 1.3em;
+  color: rgb(0, 234, 255);
+  text-decoration: underline;
+}
+
+.field_row_clickable_text:hover {
+  cursor: pointer;
+}
+
+.profile_image_container {
+  position: relative;
+}
+
+.edit_image_picture {
+  position: absolute;
+  height: 40px;
+  object-fit: contain;
+  bottom: 0;
+  right: 0;
+  transform: translateX(-0.5rem) translateY(-0.3rem);
+}
+
+.edit_image_picture:hover {
+  cursor: pointer;
+}
