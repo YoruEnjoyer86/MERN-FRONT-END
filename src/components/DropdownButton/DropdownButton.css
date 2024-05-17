@@ -5,9 +5,6 @@
 }
 
 .drop_down_button_container {
-  position: absolute;
-  left: 0;
-  transform: translateX(6rem);
   display: flex;
   align-items: center;
   height: 40%;

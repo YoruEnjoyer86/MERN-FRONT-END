@@ -33,7 +33,16 @@ const NavBar = ({ notifications, className = "" }) => {
 
   return (
     <div className={"nav_bar " + className}>
-      <DropdownButton img="../../public/three_lines.png">
+      <DropdownButton
+        isBackgroundVisible={true}
+        className={"more_options_button"}
+        button={
+          <img
+            src="../../public/three_lines.png"
+            className="more_options_image"
+          />
+        }
+      >
         <CategoryRow
           name="Laptop/Tablete"
           image={placeHolderCategoryImage}

@@ -1,7 +1,15 @@
 import React, { Children } from "react";
 import "./Modal.css";
-const Modal = ({ children }) => {
-  return <div className="modal_container">{children}</div>;
+const Modal = ({ children, isBackgroundVisible }) => {
+  return (
+    <div
+      className={
+        "modal_container " + (isBackgroundVisible && "colored_background")
+      }
+    >
+      {children}
+    </div>
+  );
 };
 
 export default Modal;

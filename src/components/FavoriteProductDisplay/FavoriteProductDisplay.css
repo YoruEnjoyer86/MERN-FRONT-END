@@ -1,0 +1,117 @@
+.favorite_product {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgb(68, 68, 75);
+  height: 250px;
+}
+
+.favorite_product_image {
+  object-fit: contain;
+  width: 20%;
+}
+
+.name_and_reviews_column {
+  padding: 20px 0px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.purchase_details_column {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 10%;
+  padding: 20px 0px 20px 20px;
+  justify-content: start;
+  align-items: start;
+  position: relative;
+}
+
+.rating_row {
+  width: 50%;
+}
+
+.seller_text_row {
+  display: flex;
+  align-items: baseline;
+  width: 80%;
+}
+
+.sold_by_text {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.seller_text {
+  overflow: hidden;
+  font-size: 1.8em;
+  color: rgba(208, 180, 238, 255);
+  text-decoration: underline;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: fit-content;
+}
+
+.seller_text:hover {
+  cursor: pointer;
+}
+
+.in_stock_text {
+  color: rgb(118, 213, 118);
+}
+
+.out_of_stock_text {
+  color: rgb(210, 106, 106);
+}
+
+.seller_star {
+  height: 30px;
+  object-fit: contain;
+  align-self: start;
+}
+
+.number_stars_text {
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+.seller_rating_row {
+  margin-left: 30px;
+  display: flex;
+  align-items: baseline;
+  box-sizing: border-box;
+}
+
+.favorite_product_list_price_row {
+  width: 300px;
+}
+
+.remove_from_list_row {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+}
+.remove_from_list_row:hover {
+  cursor: pointer;
+}
+
+.remove_item_text {
+  color: rgb(210, 106, 106);
+  text-decoration: underline;
+  font-size: 1.3em;
+  margin-right: 10px;
+}
+
+.trash_icon {
+  object-fit: contain;
+  height: 20px;
+}
+
+.price_text {
+  color: white;
+}

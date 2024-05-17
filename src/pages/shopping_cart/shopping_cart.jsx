@@ -1,13 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./shopping_cart.css";
-import { useState } from "react";
 import "./shopping_cart.css";
 import NavBar from "../../components/NavBar/NavBar";
+import axios from "axios";
+import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
 
 const shopping_cart = () => {
   const [profileNotifications, setProfileNotifications] = useState(1);
   const [favoritesNotifications, setFavoritesNotifications] = useState(0);
   const [cartNotifications, setCartNotifications] = useState(0);
+  //SCHIMBA, FA-L STATE GLOBAL
+  const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
+
+  useEffect(() => {
+    GetProductsFromBackend();
+  }, []);
+
+  const GetProductsFromBackend = async () => {
+    let res = await axios.post(
+      "http://localhost:3001/api/get_products_of_category",
+      {
+        category: "everything",
+      }
+    );
+    let products = res.data;
+    let prodSellerMap = new Map();
+    products.forEach((product) => {
+      if (prodSellerMap.has(product.seller) === false)
+        prodSellerMap.set(product.seller, [product]);
+      else {
+        let newVal = prodSellerMap.get(product.seller);
+        newVal.push(product);
+        prodSellerMap.set(product.seller, newVal);
+      }
+    });
+    let newSellerProducts = [];
+    for (let [key, value] of prodSellerMap)
+      newSellerProducts.push({ seller: key, products: value });
+    setproductsSortedBySeller(newSellerProducts);
+  };
+
+  useEffect(() => {
+    console.log(productsSortedBySeller);
+  }, [productsSortedBySeller]);
+
   return (
     <div className="shopping_cart_page">
       <NavBar
@@ -18,7 +54,34 @@ const shopping_cart = () => {
           cartNotifications,
         ]}
       />
-      <p>Shopping CART!</p>
+      <div className="contents_row">
+        <div className="left_column">
+          <p className="title">Shopping Cart</p>
+          {productsSortedBySeller.map((value, index) => (
+            <ProductsDeliveredBySellerColumn
+              seller={value.seller}
+              products={value.products}
+              key={index}
+            />
+          ))}
+        </div>
+        <div className="right_column">
+          <p className="order_summary_text">Order Summary</p>
+          <div className="cost_row">
+            <p className="cost_row_text">Product cost : </p>
+            <span className="space_between_cost" />
+            <p className="cost_row_text">1000 LEI</p>
+          </div>
+          <div className="cost_row">
+            <p className="cost_row_text">Delivery cost : </p>
+            <span className="space_between_cost" />
+            <p className="cost_row_text">99.99 LEI</p>
+          </div>
+          <p className="order_summary_text">Total:</p>
+          <p className="price_text">1099.99 LEI</p>
+          <button className="continue_button"> Continue </button>
+        </div>
+      </div>
     </div>
   );
 };

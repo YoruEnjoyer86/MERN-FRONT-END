@@ -1,0 +1,36 @@
+.short_favorite_products_list {
+  height: 100px;
+  width: 200px;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  border-radius: 0px 0px 20px 10px;
+  border-top: 10px;
+  border-top-style: solid;
+  border-color: aliceblue;
+}
+
+.short_favorite_products_list:hover {
+  cursor: pointer;
+}
+
+.list_name {
+  color: black;
+  font-size: 1.5em;
+}
+
+.nr_products {
+  color: rgb(78, 75, 75);
+  font-size: 1.5em;
+}
+
+.selected {
+  border-radius: 0px;
+  border-top: 10px;
+  border-top-style: solid;
+  border-color: rebeccapurple;
+}

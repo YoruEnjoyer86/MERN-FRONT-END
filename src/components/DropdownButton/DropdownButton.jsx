@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./DropdownButton.css";
 import Modal from "../Modal/Modal";
 
-const DropdownButton = ({ img, children }) => {
+const DropdownButton = ({
+  button,
+  children,
+  className,
+  isBackgroundVisible = false,
+}) => {
   const [isOpen, setOpen] = useState(false);
 
   const HandleOnClick = () => {
@@ -10,9 +15,14 @@ const DropdownButton = ({ img, children }) => {
   };
 
   return (
-    <div onClick={HandleOnClick} className="drop_down_button_container">
-      <img className="drop_down_image" src={img} />
-      {isOpen && <Modal>{children}</Modal>}
+    <div
+      onClick={HandleOnClick}
+      className={"drop_down_button_container " + className}
+    >
+      {<div className="drop_down_image">{button}</div>}
+      {isOpen && (
+        <Modal isBackgroundVisible={isBackgroundVisible}>{children}</Modal>
+      )}
     </div>
   );
 };
