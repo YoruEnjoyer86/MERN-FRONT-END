@@ -7,6 +7,7 @@ import Profile from "./pages/profile/profile";
 import Favorites from "./pages/favorites/favorites";
 import Shopping_Cart from "./pages/shopping_cart/shopping_cart";
 import Add_product_to_database from "./pages/add_product_to_database/add_product_to_database";
+import Order_completed from "./pages/order_completed/order_completed";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "add_product_to_database",
     element: <Add_product_to_database />,
+  },
+  {
+    path: "order_completed",
+    element: <Order_completed />,
   },
 ]);
 

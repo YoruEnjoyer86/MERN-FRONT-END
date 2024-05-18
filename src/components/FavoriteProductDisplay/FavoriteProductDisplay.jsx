@@ -11,10 +11,10 @@ const FavoriteProductDisplay = ({ product }) => {
     let response = await axios.post(
       "http://localhost:3001/api/get_product_image",
       {
-        productDetails: JSON.stringify({
+        productDetails: {
           name: product.name,
           seller: product.seller,
-        }),
+        },
       }
     );
     if (response.data.ok != false) {

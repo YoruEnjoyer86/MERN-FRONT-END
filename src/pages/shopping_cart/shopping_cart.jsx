@@ -4,6 +4,7 @@ import "./shopping_cart.css";
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
+import { useNavigate } from "react-router-dom";
 
 const shopping_cart = () => {
   const [profileNotifications, setProfileNotifications] = useState(1);
@@ -11,6 +12,13 @@ const shopping_cart = () => {
   const [cartNotifications, setCartNotifications] = useState(0);
   //SCHIMBA, FA-L STATE GLOBAL
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
+  const [totalProductPrice, setTotaProductPrice] = useState(0);
+
+  const navigate = new useNavigate();
+
+  const HandleContinueOrder = () => {
+    navigate("/order_completed");
+  };
 
   useEffect(() => {
     GetProductsFromBackend();
@@ -35,13 +43,20 @@ const shopping_cart = () => {
       }
     });
     let newSellerProducts = [];
-    for (let [key, value] of prodSellerMap)
-      newSellerProducts.push({ seller: key, products: value });
+    for (let [seller, products] of prodSellerMap)
+      newSellerProducts.push({ seller, products });
     setproductsSortedBySeller(newSellerProducts);
   };
 
   useEffect(() => {
-    console.log(productsSortedBySeller);
+    //console.log(productsSortedBySeller);
+    let newTotalPrice = 0;
+    for (let p = 0; p < productsSortedBySeller.length; p++) {
+      let products = productsSortedBySeller[p].products;
+      for (let i = 0; i < products.length; i++)
+        newTotalPrice += products[i].quantity > 0 ? products[i].price : 0;
+    }
+    setTotaProductPrice(newTotalPrice);
   }, [productsSortedBySeller]);
 
   return (
@@ -56,7 +71,7 @@ const shopping_cart = () => {
       />
       <div className="contents_row">
         <div className="left_column">
-          <p className="title">Shopping Cart</p>
+          <p className="title">Your Cart</p>
           {productsSortedBySeller.map((value, index) => (
             <ProductsDeliveredBySellerColumn
               seller={value.seller}
@@ -70,7 +85,7 @@ const shopping_cart = () => {
           <div className="cost_row">
             <p className="cost_row_text">Product cost : </p>
             <span className="space_between_cost" />
-            <p className="cost_row_text">1000 LEI</p>
+            <p className="cost_row_text">{totalProductPrice}</p>
           </div>
           <div className="cost_row">
             <p className="cost_row_text">Delivery cost : </p>
@@ -78,8 +93,11 @@ const shopping_cart = () => {
             <p className="cost_row_text">99.99 LEI</p>
           </div>
           <p className="order_summary_text">Total:</p>
-          <p className="price_text">1099.99 LEI</p>
-          <button className="continue_button"> Continue </button>
+          <p className="price_text">{totalProductPrice}</p>
+          <button className="continue_button" onClick={HandleContinueOrder}>
+            {" "}
+            Continue{" "}
+          </button>
         </div>
       </div>
     </div>

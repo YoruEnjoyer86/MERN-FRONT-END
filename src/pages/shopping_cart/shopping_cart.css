@@ -7,11 +7,13 @@
 
 .contents_row {
   display: flex;
-  padding: 0px 100px 0px 100px;
+  padding: 20px 100px 0px 100px;
   justify-content: space-between;
 }
 
 .title {
+  line-height: normal;
+  margin-bottom: 20px;
 }
 
 .left_column {
@@ -19,7 +21,6 @@
   flex-direction: column;
   width: 100%;
   margin-right: 30px;
-  background-color: green;
 }
 
 .right_column {
@@ -28,6 +29,7 @@
   flex-direction: column;
   padding: 20px;
   width: 50%;
+  height: fit-content;
 }
 
 .cost_row {
@@ -41,6 +43,8 @@
 .cost_row_text {
   font-size: 1.5em;
   margin-bottom: 5px;
+  line-height: normal;
+  color: rgb(183, 183, 183);
 }
 
 .price_text {
@@ -49,11 +53,15 @@
 }
 
 .continue_button {
-  background-color: rebeccapurple;
+  background-color: rgb(143, 75, 216);
   border: 0;
   padding: 20px;
   border-radius: 10px;
   font-size: 2em;
+}
+
+.continue_button:hover {
+  cursor: pointer;
 }
 
 .order_summary_text {

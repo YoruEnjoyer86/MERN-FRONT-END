@@ -1,0 +1,44 @@
+.order_completed_page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.page_content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.order_completed_column {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.order_completed_text {
+  color: black;
+}
+
+.order_number_row {
+  display: flex;
+}
+
+.order_number_text {
+  margin-left: 10px;
+  color: rgb(143, 75, 216);
+  text-decoration: underline;
+}
+
+.order_number_text:hover {
+  cursor: pointer;
+}
