@@ -4,7 +4,7 @@ import "./AccountDetailsCard.css";
 const no_image = "../../public/no_image.png";
 const edit_image_src = "../../public/edit_image.png";
 
-const AccountDetailsCard = () => {
+const AccountDetailsCard = ({ name, nickname, email, phone }) => {
   const [profilePicture, setProfilePicture] = useState(no_image);
 
   const OnChangeNickName = () => {
@@ -34,7 +34,7 @@ const AccountDetailsCard = () => {
           </div>
           <div className="text_fields_column">
             <div className="field_row">
-              <p className="field_row_text"> Nickname</p>
+              <p className="field_row_text"> {nickname}</p>
               <p
                 className="field_row_clickable_text"
                 onClick={OnChangeNickName}
@@ -44,15 +44,15 @@ const AccountDetailsCard = () => {
             </div>
             <div className="field_row">
               <p className="field_row_text"> Name</p>
-              <p className="field_row_text"> Placeholder_Name</p>
+              <p className="field_row_text"> {name}</p>
             </div>
             <div className="field_row">
               <p className="field_row_text"> Email</p>
-              <p className="field_row_text"> someonesmail@exapmple.com</p>
+              <p className="field_row_text"> {email}</p>
             </div>
             <div className="field_row">
               <p className="field_row_text"> Phone number</p>
-              <p className="field_row_phone_number"> 074123990738</p>
+              <p className="field_row_phone_number">{phone}</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,88 @@
+.register_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  padding: 30px;
+  gap: 20px;
+  align-items: center;
+}
+
+.title {
+  color: rgb(143, 75, 216);
+  font-size: 3.5em;
+}
+
+.input_row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+.input_icon {
+  object-fit: contain;
+  height: 30px;
+}
+
+.register_buttons_row {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.register_button {
+  border: 0;
+  background-color: rgb(143, 75, 216);
+  padding: 10px;
+  flex-grow: 1;
+  border-radius: 5px;
+}
+
+.register_button:hover {
+  cursor: pointer;
+}
+
+.unselected_register_button {
+  background-color: rgb(220, 218, 218);
+  color: black;
+}
+
+input {
+  border: 0;
+  border-radius: 5px;
+  color: black;
+  width: 300px;
+  font-size: 1em;
+  background: transparent;
+}
+
+input:focus {
+  border: 0;
+  outline: none;
+}
+
+.forgot_password_text {
+  line-height: normal;
+  font-size: 1em;
+  text-decoration: underline;
+  align-self: flex-end;
+}
+
+.forgot_password_text:hover {
+  cursor: pointer;
+}
+
+.space {
+  height: 20px;
+}

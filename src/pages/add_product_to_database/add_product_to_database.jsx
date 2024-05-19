@@ -1,12 +1,14 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import "./add_product_to_database.css";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import axios from "axios";
 import NavBar from "../../components/NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const noImageUploadedImage = "../../public/no_image.png";
 
 const Add_product_to_database = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -15,18 +17,33 @@ const Add_product_to_database = () => {
   const [category, setCategory] = useState("");
   const [uploadedImage, setUploadedImage] = useState(noImageUploadedImage);
 
+  const CheckUserConnected = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    console.log("CONNECTED : " + res.data.ok);
+    return res.data.ok;
+  };
+
+  const Initialize = async () => {
+    if ((await CheckUserConnected()) == false) navigate("/register");
+  };
+
+  useEffect(() => {
+    Initialize();
+  }, []);
+
   const OnAddProduct = async () => {
+    const uploadForm = new FormData();
+    uploadForm.append("name", name);
+    uploadForm.append("description", description);
+    uploadForm.append("quantity", quantity);
+    uploadForm.append("seller", seller);
+    uploadForm.append("price", price);
+    uploadForm.append("category", category);
+    uploadForm.append("img_src", uploadedImage);
     axios
       .post("http://localhost:3001/api/add_product", {
-        product: {
-          name,
-          description,
-          quantity,
-          seller,
-          price,
-          category,
-          img_src: uploadedImage,
-        },
+        headers: { "Content-Type": "multipart/form-data" },
+        uploadForm,
       })
       .then((err, res) => {
         if (!err) {

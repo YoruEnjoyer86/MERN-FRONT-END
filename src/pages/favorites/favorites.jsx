@@ -8,8 +8,10 @@ import ShortFavoriteProductsList from "../../components/ShortFavoriteProductsLis
 import SortedItemsColumn from "../../components/SortedItemsColumn/SortedItemsColumn.jsx";
 import FavoritesListColumn from "../../components/FavoritesListColumn/FavoritesListColumn.jsx";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const favorites = () => {
+  const navigate = useNavigate();
   const [profileNotifications, setProfileNotifications] = useState(1);
   const [favoritesNotifications, setFavoritesNotifications] = useState(0);
   const [cartNotifications, setCartNotifications] = useState(0);
@@ -17,8 +19,21 @@ const favorites = () => {
   const [currentListIndex, setCurrentListIndex] = useState(0);
   const [currentListProducts, setCurrentListProducts] = useState([]);
 
+  const CheckUserConnected = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    console.log("CONNECTED : " + res.data.ok);
+    return res.data.ok;
+  };
+
+  const FavoritesInitialize = async () => {
+    if ((await CheckUserConnected()) == true) {
+      GetListsFromBackend();
+      GetProductsOfSelectedList();
+    } else navigate("/register");
+  };
+
   useEffect(() => {
-    GetListsFromBackend();
+    FavoritesInitialize();
   }, []);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserOptionsColumn.css";
 
-const UserOptionsColumn = () => {
+const UserOptionsColumn = ({ OnLogout }) => {
   const OnGoToPaymentMethods = () => {
     alert("GOING TO PAYMENT METHODS!");
   };
@@ -13,9 +13,6 @@ const UserOptionsColumn = () => {
   };
   const OnGoToOrders = () => {
     alert("GOING TO MY ORDERS!");
-  };
-  const OnLogout = () => {
-    alert("GOING TO LOGOUT!");
   };
 
   return (

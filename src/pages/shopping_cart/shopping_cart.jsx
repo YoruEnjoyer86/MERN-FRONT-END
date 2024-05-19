@@ -16,12 +16,23 @@ const shopping_cart = () => {
 
   const navigate = new useNavigate();
 
+  const CheckUserConnected = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    console.log("CONNECTED : " + res.data.ok);
+    return res.data.ok;
+  };
+
   const HandleContinueOrder = () => {
     navigate("/order_completed");
   };
 
+  const Initialize = async () => {
+    if ((await CheckUserConnected()) == true) GetProductsFromBackend();
+    else navigate("/register");
+  };
+
   useEffect(() => {
-    GetProductsFromBackend();
+    Initialize();
   }, []);
 
   const GetProductsFromBackend = async () => {
