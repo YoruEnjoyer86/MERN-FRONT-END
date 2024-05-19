@@ -15,19 +15,20 @@ const favorites = () => {
   const [profileNotifications, setProfileNotifications] = useState(1);
   const [favoritesNotifications, setFavoritesNotifications] = useState(0);
   const [cartNotifications, setCartNotifications] = useState(0);
+  const [listsReactItems, setListsReactItems] = useState([]);
   const [lists, setLists] = useState([]);
   const [currentListIndex, setCurrentListIndex] = useState(0);
   const [currentListProducts, setCurrentListProducts] = useState([]);
 
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
-    console.log("CONNECTED : " + res.data.ok);
+    //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
 
   const FavoritesInitialize = async () => {
     if ((await CheckUserConnected()) == true) {
-      GetListsFromBackend();
+      await GetListsFromBackend();
       GetProductsOfSelectedList();
     } else navigate("/register");
   };
@@ -38,64 +39,29 @@ const favorites = () => {
 
   useEffect(() => {
     GetProductsOfSelectedList();
-  }, [currentListIndex]);
+  }, [currentListIndex, lists]);
 
   const GetProductsOfSelectedList = async () => {
-    //REQUEST TO GET PRODUCTS FROM CURRENT LIST
-    let res = await axios.post(
-      "http://localhost:3001/api/get_products_of_category",
-      {
-        category: "everything",
-      }
-    );
-    setCurrentListProducts(res.data);
+    console.log(lists);
+    if (lists[currentListIndex] != undefined) {
+      let res = await axios.post(
+        "http://localhost:3001/get_products_from_favorite_list",
+        {
+          name: lists[currentListIndex].name,
+        }
+      );
+      if (res.data.ok) {
+        console.log("list products were found!");
+        setCurrentListProducts(res.data.products);
+      } else console.log(res.data.message);
+    } else console.log("current list is undefined!");
   };
 
   const GetListsFromBackend = async () => {
-    let listsDetails = [
-      {
-        name: "Every Favorite",
-        nrProducts: 10,
-      },
-      {
-        name: "Awesome List",
-        nrProducts: 420,
-      },
-      {
-        name: "Three",
-        nrProducts: 10,
-      },
-      {
-        name: "Four",
-        nrProducts: 420,
-      },
-      {
-        name: "Five",
-        nrProducts: 10,
-      },
-      {
-        name: "Six",
-        nrProducts: 420,
-      },
-      {
-        name: "Seven",
-        nrProducts: 10,
-      },
-      {
-        name: "Eight",
-        nrProducts: 420,
-      },
-      {
-        name: "Nine",
-        nrProducts: 10,
-      },
-      {
-        name: "Ten",
-        nrProducts: 420,
-      },
-    ];
-
-    setLists(
+    let res = await axios.get("http://localhost:3001/get_favorite_lists");
+    let listsDetails = res.data.lists;
+    setLists(listsDetails);
+    setListsReactItems(
       listsDetails.map((details, index) => (
         <ShortFavoriteProductsList
           listDetails={details}
@@ -104,14 +70,6 @@ const favorites = () => {
         />
       ))
     );
-    //REQUEST LISTS FROM BACKEND
-    let res = await axios.post(
-      "http://localhost:3001/api/get_products_of_category",
-      {
-        category: "",
-      }
-    );
-    setCurrentListProducts(res.data);
   };
 
   return (
@@ -133,13 +91,21 @@ const favorites = () => {
           <RowWithItems
             maxDisplayedItems={8}
             category=""
-            items={lists}
+            items={listsReactItems}
             highlightItemsOnClick={true}
           />
         </div>
         <SortedItemsColumn
-          title="BRUH"
-          details="10 products"
+          title={
+            lists[currentListIndex] != undefined
+              ? lists[currentListIndex].name
+              : "missing_list_name"
+          }
+          details={
+            lists[currentListIndex] != undefined
+              ? lists[currentListIndex].products.length + " products"
+              : "missing number of products"
+          }
           buttonNames={["help", "me"]}
         />
         <FavoritesListColumn products={currentListProducts} />

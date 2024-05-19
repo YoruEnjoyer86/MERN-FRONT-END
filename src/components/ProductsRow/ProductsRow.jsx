@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import ProductShortDisplay from "../ProductShortDisplay/ProductShortDisplay.jsx";
 import "./ProductsRow.css";
@@ -25,7 +25,7 @@ const ProductsRow = ({
         category: category.toLowerCase(),
       }
     );
-    console.log(res);
+    //console.log(res);
     setProducts(res.data);
   };
 
@@ -70,8 +70,8 @@ const ProductsRow = ({
                 <ProductShortDisplay
                   className=""
                   product={product}
-                  key={product.name}
                   HandleAddItemToCart={HandleAddItemToCart}
+                  key={index}
                 />
               )
           )}

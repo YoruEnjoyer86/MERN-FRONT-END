@@ -4,10 +4,7 @@ import "./home.css";
 import ProductsRow from "../../components/ProductsRow/ProductsRow.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import axios from "axios";
-
-const GetImageForProduct = (product) => {
-  return "../../../" + product.name + "_" + product.seller + ".png";
-};
+import { HomeContext } from "../../Contexts/HomeContext.js";
 
 const GetProducts = () => {
   //TODO IA PRODUSE
@@ -20,7 +17,58 @@ const GetProducts = () => {
 
 const Home = () => {
   let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
-  let [foodProducts, setFoodProducts] = useState([]);
+  let [productsFavoriteStatuses, setProductsFavoriteStatuses] = useState([]);
+
+  const CheckUserConnected = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    return res.data.ok;
+  };
+
+  useEffect(() => {
+    //console.log(productsFavoriteStatuses);
+  }, [productsFavoriteStatuses]);
+
+  const GetProductsFromBackend = async () => {
+    let res = await axios.post(
+      "http://localhost:3001/api/get_products_of_category",
+      {
+        category: "everything",
+      }
+    );
+    setProductsFromBackEnd(res.data);
+  };
+
+  const CheckIfProductFavorited = async (id, index) => {
+    let res = await axios.post("http://localhost:3001/is_product_favorite", {
+      id,
+    });
+    // console.log(
+    //   productsFromBackEnd[index].name + " favorit : " + res.data.isFavorite
+    // );
+    if (res.data.ok) return res.data.isFavorite;
+    return false;
+  };
+
+  const UpdateProductFavoriteStatuses = async () => {
+    let newFavArray = [];
+    for (let index = 0; index < productsFromBackEnd.length; index++)
+      newFavArray.push({
+        id: productsFromBackEnd[index]._id,
+        value: await CheckIfProductFavorited(
+          productsFromBackEnd[index]._id,
+          index
+        ),
+      });
+    setProductsFavoriteStatuses(newFavArray);
+  };
+
+  useEffect(() => {
+    UpdateProductFavoriteStatuses();
+  }, [productsFromBackEnd]);
+
+  useEffect(() => {
+    GetProductsFromBackend();
+  }, []);
 
   const HandleAddItemToCart = (productName) => {
     setCartNotifications(cartNotifications + 1);
@@ -40,24 +88,28 @@ const Home = () => {
           cartNotifications,
         ]}
       />
-      <ProductsRow
-        maxDisplayedItems={5}
-        products={productsFromBackEnd}
-        HandleAddItemToCart={HandleAddItemToCart}
-        category="Everything"
-      />
-      <ProductsRow
-        maxDisplayedItems={5}
-        products={[]}
-        HandleAddItemToCart={HandleAddItemToCart}
-        category="Food"
-      />
-      <ProductsRow
-        maxDisplayedItems={5}
-        products={[]}
-        HandleAddItemToCart={HandleAddItemToCart}
-        category="Clothing"
-      />
+      <HomeContext.Provider
+        value={{ productsFavoriteStatuses, setProductsFavoriteStatuses }}
+      >
+        <ProductsRow
+          maxDisplayedItems={5}
+          products={productsFromBackEnd}
+          HandleAddItemToCart={HandleAddItemToCart}
+          category="Everything"
+        />
+        <ProductsRow
+          maxDisplayedItems={5}
+          products={[]}
+          HandleAddItemToCart={HandleAddItemToCart}
+          category="Food"
+        />
+        <ProductsRow
+          maxDisplayedItems={5}
+          products={[]}
+          HandleAddItemToCart={HandleAddItemToCart}
+          category="Clothing"
+        />
+      </HomeContext.Provider>
     </div>
   );
 };

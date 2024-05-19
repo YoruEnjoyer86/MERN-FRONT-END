@@ -13,7 +13,7 @@ const ShortFavoriteProductsList = ({
       onClick={HandleClick}
     >
       <p className="list_name">{listDetails.name}</p>
-      <p className="nr_products">{listDetails.nrProducts}</p>
+      <p className="nr_products">{listDetails.products.length}</p>
     </div>
   );
 };
