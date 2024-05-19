@@ -1,65 +1,65 @@
-.products_row{
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: fit-content;
-    height: fit-content;
-    margin-right: 1%;
-    transform: translateX(7rem);
+.products_row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: fit-content;
+  margin-right: 1%;
+  width: fit-content;
+  transform: translateX(7rem);
 }
 
-.category_text{
-    align-self: flex-start;
-    transform: translateX(7.6rem);
-    color: white;
-    font-size: 2em;
-    height: fit-content;
-    width: fit-content;
-    margin: 0;
+.category_text {
+  align-self: flex-start;
+  transform: translateX(7.6rem);
+  color: white;
+  font-size: 2em;
+  height: fit-content;
+  width: fit-content;
+  margin: 0;
 }
 
-.category_text:hover{
-    cursor: pointer;
+.category_text:hover {
+  cursor: pointer;
 }
 
-.next_products_arrow{
-    object-fit: contain;
-    height: 20%;
-    position: absolute ;
-    right: 0;
-    transform: translateX(-5rem);
+.next_products_arrow {
+  object-fit: contain;
+  height: 20%;
+  position: absolute;
+  right: 0;
+  transform: translateX(11rem);
 }
 
-.prev_products_arrow{
-    object-fit: contain;
-    height: 20%;
-    position: absolute ;
-    left: 0;
-    transform: translateX(2rem);
+.prev_products_arrow {
+  object-fit: contain;
+  height: 20%;
+  position: absolute;
+  left: 0;
+  transform: translateX(2rem);
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.prev_products_arrow:hover{
-    cursor: pointer;
+.prev_products_arrow:hover {
+  cursor: pointer;
 }
-.next_products_arrow:hover{
-    cursor: pointer;
-}
-
-.products_and_arrows_row{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    position: relative;
+.next_products_arrow:hover {
+  cursor: pointer;
 }
 
-.empty_arrow{
-    width: 84px;
+.products_and_arrows_row {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  position: relative;
+}
+
+.empty_arrow {
+  width: 84px;
 }

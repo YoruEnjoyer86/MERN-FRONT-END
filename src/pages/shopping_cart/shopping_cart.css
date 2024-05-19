@@ -9,6 +9,7 @@
   display: flex;
   padding: 20px 100px 0px 100px;
   justify-content: space-between;
+  position: relative;
 }
 
 .title {
@@ -52,12 +53,18 @@
   font-weight: 100;
 }
 
+@font-face {
+  font-family: thiccboy;
+  src: url("../../assets/fonts/THICCCBOI-Black.ttf");
+}
+
 .continue_button {
   background-color: rgb(143, 75, 216);
   border: 0;
   padding: 20px;
   border-radius: 10px;
   font-size: 2em;
+  font-family: thiccboy;
 }
 
 .continue_button:hover {
@@ -66,4 +73,22 @@
 
 .order_summary_text {
   margin-bottom: 10px;
+}
+
+.no_products_modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 20%;
+
+  background-color: rgba(128, 128, 128, 0.313);
+  padding: 30px;
+  height: 400px;
+  width: 1000px;
+}
+
+.no_products {
+  font-size: 3em;
 }

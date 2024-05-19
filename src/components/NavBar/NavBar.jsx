@@ -72,7 +72,7 @@ const NavBar = ({ notifications, className = "" }) => {
       />
       <SearchBar />
       <NavBarIcon
-        nrNotifications={notifications[0]}
+        nrNotifications={notifications[1]}
         onClick={HandleProfileClick}
         className="noShrink"
         text=""

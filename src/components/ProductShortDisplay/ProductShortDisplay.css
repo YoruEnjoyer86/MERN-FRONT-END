@@ -11,6 +11,12 @@
   width: 300px;
   flex-shrink: 1;
   padding: 1%;
+  filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.455));
+}
+
+.product_short_display:hover {
+  transform: scale(106%);
+  cursor: pointer;
 }
 
 .favorite_button {

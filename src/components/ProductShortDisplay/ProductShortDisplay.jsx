@@ -9,7 +9,7 @@ const favoriteImage = "../../public/favorites_hover.png";
 const notFavoriteImage = "../../public/favorites.png";
 const noImage = "../../public/no_image.png";
 
-const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
+const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
   const [isFavorite, setFavorite] = useState(false);
   const { productsFavoriteStatuses, setProductsFavoriteStatuses } =
@@ -92,7 +92,6 @@ const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
         index == indexToChange ? { id: prod.id, value: !prod.value } : prod
       )
     );
-    console.log(newFavStatuses);
   };
 
   useEffect(() => {
@@ -117,9 +116,7 @@ const ProductShortDisplay = ({ product, className, HandleAddItemToCart }) => {
       <PriceRow
         className="price_row_in_product"
         price={product.price}
-        HandleAddItemToCart={() => {
-          HandleAddItemToCart(product.name);
-        }}
+        productId={product._id}
       />
     </div>
   );

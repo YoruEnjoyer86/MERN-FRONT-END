@@ -65,7 +65,7 @@ const Register = () => {
         </div>
 
         <div className="input_row">
-          <img src="../../../letter.png" className="input_icon" />
+          <img src="../../../lock.png" className="input_icon" />
           <input
             type="password"
             value={password}

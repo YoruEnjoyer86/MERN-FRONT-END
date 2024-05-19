@@ -32,18 +32,23 @@ const Add_product_to_database = () => {
   }, []);
 
   const OnAddProduct = async () => {
-    const uploadForm = new FormData();
-    uploadForm.append("name", name);
-    uploadForm.append("description", description);
-    uploadForm.append("quantity", quantity);
-    uploadForm.append("seller", seller);
-    uploadForm.append("price", price);
-    uploadForm.append("category", category);
-    uploadForm.append("img_src", uploadedImage);
+    // const uploadForm = new FormData();
+    // uploadForm.append("name", name);
+    // uploadForm.append("description", description);
+    // uploadForm.append("quantity", quantity);
+    // uploadForm.append("seller", seller);
+    // uploadForm.append("price", price);
+    // uploadForm.append("category", category);
+    // uploadForm.append("img_src", uploadedImage);
     axios
       .post("http://localhost:3001/api/add_product", {
-        headers: { "Content-Type": "multipart/form-data" },
-        uploadForm,
+        name,
+        description,
+        quantity,
+        seller,
+        price,
+        category,
+        img_src: uploadedImage,
       })
       .then((err, res) => {
         if (!err) {

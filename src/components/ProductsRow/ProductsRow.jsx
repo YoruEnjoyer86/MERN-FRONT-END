@@ -9,12 +9,7 @@ import axios from "axios";
 const rigtArrowImg = "../../public/right_arrow.png";
 const leftArrowImg = "../../public/left_arrow.png";
 
-const ProductsRow = ({
-  className,
-  HandleAddItemToCart,
-  maxDisplayedItems,
-  category,
-}) => {
+const ProductsRow = ({ className, maxDisplayedItems, category }) => {
   const [firstItemIndex, setFirstItemIndex] = useState(0);
   const [products, setProducts] = useState([]);
 
@@ -70,7 +65,6 @@ const ProductsRow = ({
                 <ProductShortDisplay
                   className=""
                   product={product}
-                  HandleAddItemToCart={HandleAddItemToCart}
                   key={index}
                 />
               )

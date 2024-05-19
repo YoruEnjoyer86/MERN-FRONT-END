@@ -5,6 +5,55 @@ import axios from "axios";
 const noImageSrc = "../../../public/no_image.png";
 
 const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
+  const OnRemoveFromCart = async (prodIndex) => {
+    let res = await axios.post(
+      "http://localhost:3001/remove_product_from_cart",
+      {
+        id: products[prodIndex]._id,
+      }
+    );
+    console.log(res);
+  };
+
+  const OnPlusClick = async (prodIndex) => {
+    let res = await axios.post(
+      "http://localhost:3001/increase_product_quantity_in_cart",
+      {
+        id: products[prodIndex]._id,
+      }
+    );
+
+    setProdsCartQuantity(
+      prodsCartQuantity.map((val, index) =>
+        index === prodIndex ? val + 1 : val
+      )
+    );
+  };
+
+  const OnMinusClick = async (prodIndex) => {
+    //console.log(products[prodIndex]);
+    let res = await axios.post(
+      "http://localhost:3001/decrese_quantity_product_from_cart",
+      {
+        id: products[prodIndex]._id,
+      }
+    );
+    console.log(res.data);
+    if (prodsCartQuantity[prodIndex] == 1) {
+      //todo
+    }
+    setProdsCartQuantity(
+      prodsCartQuantity.map((val, index) =>
+        index === prodIndex ? val - 1 : val
+      )
+    );
+  };
+
+  const [prodsCartQuantity, setProdsCartQuantity] = useState(0);
+
+  useEffect(() => {
+    setProdsCartQuantity(products.map((prod) => prod.cartQuantity));
+  }, [products]);
   let productsCost = 0;
   let deliveryCost = 36.4;
   for (let i = 0; i < products.length; i++)
@@ -64,17 +113,32 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
                     <img
                       src="../../../public/minus.png"
                       className="plus_image"
+                      onClick={() => {
+                        OnMinusClick(index);
+                      }}
                     />
-                    <p className="product_quantity_text">1</p>
+                    <p className="product_quantity_text">
+                      {prodsCartQuantity[index]}
+                    </p>
                     <img
                       src="../../../public/plus.png"
                       className="plus_image"
+                      onClick={() => {
+                        OnPlusClick(index);
+                      }}
                     />
                   </div>
                 </div>
               )}
               <p className="product_option_text">Move to favorites</p>
-              <p className="product_option_text">Remove from cart</p>
+              <p
+                className="product_option_text"
+                onClick={() => {
+                  OnRemoveFromCart(index);
+                }}
+              >
+                Remove from cart
+              </p>
             </div>
           </div>
         </div>

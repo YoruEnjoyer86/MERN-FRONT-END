@@ -40,9 +40,13 @@
 .add_product_button {
   background-color: rebeccapurple;
   color: white;
-  font-size: 2em;
+  font-size: 1.8em;
   padding: 5px;
   box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  font-family: thiccboy;
+  filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.455));
 }
 
 .add_product_button:hover {

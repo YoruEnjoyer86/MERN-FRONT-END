@@ -106,7 +106,7 @@ const favorites = () => {
               ? lists[currentListIndex].products.length + " products"
               : "missing number of products"
           }
-          buttonNames={["help", "me"]}
+          buttonNames={["Modify"]}
         />
         <FavoritesListColumn products={currentListProducts} />
       </div>

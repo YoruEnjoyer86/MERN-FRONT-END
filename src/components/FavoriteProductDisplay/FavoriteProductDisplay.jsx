@@ -7,6 +7,15 @@ import PriceRow from "../PriceRow/PriceRow.jsx";
 const FavoriteProductDisplay = ({ product }) => {
   const [imageSrc, setImageSrc] = useState("");
 
+  const RemoveFromFavorites = async () => {
+    let res = await axios.post(
+      "http://localhost:3001/remove_product_from_favorites",
+      {
+        id: product._id,
+      }
+    );
+    console.log(res.data);
+  };
   const RequestImageFromBackend = async () => {
     let response = await axios.post(
       "http://localhost:3001/api/get_product_image",
@@ -59,7 +68,7 @@ const FavoriteProductDisplay = ({ product }) => {
           price={product.price}
           className="favorite_product_list_price_row"
         />
-        <div className="remove_from_list_row">
+        <div className="remove_from_list_row" onClick={RemoveFromFavorites}>
           <p className="remove_item_text">Remove</p>
           <img className="trash_icon" src="../../../public/red_trash.png" />
         </div>

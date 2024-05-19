@@ -28,6 +28,11 @@ input[type="file"] {
 
 .input_text {
   font-size: 1.5em;
+  background-color: rgb(82, 82, 82);
+  padding: 10px;
+  color: white;
+  font-family: thiccboy;
+  filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.455));
 }
 
 .button_with_image_text {

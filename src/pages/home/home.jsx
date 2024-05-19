@@ -4,6 +4,7 @@ import "./home.css";
 import ProductsRow from "../../components/ProductsRow/ProductsRow.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../Contexts/HomeContext.js";
 
 const GetProducts = () => {
@@ -16,6 +17,23 @@ const GetProducts = () => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const AddProductToCart = async (productId) => {
+    if ((await CheckUserConnected()) == false) {
+      navigate("/register");
+      return;
+    }
+    console.log("ADDING ITEM TO CART");
+    let res = await axios.post(
+      "http://localhost:3001/increase_product_quantity_in_cart",
+      {
+        id: productId,
+      }
+    );
+    console.log(res.data);
+  };
+
   let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
   let [productsFavoriteStatuses, setProductsFavoriteStatuses] = useState([]);
 
@@ -89,14 +107,17 @@ const Home = () => {
         ]}
       />
       <HomeContext.Provider
-        value={{ productsFavoriteStatuses, setProductsFavoriteStatuses }}
+        value={{
+          productsFavoriteStatuses,
+          setProductsFavoriteStatuses,
+          AddProductToCart,
+        }}
       >
-        <ProductsRow
+        {/* <ProductsRow
           maxDisplayedItems={5}
           products={productsFromBackEnd}
-          HandleAddItemToCart={HandleAddItemToCart}
           category="Everything"
-        />
+        /> */}
         <ProductsRow
           maxDisplayedItems={5}
           products={[]}

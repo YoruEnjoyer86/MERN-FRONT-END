@@ -1,20 +1,21 @@
-.dots_container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    width: 120px;
-    height: 60px;
+.dots_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 120px;
+  height: 60px;
+  transform: translateX(6rem);
 }
 
-.dot{
-    object-fit: contain; 
-    height: 30px;
-    width: 30px;
+.dot {
+  object-fit: contain;
+  height: 30px;
+  width: 30px;
 }
 
-.dot:hover{
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
+.dot:hover {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 }

@@ -9,6 +9,9 @@ import Shopping_Cart from "./pages/shopping_cart/shopping_cart";
 import Add_product_to_database from "./pages/add_product_to_database/add_product_to_database";
 import Order_completed from "./pages/order_completed/order_completed";
 import Register from "./pages/Register/Register";
+import App from "./components/App/App";
+
+const app = <App />;
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,8 @@ const router = createBrowserRouter([
     element: <Register />,
   },
 ]);
+
+const a = 1;
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

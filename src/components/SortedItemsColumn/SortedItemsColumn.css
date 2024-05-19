@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: rgb(71, 66, 71);
+  background-color: rgb(68, 68, 75);
   padding: 5px 15px 5px 15px;
   box-sizing: border-box;
   border-bottom-color: white;
@@ -55,7 +55,7 @@
 .filter_row {
   display: flex;
   align-items: baseline;
-  background-color: rgb(71, 66, 71);
+  background-color: rgb(68, 68, 75);
   padding: 10px 15px 10px 15px;
   position: relative;
 }

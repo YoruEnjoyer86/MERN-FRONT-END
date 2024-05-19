@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./PriceRow.css";
+import { HomeContext } from "../../Contexts/HomeContext";
 
 const addToCartImage = "../../public/shopping_cart.png";
 
-const PriceRow = ({ className, HandleAddItemToCart, price, textClass }) => {
+const PriceRow = ({ className, price, textClass, productId }) => {
+  const { AddProductToCart } = useContext(HomeContext);
   return (
     <div className={"price_row " + className}>
-      <p className={"price_text " + textClass}>{price + " Lei"}</p>
-      <div className="cart_image_container" onClick={HandleAddItemToCart}>
+      <p className={"price_text " + textClass}>{price + " $"}</p>
+      <div
+        className="cart_image_container"
+        onClick={() => {
+          AddProductToCart(productId);
+        }}
+      >
         <img className="cart_image" src={addToCartImage} />
       </div>
     </div>
