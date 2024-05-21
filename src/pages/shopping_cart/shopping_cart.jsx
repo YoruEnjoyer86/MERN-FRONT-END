@@ -5,20 +5,21 @@ import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 
 const shopping_cart = () => {
   const [profileNotifications, setProfileNotifications] = useState(1);
   const [favoritesNotifications, setFavoritesNotifications] = useState(0);
   const [cartNotifications, setCartNotifications] = useState(0);
-  //SCHIMBA, FA-L STATE GLOBAL
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
+  const [sellerProductsQuantity, setSellerProductsQuantity] = useState([]);
   const [totalProductPrice, setTotaProductPrice] = useState(0);
 
   const navigate = new useNavigate();
 
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
-    console.log("CONNECTED : " + res.data.ok);
+    //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
 
@@ -54,16 +55,38 @@ const shopping_cart = () => {
     setproductsSortedBySeller(newSellerProducts);
   };
 
+  const CalculateProductsPriceWithoutDelivery = () => {
+    let price = 0;
+    if (productsSortedBySeller.length == 0) return;
+    console.log(productsSortedBySeller[0].products);
+    // if (productsSortedBySeller == []) return;
+    // console.log(productsSortedBySeller[0].products);
+    for (let i = 0; i < productsSortedBySeller.length; i++)
+      for (let j = 0; j < productsSortedBySeller[i].products.length; j++) {
+        price +=
+          productsSortedBySeller[i].products[j].quantity > 0
+            ? productsSortedBySeller[i].products[j].price *
+              sellerProductsQuantity[i][j]
+            : 0;
+      }
+    // console.log("new price " + price);
+    setTotaProductPrice(price);
+  };
+
   useEffect(() => {
-    //console.log(productsSortedBySeller);
-    let newTotalPrice = 0;
-    for (let p = 0; p < productsSortedBySeller.length; p++) {
-      let products = productsSortedBySeller[p].products;
-      for (let i = 0; i < products.length; i++)
-        newTotalPrice += products[i].quantity > 0 ? products[i].price : 0;
-    }
-    setTotaProductPrice(newTotalPrice);
+    setSellerProductsQuantity(
+      productsSortedBySeller.map((pair) =>
+        pair.products.map((prod) => prod.cartQuantity)
+      )
+    );
+
+    // console.log("PRODUCTS CHANGED!");
   }, [productsSortedBySeller]);
+
+  useEffect(() => {
+    // console.log("PRODUCTS QUANTITY CHANGED!");
+    CalculateProductsPriceWithoutDelivery();
+  }, [sellerProductsQuantity]);
 
   return (
     <div className="shopping_cart_page">
@@ -79,32 +102,46 @@ const shopping_cart = () => {
         {productsSortedBySeller.length > 0 ? (
           <>
             <div className="left_column">
-              <p className="title">Your Cart</p>
+              <div className="title_container">
+                <p className="title">Your Cart</p>
+                <div className="title_underline"></div>
+              </div>
               {productsSortedBySeller.map((value, index) => (
                 <ProductsDeliveredBySellerColumn
                   seller={value.seller}
                   products={value.products}
                   key={index}
+                  sellerIndex={index}
+                  sellerProductsQuantity={sellerProductsQuantity}
+                  setSellerProductsQuantity={setSellerProductsQuantity}
+                  priceWithoutDelivery={totalProductPrice}
                 />
               ))}
             </div>
             <div className="right_column">
               <p className="order_summary_text">Order Summary</p>
               <div className="cost_row">
-                <p className="cost_row_text">Product cost : </p>
+                <p className="cost_row_text">Product cost: </p>
                 <span className="space_between_cost" />
                 <p className="cost_row_text">{totalProductPrice}</p>
               </div>
               <div className="cost_row">
-                <p className="cost_row_text">Delivery cost : </p>
+                <p className="cost_row_text">Delivery cost: </p>
                 <span className="space_between_cost" />
-                <p className="cost_row_text">99.99 LEI</p>
+                <p className="cost_row_text">
+                  0 <span className="delivery_cost_dollar_sign">$</span>
+                </p>
               </div>
-              <p className="order_summary_text">Total:</p>
-              <p className="price_text">{totalProductPrice}</p>
+              <p className="order_summary_text total_price_text">
+                Total:
+                <span className="shopping_cart_price_text">
+                  {totalProductPrice}
+                  <span className="dollar_symbol_text">$</span>
+                </span>
+              </p>
+
               <button className="continue_button" onClick={HandleContinueOrder}>
-                {" "}
-                Continue{" "}
+                Continue
               </button>
             </div>
           </>

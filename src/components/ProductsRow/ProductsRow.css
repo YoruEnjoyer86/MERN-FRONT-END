@@ -12,9 +12,10 @@
   align-self: flex-start;
   transform: translateX(7.6rem);
   color: white;
-  font-size: 2em;
+  font-size: 2rem;
   height: fit-content;
   width: fit-content;
+  font-weight: 800;
   margin: 0;
 }
 

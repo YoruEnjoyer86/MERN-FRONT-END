@@ -20,12 +20,14 @@
 
 .list_name {
   color: black;
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .nr_products {
   color: rgb(78, 75, 75);
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .selected {

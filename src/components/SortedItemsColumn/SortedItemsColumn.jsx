@@ -11,8 +11,10 @@ const SortedItemsColumn = ({
     <div className="sorted_items_column">
       <div className="sorted_items_column_title_row">
         <div className="text_row">
-          <p className="sorted_items_column_title">{title}</p>
-          <p className="sorted_items_column_details">{details}</p>
+          <p className="sorted_items_column_title">
+            {title}{" "}
+            <span className="sorted_items_column_details">{details}</span>
+          </p>
         </div>
         <div className="buttons_row">
           {buttonNames.map((buttonName, index) => (
@@ -27,7 +29,7 @@ const SortedItemsColumn = ({
       </div>
 
       <div className="filter_row">
-        <p className="filter_text">Order by:</p>
+        <p className="filter_text">Order by</p>
         <DropdownButton
           button={
             <div className="filter_button">

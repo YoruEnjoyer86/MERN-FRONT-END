@@ -40,11 +40,11 @@ const FavoriteProductDisplay = ({ product }) => {
     <div className="favorite_product">
       <img src={imageSrc} className="favorite_product_image"></img>
       <div className="name_and_reviews_column">
-        <p className="">{product.name}</p>
+        <p className="product_name_favorite_product">{product.name}</p>
         <RatingStars
           className="rating_row"
           value={product.rating}
-          nrReviews={product.nrReviews}
+          nrReviews={product.reviews.length}
         />
       </div>
       <div className="purchase_details_column">
@@ -56,15 +56,15 @@ const FavoriteProductDisplay = ({ product }) => {
           {product.quantity > 0 ? "In stock" : "Out of stock"}
         </p>
         <div className="seller_text_row">
-          <p className="sold_by_text">Sold by</p>
-          <p className="seller_text">{product.seller}</p>
+          <p className="sold_by_text_favorite_product">Sold by</p>
+          <p className="seller_text_favorite_product">{product.seller}</p>
           <div className="seller_rating_row">
             <p className="number_stars_text">{4.3}</p>
             <img className="seller_star" src="../../../public/full_star.png" />
           </div>
         </div>
         <PriceRow
-          textClass="price_text"
+          textClass="favorite_product_price_text"
           price={product.price}
           className="favorite_product_list_price_row"
         />

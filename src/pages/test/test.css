@@ -21,20 +21,6 @@
   font-style: italic;
 }
 
-h1 {
-  align-self: flex-start;
-  font-size: 3rem;
-  line-height: 1.5;
-}
-
 p {
   color: rgb(146, 150, 146);
-}
-
-p span {
-  margin: 0;
-  line-height: normal;
-  font-size: 1em;
-  text-transform: uppercase;
-  padding: 0 10px 0 10px;
 }

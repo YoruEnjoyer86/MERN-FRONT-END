@@ -43,6 +43,7 @@ const Register = () => {
           <div className="input_row">
             <img src="../../../profile.png" className="input_icon" />
             <input
+              className="register_input"
               type="text"
               value={name}
               onChange={(e) => {
@@ -55,6 +56,7 @@ const Register = () => {
         <div className="input_row">
           <img src="../../../letter.png" className="input_icon" />
           <input
+            className="register_input"
             type="email"
             vlaue={email}
             onChange={(e) => {
@@ -67,6 +69,7 @@ const Register = () => {
         <div className="input_row">
           <img src="../../../lock.png" className="input_icon" />
           <input
+            className="register_input"
             type="password"
             value={password}
             onChange={(e) => {

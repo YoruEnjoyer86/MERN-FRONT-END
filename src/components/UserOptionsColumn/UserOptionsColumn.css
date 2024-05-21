@@ -8,22 +8,19 @@
 }
 
 .user_option {
-  background-color: rgb(18, 18, 18);
-  padding: 10px;
-  border-color: gray;
-  border-radius: 10px;
-  border: 2px;
-  border-style: solid;
+  background-color: rgb(143, 75, 216);
+  padding: 10px 20px 10px 20px;
   box-sizing: border-box;
   margin-bottom: 20px;
+  /* border: 2px rgb(18, 18, 18) solid; */
 }
 
 .user_option:hover {
-  background-color: gray;
+  background-color: rgb(85, 44, 129);
   cursor: pointer;
 }
 
-p {
+.user_option_text {
   font-size: 2em;
   color: white;
   margin: 0px;

@@ -1,9 +1,10 @@
 .price_text {
-  color: rgb(221, 224, 22);
   margin: 0;
   width: fit-content;
   white-space: nowrap;
-  font-size: 2em;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
 }
 
 .cart_image {

@@ -18,19 +18,19 @@ const UserOptionsColumn = ({ OnLogout }) => {
   return (
     <div className="user_options_column">
       <div className="user_option" onClick={OnGoToPaymentMethods}>
-        <p>My payment methods</p>
+        <p className="user_option_text">My payment methods</p>
       </div>
       <div className="user_option" onClick={OnGoToAddresses}>
-        <p>My adresses</p>
+        <p className="user_option_text">My adresses</p>
       </div>
       <div className="user_option" onClick={OnGoToReviews}>
-        <p>My reviews</p>
+        <p className="user_option_text">My reviews</p>
       </div>
       <div className="user_option" onClick={OnGoToOrders}>
-        <p>My orders</p>
+        <p className="user_option_text">My orders</p>
       </div>
       <div className="user_option" onClick={OnLogout}>
-        <p>Logout</p>
+        <p className="user_option_text">Logout</p>
       </div>
     </div>
   );

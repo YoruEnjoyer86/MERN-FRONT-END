@@ -11,19 +11,23 @@
   justify-content: space-between;
   width: 100%;
   background-color: rgb(68, 68, 75);
-  padding: 5px 15px 5px 15px;
+  padding: 1em 0.8em 1em 0.8em;
   box-sizing: border-box;
   border-bottom-color: white;
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px 0px 2px 0px;
   border-style: solid;
 }
 
 .sorted_items_column_title {
   margin-right: 10px;
+  color: white;
+  font-size: 1.5rem;
 }
 
 .sorted_items_column_details {
-  font-size: 1.5em;
+  font-size: 1.2rem;
+  color: rgb(204, 204, 204);
+  font-weight: 6018;
 }
 
 .title_row_button {
@@ -31,6 +35,9 @@
   width: 70px;
   background-color: rebeccapurple;
   border: 0;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 0.2em;
 }
 
 .margin_right {
@@ -56,13 +63,15 @@
   display: flex;
   align-items: baseline;
   background-color: rgb(68, 68, 75);
-  padding: 10px 15px 10px 15px;
+  padding: 1em 0.8em 1em 0.8em;
   position: relative;
 }
 
 .filter_text {
   font-size: 1.5em;
   font-weight: 100;
+  color: white;
+  font-weight: 550;
 }
 
 .filter_button {
@@ -71,7 +80,8 @@
   border: 0;
   background-color: aliceblue;
   box-sizing: border-box;
-  padding: 5px;
+  border-radius: 1em;
+  padding: 0.7em;
   margin-left: 10px;
   font-size: 1em;
   width: fit-content;

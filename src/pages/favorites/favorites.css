@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.favorites_text {
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+}
+
 .main_column {
   padding: 50px;
   display: flex;
@@ -27,7 +33,10 @@
   background-color: rebeccapurple;
   border: 0;
   height: fit-content;
-  padding: 10px;
+  padding: 0.5em;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 550;
 }
 
 .favorite_lists_container_row {

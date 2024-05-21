@@ -58,7 +58,7 @@ const AccountDetailsCard = ({ name, nickname, email, phone }) => {
         </div>
       </div>
       <div className="edit_information_button" onClick={OnEditInformation}>
-        <p>Edit information</p>
+        <p className="edit_information_text">Edit information</p>
       </div>
     </div>
   );

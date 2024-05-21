@@ -9,14 +9,14 @@
 .register_form {
   display: flex;
   flex-direction: column;
-  background-color: gray;
+  background-color: rgb(53, 52, 52);
   padding: 30px;
   gap: 20px;
   align-items: center;
 }
 
 .title {
-  color: rgb(143, 75, 216);
+  color: rgb(147, 75, 224);
   font-size: 3.5em;
 }
 
@@ -47,6 +47,8 @@
   padding: 10px;
   flex-grow: 1;
   border-radius: 5px;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .register_button:hover {
@@ -67,6 +69,11 @@ input {
   background: transparent;
 }
 
+.register_input {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 input:focus {
   border: 0;
   outline: none;
@@ -74,9 +81,10 @@ input:focus {
 
 .forgot_password_text {
   line-height: normal;
-  font-size: 1em;
+  font-size: 1rem;
   text-decoration: underline;
   align-self: flex-end;
+  color: rgb(217, 215, 215);
 }
 
 .forgot_password_text:hover {

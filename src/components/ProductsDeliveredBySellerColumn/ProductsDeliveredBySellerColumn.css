@@ -55,12 +55,12 @@
 }
 
 .subtotal_text {
-  margin-right: 10px;
+  margin-right: 0.7em;
 }
 
 .price_row_text {
-  font-weight: 100;
-  font-size: 1.5em;
+  font-weight: 500;
+  font-size: 1.3rem;
   line-height: normal;
 }
 
@@ -70,9 +70,9 @@
 
 .product_option_text {
   line-height: normal;
-  font-size: 1.5em;
+  font-size: 1.2rem;
   text-decoration: underline;
-  margin-bottom: 10px;
+  margin-bottom: 0.2em;
   color: rgb(198, 198, 198);
 }
 
@@ -83,6 +83,7 @@
 .product_name_text {
   color: rgb(143, 75, 216);
   line-height: normal;
+  font-size: 1.5rem;
 }
 
 .product_information_row {
@@ -94,20 +95,72 @@
 .modify_quantity_row {
   display: flex;
   align-items: center;
+  font-size: 1.8rem;
+  line-height: normal;
 }
 
 .product_quantity_text {
-  font-size: 2em;
   line-height: normal;
   margin-left: 5px;
   margin-right: 5px;
+  color: white;
 }
 
 .plus_image {
   object-fit: contain;
-  width: 30px;
+  /* background-color: rgb(143, 75, 216); */
+  width: 0.9em;
 }
 
 .plus_image:hover {
   cursor: pointer;
+}
+
+.seller_text_product_in_cart {
+  margin-bottom: 0.5em;
+  font-size: 1.2rem;
+}
+
+.seller_name_shopping_cart_page {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.seller_name_shopping_cart_page:hover {
+  cursor: pointer;
+}
+
+.seller_text_small_prod_delivered_by_seller {
+  color: white;
+}
+
+.seller_text_small_prod_delivered_by_seller:hover {
+  cursor: pointer;
+}
+
+.product_price_text_in_cart {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.product_price_quantity_column {
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cost_text_small_in_cart {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.dollar_sign_small {
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  margin: 0 0 0 0.1em;
+  line-height: normal;
+  position: absolute;
+  transform: translateY(0.1em);
 }

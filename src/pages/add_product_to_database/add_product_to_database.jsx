@@ -4,6 +4,7 @@ import InputWithLabel from "../../components/InputWithLabel/InputWithLabel";
 import axios from "axios";
 import NavBar from "../../components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import PopupNotification from "../../components/PopupNotification/PopupNotification";
 
 const noImageUploadedImage = "../../public/no_image.png";
 
@@ -16,6 +17,9 @@ const Add_product_to_database = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [uploadedImage, setUploadedImage] = useState(noImageUploadedImage);
+  const [proudctAddNotification, setProductAddNotification] = useState(false);
+  const [productAddedSuccessfully, setProductAddedSuccessfully] =
+    useState(false);
 
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
@@ -40,6 +44,19 @@ const Add_product_to_database = () => {
     // uploadForm.append("price", price);
     // uploadForm.append("category", category);
     // uploadForm.append("img_src", uploadedImage);
+    if (
+      name == "" ||
+      description == "" ||
+      quantity == "" ||
+      seller == "" ||
+      price == "" ||
+      category == "" ||
+      uploadedImage == noImageUploadedImage
+    ) {
+      setProductAddedSuccessfully(false);
+      setProductAddNotification(true);
+      return;
+    }
     axios
       .post("http://localhost:3001/api/add_product", {
         name,
@@ -50,17 +67,21 @@ const Add_product_to_database = () => {
         category,
         img_src: uploadedImage,
       })
-      .then((err, res) => {
-        if (!err) {
-          setName("");
-          setDescription("");
-          setQuantity("");
-          setSeller("");
-          setPrice("");
-          setCategory("");
-          setUploadedImage(noImageUploadedImage);
-          alert(res.data);
-          console.log(res.data);
+      .then((res) => {
+        if (res.data.ok) {
+          // setName("");
+          // setDescription("");
+          // setQuantity("");
+          // setSeller("");
+          // setPrice("");
+          // setCategory("");
+          // setUploadedImage(noImageUploadedImage);
+          setProductAddedSuccessfully(true);
+          setProductAddNotification(true);
+        } else {
+          setProductAddedSuccessfully(false);
+          setProductAddNotification(true);
+          console.log("CE??");
         }
       });
   };
@@ -68,6 +89,8 @@ const Add_product_to_database = () => {
   const [profileNotifications, setProfileNotifications] = useState(1);
   const [favoritesNotifications, setFavoritesNotifications] = useState(0);
   const [cartNotifications, setCartNotifications] = useState(0);
+
+  let lastTimeOut = undefined;
 
   return (
     <div className="add_product_to_database_page">
@@ -80,7 +103,36 @@ const Add_product_to_database = () => {
         ]}
       />
       <div className="contents">
-        <h1>ADD PRODUCT TO DATABASE</h1>
+        {proudctAddNotification && (
+          <PopupNotification
+            isVisible={proudctAddNotification}
+            setVisible={setProductAddNotification}
+            secondsVisible={3}
+            lastTimeOut={lastTimeOut}
+          >
+            <div
+              className={
+                productAddedSuccessfully
+                  ? "product_added_success_notification"
+                  : "product_addded_fail_notification"
+              }
+            >
+              <p className="product_addition_notification_text">
+                {productAddedSuccessfully
+                  ? "Product added successfuly!"
+                  : "All fields must have a value!"}
+              </p>
+              <img
+                onClick={() => {
+                  setProductAddNotification(false);
+                }}
+                className="x_icon_add_product_notification"
+                src="../../public/x.jpg"
+              />
+            </div>
+          </PopupNotification>
+        )}
+        <h1 className="title_add_product_page">ADD PRODUCT TO DATABASE</h1>
         <InputWithLabel label="name" value={name} setValue={setName} />
         <InputWithLabel
           label="description"

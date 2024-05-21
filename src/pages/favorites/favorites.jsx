@@ -84,7 +84,7 @@ const favorites = () => {
       />
       <div className="main_column">
         <div className="text_and_button_row">
-          <p>Favorites</p>
+          <p className="favorites_text">Favorites</p>
           <button className="new_list_button">New List</button>
         </div>
         <div className="favorite_lists_container_row">

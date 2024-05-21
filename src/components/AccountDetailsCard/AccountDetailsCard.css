@@ -9,6 +9,9 @@
 
 .main_text {
   margin-left: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .information_part {
@@ -31,6 +34,12 @@
 .edit_information_button:hover {
   cursor: pointer;
   background-color: rgba(172, 121, 226, 255);
+}
+
+.edit_information_text {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .data_row {
@@ -61,8 +70,9 @@
 }
 
 .field_row_text {
-  font-size: 1.3em;
-  font-weight: 100;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: white;
 }
 
 .field_row_phone_number {

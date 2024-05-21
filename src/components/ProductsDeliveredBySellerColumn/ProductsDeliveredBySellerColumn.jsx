@@ -4,7 +4,18 @@ import axios from "axios";
 
 const noImageSrc = "../../../public/no_image.png";
 
-const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
+const ProductsDeliveredBySellerColumn = ({
+  seller,
+  sellerIndex,
+  products,
+  sellerProductsQuantity,
+  setSellerProductsQuantity,
+  priceWithoutDelivery,
+}) => {
+  let productsCost = 0;
+  let deliveryCost = 0;
+  const [images, setImages] = useState([]);
+
   const OnRemoveFromCart = async (prodIndex) => {
     let res = await axios.post(
       "http://localhost:3001/remove_product_from_cart",
@@ -12,7 +23,7 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
         id: products[prodIndex]._id,
       }
     );
-    console.log(res);
+    // console.log(res);
   };
 
   const OnPlusClick = async (prodIndex) => {
@@ -22,10 +33,11 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
         id: products[prodIndex]._id,
       }
     );
-
-    setProdsCartQuantity(
-      prodsCartQuantity.map((val, index) =>
-        index === prodIndex ? val + 1 : val
+    let newProductsQuantities = sellerProductsQuantity[sellerIndex];
+    newProductsQuantities[prodIndex] += 1;
+    setSellerProductsQuantity(
+      sellerProductsQuantity.map((quantities, index) =>
+        index == sellerIndex ? newProductsQuantities : quantities
       )
     );
   };
@@ -38,27 +50,26 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
         id: products[prodIndex]._id,
       }
     );
-    console.log(res.data);
-    if (prodsCartQuantity[prodIndex] == 1) {
-      //todo
-    }
-    setProdsCartQuantity(
-      prodsCartQuantity.map((val, index) =>
-        index === prodIndex ? val - 1 : val
+
+    let newProductsQuantities = sellerProductsQuantity[sellerIndex];
+    newProductsQuantities[prodIndex] -= 1;
+    setSellerProductsQuantity(
+      sellerProductsQuantity.map((quantities, index) =>
+        index == sellerIndex ? newProductsQuantities : quantities
       )
     );
   };
 
-  const [prodsCartQuantity, setProdsCartQuantity] = useState(0);
-
-  useEffect(() => {
-    setProdsCartQuantity(products.map((prod) => prod.cartQuantity));
-  }, [products]);
-  let productsCost = 0;
-  let deliveryCost = 36.4;
-  for (let i = 0; i < products.length; i++)
-    productsCost += products[i].quantity > 0 ? products[i].price : 0;
-  const [images, setImages] = useState([]);
+  const CalcPriceOfSellerItemsWithoutDelivery = () => {
+    if (sellerProductsQuantity.length == 0) return 0;
+    let price = 0;
+    for (let i = 0; i < products.length; i++)
+      price +=
+        products[i].quantity > 0
+          ? products[i].price * sellerProductsQuantity[sellerIndex][i]
+          : 0;
+    return price;
+  };
 
   const GetProductImagesFromBackend = async () => {
     let newImages = [];
@@ -81,11 +92,15 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
   useEffect(() => {
     setImages(products.map((product) => noImageSrc));
     GetProductImagesFromBackend();
+    // console.log(sellerIndex);
   }, []);
 
   return (
     <div className="products_delivered_by_seller_column">
-      <p className="seller_text">{"Products delivered by " + seller}</p>
+      <p className="seller_text_product_in_cart">
+        {"Products delivered by "}
+        <span className="seller_name_shopping_cart_page">{seller}</span>
+      </p>
       {products.map((product, index) => (
         <div className="product_row" key={index}>
           <img src={images[index]} className="product_image" />
@@ -103,29 +118,36 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
                 </div>
               )}
               <p className="product_name_text">{product.name}</p>
-              <p className="sold_by_text">{"Sold by " + seller}</p>
+              <p className="sold_by_text">
+                {"Sold by "}{" "}
+                <span className="seller_text_small_prod_delivered_by_seller">
+                  {seller}
+                </span>
+              </p>
             </div>
             <div className="product_options_column">
               {product.quantity > 0 && (
                 <div className="product_price_quantity_column">
-                  <p className="product_price_text">{product.price + " LEI"}</p>
+                  <p className="product_price_text_in_cart">
+                    {product.price + " $"}
+                  </p>
                   <div className="modify_quantity_row">
                     <img
                       src="../../../public/minus.png"
                       className="plus_image"
-                      onClick={() => {
+                      onMouseUp={() => {
                         OnMinusClick(index);
+                        // console.log("CALLING PLUS!");
                       }}
                     />
                     <p className="product_quantity_text">
-                      {prodsCartQuantity[index]}
+                      {sellerProductsQuantity[sellerIndex] != undefined &&
+                        sellerProductsQuantity[sellerIndex][index]}
                     </p>
                     <img
                       src="../../../public/plus.png"
                       className="plus_image"
-                      onClick={() => {
-                        OnPlusClick(index);
-                      }}
+                      onMouseUp={() => OnPlusClick(index)}
                     />
                   </div>
                 </div>
@@ -146,14 +168,29 @@ const ProductsDeliveredBySellerColumn = ({ seller, products }) => {
       <div className="bottom_price_row">
         <div className="costs_column">
           <p className="price_row_text">
-            {"Products cost: " + productsCost.toString()}
+            {"Products cost: "}
+            <span className="cost_text_small_in_cart">
+              {CalcPriceOfSellerItemsWithoutDelivery().toString()}
+              <span className="dollar_sign_small">$</span>
+            </span>
           </p>
-          <p className="price_row_text">{"Delivery cost: " + deliveryCost}</p>
+          <p className="price_row_text">
+            {"Delivery cost: "}
+            <span className="cost_text_small_in_cart">
+              {deliveryCost}
+              <span className="dollar_sign_small">$</span>
+            </span>
+          </p>
         </div>
         <div className="subtotal_row">
-          <p className="subtotal_text">Subtotal:</p>
-          <p className="subtotal_price_text">
-            {(productsCost + deliveryCost).toString()}
+          <p className="price_row_text">
+            {"Subtotal: "}
+            <span className="cost_text_small_in_cart">
+              {(
+                CalcPriceOfSellerItemsWithoutDelivery() + deliveryCost
+              ).toString()}
+              <span className="dollar_sign_small">$</span>
+            </span>
           </p>
         </div>
       </div>
