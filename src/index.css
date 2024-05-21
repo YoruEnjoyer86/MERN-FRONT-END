@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  font-family: thiccboy;
+  line-height: normal;
+}
+
 @font-face {
   font-family: thiccboy;
   src: url("../../assets/fonts/THICCCBOI-Black.ttf");

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.test_page {
+  height: 100vh;
+  width: 100%;
+  padding: 2em;
+  color: #f0fff0;
+  background-color: rgb(16, 16, 16);
+}
+
+.second_paragraph {
+  font-size: 2em;
+  color: red;
+}
+
+#text2 {
+  font-style: italic;
+}
+
+h1 {
+  align-self: flex-start;
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+p {
+  color: rgb(146, 150, 146);
+}
+
+p span {
+  margin: 0;
+  line-height: normal;
+  font-size: 1em;
+  text-transform: uppercase;
+  padding: 0 10px 0 10px;
+}
