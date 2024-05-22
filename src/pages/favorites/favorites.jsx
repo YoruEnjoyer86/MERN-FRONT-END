@@ -21,6 +21,21 @@ const favorites = () => {
   const [currentListIndex, setCurrentListIndex] = useState(0);
   const [currentListProducts, setCurrentListProducts] = useState([]);
 
+  const AddProductToCart = async (productId) => {
+    if ((await CheckUserConnected()) == false) {
+      navigate("/register");
+      return;
+    }
+    console.log("ADDING ITEM TO CART");
+    let res = await axios.post(
+      "http://localhost:3001/increase_product_quantity_in_cart",
+      {
+        id: productId,
+      }
+    );
+    console.log(res.data);
+  };
+
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
     //console.log("CONNECTED : " + res.data.ok);
@@ -82,6 +97,7 @@ const favorites = () => {
         currentListProducts: currentListProducts,
         lists,
         currentListIndex,
+        AddProductToCart,
       }}
     >
       <div className="favorites_page">

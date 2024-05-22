@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./InputWithLabel.css";
+import { AddProductToDatabaseContext } from "../../Contexts/AddProductToDatabaseContext";
 
 const OnValueChange = (event, setValue) => {
   setValue(event.target.value);
@@ -17,19 +18,26 @@ const InputWithLabel = ({
   uploadedImage,
   setUploadedImage,
 }) => {
+  const { setUploadedImageFile } = useContext(AddProductToDatabaseContext);
+
   const OnPasteImageFromClipboard = async (event) => {
     let clipboardItems = await navigator.clipboard.read();
     let item = clipboardItems[0];
-    let type;
     for (let type of item.types) {
       let blob = await item.getType(type);
+      console.log("BLOB TYPE : " + blob.type);
       if (blob.type.includes("image/")) {
-        //console.log("CONTINE IMAGINE!");
         const reader = new FileReader();
         reader.onloadend = () => {
           setUploadedImage(reader.result);
         };
         reader.readAsDataURL(blob);
+        let imgFile = new File([blob], "img" + "." + blob.type.split("/")[1], {
+          type: blob.type,
+        });
+        setUploadedImageFile(imgFile);
+        console.log("ADDED IMAGE FROM CLIP");
+        break;
       }
     }
   };
@@ -40,6 +48,9 @@ const InputWithLabel = ({
       setUploadedImage(reader.result);
     };
     reader.readAsDataURL(event.target.files[0]);
+    // console.log(event.target.files[0]);
+    setUploadedImageFile(event.target.files[0]);
+    // console.log(event.target.files[0].type);
     //sa testez daca e png
   };
 

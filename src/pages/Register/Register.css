@@ -60,18 +60,15 @@
   color: black;
 }
 
-input {
+.register_input {
+  font-size: 1rem;
+  font-weight: 700;
   border: 0;
   border-radius: 5px;
   color: black;
   width: 300px;
   font-size: 1em;
   background: transparent;
-}
-
-.register_input {
-  font-size: 1rem;
-  font-weight: 700;
 }
 
 input:focus {

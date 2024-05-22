@@ -20,11 +20,6 @@
   position: relative;
 }
 
-@font-face {
-  font-family: thiccboy;
-  src: url("../../assets/fonts/THICCCBOI-Black.ttf");
-}
-
 .normal_button {
   background-color: rebeccapurple;
   color: white;
@@ -32,7 +27,7 @@
   padding: 5px;
   box-sizing: border-box;
   border: none;
-  border-radius: 10px;
+  border-radius: 0.7em;
   margin-right: 10px;
 }
 
@@ -48,7 +43,7 @@
   padding: 0.5em 1em 0.5em 1em;
   box-sizing: border-box;
   border: 0;
-  border-radius: 1em;
+  border-radius: 0.3em;
   filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.455));
   width: fit-content;
 }
