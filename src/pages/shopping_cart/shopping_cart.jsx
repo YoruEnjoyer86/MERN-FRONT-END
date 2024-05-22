@@ -115,6 +115,7 @@ const shopping_cart = () => {
                   sellerProductsQuantity={sellerProductsQuantity}
                   setSellerProductsQuantity={setSellerProductsQuantity}
                   priceWithoutDelivery={totalProductPrice}
+                  fetchProductsFromBackend={GetProductsFromBackend}
                 />
               ))}
             </div>

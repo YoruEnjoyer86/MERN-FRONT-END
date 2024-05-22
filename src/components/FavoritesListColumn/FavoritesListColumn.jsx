@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./FavoritesListColumn.css";
 import FavoriteProductDisplay from "../FavoriteProductDisplay/FavoriteProductDisplay";
+import { FavoritePageContext } from "../../Contexts/FavoritePageContext";
 
-const FavoritesListColumn = ({ products }) => {
+const FavoritesListColumn = () => {
+  const { currentListProducts } = useContext(FavoritePageContext);
+
   return (
     <div className="favorites_list">
-      {products.map((product, index) => (
+      {currentListProducts.map((product, index) => (
         <FavoriteProductDisplay product={product} key={index} />
       ))}
     </div>

@@ -11,6 +11,7 @@ const ProductsDeliveredBySellerColumn = ({
   sellerProductsQuantity,
   setSellerProductsQuantity,
   priceWithoutDelivery,
+  fetchProductsFromBackend,
 }) => {
   let productsCost = 0;
   let deliveryCost = 0;
@@ -23,6 +24,7 @@ const ProductsDeliveredBySellerColumn = ({
         id: products[prodIndex]._id,
       }
     );
+    fetchProductsFromBackend();
     // console.log(res);
   };
 
@@ -53,6 +55,10 @@ const ProductsDeliveredBySellerColumn = ({
 
     let newProductsQuantities = sellerProductsQuantity[sellerIndex];
     newProductsQuantities[prodIndex] -= 1;
+    if (newProductsQuantities[prodIndex] <= 0) {
+      newProductsQuantities[prodIndex] = 0;
+      fetchProductsFromBackend();
+    }
     setSellerProductsQuantity(
       sellerProductsQuantity.map((quantities, index) =>
         index == sellerIndex ? newProductsQuantities : quantities

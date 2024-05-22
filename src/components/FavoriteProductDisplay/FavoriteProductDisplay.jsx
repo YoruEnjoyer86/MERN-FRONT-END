@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./FavoriteProductDisplay.css";
 import axios from "axios";
 import RatingStars from "../RatingStars/RatingStars";
 import PriceRow from "../PriceRow/PriceRow.jsx";
+import { FavoritePageContext } from "../../Contexts/FavoritePageContext.js";
 
 const FavoriteProductDisplay = ({ product }) => {
+  const { GetProductsOfSelectedList, currentListProducts } =
+    useContext(FavoritePageContext);
+
   const [imageSrc, setImageSrc] = useState("");
 
   const RemoveFromFavorites = async () => {
@@ -14,9 +18,11 @@ const FavoriteProductDisplay = ({ product }) => {
         id: product._id,
       }
     );
-    console.log(res.data);
+    // console.log(res.data);
+    GetProductsOfSelectedList();
   };
   const RequestImageFromBackend = async () => {
+    console.log("IMAGE CHANGED!");
     let response = await axios.post(
       "http://localhost:3001/api/get_product_image",
       {
@@ -26,15 +32,15 @@ const FavoriteProductDisplay = ({ product }) => {
         },
       }
     );
-    if (response.data.ok != false) {
-      console.log(response.data.img);
+    if (response.data.ok) {
+      // console.log(response.data.img);
       setImageSrc(response.data.img);
     } else console.log(response.data.error);
   };
 
   useEffect(() => {
     RequestImageFromBackend();
-  }, []);
+  }, [currentListProducts]);
 
   return (
     <div className="favorite_product">

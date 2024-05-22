@@ -9,6 +9,7 @@ import SortedItemsColumn from "../../components/SortedItemsColumn/SortedItemsCol
 import FavoritesListColumn from "../../components/FavoritesListColumn/FavoritesListColumn.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FavoritePageContext } from "../../Contexts/FavoritePageContext.js";
 
 const favorites = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const favorites = () => {
   }, [currentListIndex, lists]);
 
   const GetProductsOfSelectedList = async () => {
-    console.log(lists);
+    // console.log(lists);
     if (lists[currentListIndex] != undefined) {
       let res = await axios.post(
         "http://localhost:3001/get_products_from_favorite_list",
@@ -51,10 +52,12 @@ const favorites = () => {
         }
       );
       if (res.data.ok) {
-        console.log("list products were found!");
+        // console.log("list products were found!");
         setCurrentListProducts(res.data.products);
       } else console.log(res.data.message);
-    } else console.log("current list is undefined!");
+    } else {
+      // console.log("current list is undefined!");
+    }
   };
 
   const GetListsFromBackend = async () => {
@@ -64,53 +67,62 @@ const favorites = () => {
     setListsReactItems(
       listsDetails.map((details, index) => (
         <ShortFavoriteProductsList
-          listDetails={details}
           isSelected={false}
           key={index}
+          listIndex={index}
         />
       ))
     );
   };
 
   return (
-    <div className="favorites_page">
-      <NavBar
-        className="no_margin"
-        notifications={[
-          profileNotifications,
-          favoritesNotifications,
-          cartNotifications,
-        ]}
-      />
-      <div className="main_column">
-        <div className="text_and_button_row">
-          <p className="favorites_text">Favorites</p>
-          <button className="new_list_button">New List</button>
-        </div>
-        <div className="favorite_lists_container_row">
-          <RowWithItems
-            maxDisplayedItems={8}
-            category=""
-            items={listsReactItems}
-            highlightItemsOnClick={true}
-          />
-        </div>
-        <SortedItemsColumn
-          title={
-            lists[currentListIndex] != undefined
-              ? lists[currentListIndex].name
-              : "missing_list_name"
-          }
-          details={
-            lists[currentListIndex] != undefined
-              ? lists[currentListIndex].products.length + " products"
-              : "missing number of products"
-          }
-          buttonNames={["Modify"]}
+    <FavoritePageContext.Provider
+      value={{
+        GetProductsOfSelectedList,
+        currentListProducts: currentListProducts,
+        lists,
+        currentListIndex,
+      }}
+    >
+      <div className="favorites_page">
+        <NavBar
+          className="no_margin"
+          notifications={[
+            profileNotifications,
+            favoritesNotifications,
+            cartNotifications,
+          ]}
         />
-        <FavoritesListColumn products={currentListProducts} />
+        <div className="main_column">
+          <div className="text_and_button_row">
+            <p className="favorites_text">Favorites</p>
+            <button className="new_list_button">New List</button>
+          </div>
+          <div className="favorite_lists_container_row">
+            <RowWithItems
+              maxDisplayedItems={8}
+              category=""
+              items={listsReactItems}
+              highlightItemsOnClick={true}
+            />
+          </div>
+          <SortedItemsColumn
+            title={
+              lists[currentListIndex] != undefined
+                ? lists[currentListIndex].name
+                : "missing_list_name"
+            }
+            details={
+              lists[currentListIndex] != undefined
+                ? lists[currentListIndex].products.length + " products"
+                : "missing number of products"
+            }
+            buttonNames={["Modify"]}
+          />
+          <FavoritesListColumn />
+        </div>
       </div>
-    </div>
+    </FavoritePageContext.Provider>
   );
 };
 

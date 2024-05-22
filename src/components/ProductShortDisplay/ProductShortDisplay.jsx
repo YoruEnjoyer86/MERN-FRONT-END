@@ -73,8 +73,9 @@ const ProductShortDisplay = ({ product, className }) => {
           id: product._id,
         }
       );
-      if (res.data.ok) console.log("product added to favorites!");
-      else
+      if (res.data.ok) {
+        console.log("product added to favorites!");
+      } else
         console.log(
           "Error at adding product to favorites : " + res.data.message
         );
