@@ -1,4 +1,5 @@
 .nav_bar {
+  z-index: 10;
   display: flex;
   box-sizing: border-box;
   flex-wrap: nowrap;
@@ -13,13 +14,17 @@
   border-style: solid;
   border-color: rgb(143, 75, 216);
   border-width: 0px 0px 5px 0px;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .logo_image {
   height: 80%;
-  width: 20%;
+  width: fit-content;
   object-fit: contain;
-  margin-right: 20px;
+  margin-right: 2em;
+  margin-left: 2em;
 }
 
 .logo_image:hover {
