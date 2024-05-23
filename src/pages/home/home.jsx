@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import "./home.css";
 import ProductsRow from "../../components/ProductsRow/ProductsRow.jsx";

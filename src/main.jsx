@@ -12,8 +12,6 @@ import Register from "./pages/Register/Register";
 import App from "./components/App/App";
 import Test from "./pages/test/test";
 
-const app = <App />;
-
 const router = createBrowserRouter([
   {
     path: "/",

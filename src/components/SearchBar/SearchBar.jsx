@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SearchBar.css";
 import axios from "axios";
+import { AppContext } from "../../Contexts/AppContext";
 
 let text = "";
 
@@ -14,6 +15,7 @@ const HandleSearch = () => {
 };
 
 const SearchBar = ({ className }) => {
+  const { setOnLickFunction } = useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -31,16 +33,16 @@ const SearchBar = ({ className }) => {
   };
 
   useEffect(() => {
-    console.log(searchResults);
+    setOnLickFunction(() => {
+      setSearchResultsVisible(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    // console.log(searchResults);
   }, [searchResults]);
   return (
     <>
-      <div
-        className="invisible_click_handler"
-        onClick={() => {
-          setSearchResultsVisible(false);
-        }}
-      ></div>
       <div className={"main_search_bar " + className}>
         <input
           id="search_bar_input"
@@ -59,8 +61,10 @@ const SearchBar = ({ className }) => {
         />
         {areSearchResultsVisible && (
           <div className="search_results_column">
-            {searchResults.map((res) => (
-              <p className="result_search_bar_text">{res.name}</p>
+            {searchResults.map((res, index) => (
+              <p key={index} className="result_search_bar_text">
+                {res.name}
+              </p>
             ))}
           </div>
         )}

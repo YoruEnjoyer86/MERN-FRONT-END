@@ -48,12 +48,3 @@
   background-color: rgb(85, 85, 85);
   cursor: pointer;
 }
-
-.invisible_click_handler {
-  z-index: -1;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 100%;
-}
