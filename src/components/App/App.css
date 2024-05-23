@@ -1,5 +1,5 @@
 .space_for_navBar {
-  display: flex;
+  flex-shrink: 0;
   height: 8rem;
 }
 
@@ -10,4 +10,19 @@
   bottom: 0;
   height: 100vh;
   width: 100%;
+}
+
+.app_children_div {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.app_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

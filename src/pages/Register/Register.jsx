@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Register.css";
+import NavBar from "../../components/NavBar/NavBar.jsx";
+import { AppContext } from "../../Contexts/AppContext.js";
 
 const Register = () => {
+  const { setIsRegisterPageActive } = useContext(AppContext);
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,8 +39,16 @@ const Register = () => {
     } else console.log("Missing field!");
   };
 
+  useEffect(() => {
+    setIsRegisterPageActive(true);
+    return () => {
+      setIsRegisterPageActive(false);
+    };
+  }, []);
+
   return (
     <div className="register_page">
+      <NavBar />
       <div className="register_form">
         <p className="title">{action}</p>
         {action === "Sign Up" && (

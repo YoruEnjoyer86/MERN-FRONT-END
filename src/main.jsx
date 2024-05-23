@@ -11,6 +11,7 @@ import Order_completed from "./pages/order_completed/order_completed";
 import Register from "./pages/Register/Register";
 import App from "./components/App/App";
 import Test from "./pages/test/test";
+import ProductPage from "./pages/product_page/product_page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "test",
     element: <Test />,
+  },
+  {
+    path: "product",
+    element: <ProductPage />,
   },
 ]);
 

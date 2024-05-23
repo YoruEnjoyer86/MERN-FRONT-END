@@ -101,14 +101,7 @@ const favorites = () => {
       }}
     >
       <div className="favorites_page">
-        <NavBar
-          className="no_margin"
-          notifications={[
-            profileNotifications,
-            favoritesNotifications,
-            cartNotifications,
-          ]}
-        />
+        <NavBar />
         <div className="main_column">
           <div className="text_and_button_row">
             <p className="favorites_text">Favorites</p>

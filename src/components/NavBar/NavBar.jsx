@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import NavBarIcon from "../NavBarIcon/NavBarIcon.jsx";
 import "./NavBar.css";
 import DropdownButton from "../DropdownButton/DropdownButton.jsx";
 import CategoryRow from "../CategoryRow/CategoryRow.jsx";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../Contexts/AppContext.js";
 
 const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
 
-const NavBar = ({ notifications, className = "" }) => {
+const NavBar = ({ className = "" }) => {
+  const { notifications } = useContext(AppContext);
   const navigate = useNavigate();
 
   const HandleLogoClick = () => {

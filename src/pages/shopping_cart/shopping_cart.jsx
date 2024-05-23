@@ -8,9 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 
 const shopping_cart = () => {
-  const [profileNotifications, setProfileNotifications] = useState(1);
-  const [favoritesNotifications, setFavoritesNotifications] = useState(0);
-  const [cartNotifications, setCartNotifications] = useState(0);
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
   const [sellerProductsQuantity, setSellerProductsQuantity] = useState([]);
   const [totalProductPrice, setTotaProductPrice] = useState(0);
@@ -90,14 +87,7 @@ const shopping_cart = () => {
 
   return (
     <div className="shopping_cart_page">
-      <NavBar
-        className="no_margin"
-        notifications={[
-          profileNotifications,
-          favoritesNotifications,
-          cartNotifications,
-        ]}
-      />
+      <NavBar />
       <div className="contents_row">
         {productsSortedBySeller.length > 0 ? (
           <>
