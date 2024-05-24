@@ -1,6 +1,6 @@
 .modal_container {
   position: absolute;
-  top: 3rem;
+  top: 5.1em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,5 +8,5 @@
 }
 
 .colored_background {
-  background-color: rgb(68, 68, 75);
+  background-color: rgb(57, 57, 59);
 }

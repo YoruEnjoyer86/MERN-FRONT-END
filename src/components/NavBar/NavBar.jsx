@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import NavBarIcon from "../NavBarIcon/NavBarIcon.jsx";
 import "./NavBar.css";
 import DropdownButton from "../DropdownButton/DropdownButton.jsx";
-import CategoryRow from "../CategoryRow/CategoryRow.jsx";
+import MegaCategoryRow from "../MegaCategoryRow/MegaCategoryRow.jsx";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext.js";
+import axios from "axios";
+import CategoriesButton from "../CategoriesButton/CategoriesButton.jsx";
 
 const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
 
@@ -35,37 +37,7 @@ const NavBar = ({ className = "" }) => {
 
   return (
     <div className={"nav_bar " + className}>
-      <DropdownButton
-        isBackgroundVisible={true}
-        className={"more_options_button"}
-        button={
-          <img
-            src="../../public/three_lines.png"
-            className="more_options_image"
-          />
-        }
-      >
-        <CategoryRow
-          name="Laptop/Tablete"
-          image={placeHolderCategoryImage}
-          subcategories={["Laptop", "Telefoane Mobile"]}
-        />
-        <CategoryRow
-          name="PC/Periferice"
-          image={placeHolderCategoryImage}
-          subcategories={["Mouse", "Tastatura", "Monitoare"]}
-        />
-        <CategoryRow
-          name="Alimente"
-          image={placeHolderCategoryImage}
-          subcategories={["Lactate", "Carne", "Snacks-uri"]}
-        />
-        <CategoryRow
-          name="Îmbrăcăminte"
-          image={placeHolderCategoryImage}
-          subcategories={["Pantofi", "Paltoane", "Slapi"]}
-        />
-      </DropdownButton>
+      <CategoriesButton />
       <img
         className="logo_image"
         src="../../../public/logo.png"

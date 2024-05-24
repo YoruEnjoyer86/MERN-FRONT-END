@@ -112,7 +112,6 @@ const Add_product_to_database = () => {
       {" "}
       <div className="add_product_to_database_page">
         <NavBar />
-
         <div className="contents">
           {proudctAddNotification && (
             <PopupNotification

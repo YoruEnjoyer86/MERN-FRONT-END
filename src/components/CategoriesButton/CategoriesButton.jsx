@@ -1,0 +1,70 @@
+import React from "react";
+import "./CategoriesButton.css";
+import MegaCategoryRow from "../MegaCategoryRow/MegaCategoryRow";
+import DropdownButton from "../DropdownButton/DropdownButton";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import CategoryColumn from "../CategoryColumn/CategoryColumn";
+
+const CategoriesButton = () => {
+  const [megaCategories, setMegaCategories] = useState([]);
+
+  const FetchMegaCategories = async () => {
+    let res = await axios.post("http://localhost:3001/get_mega_categories");
+    setMegaCategories(res.data.megaCategories);
+    // console.log(res.data.megaCategories);
+  };
+
+  useEffect(() => {
+    FetchMegaCategories();
+  }, []);
+
+  const [areCategoriesOpen, setCategoriesOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const FetchCategories = async (megacategory) => {
+    let res = await axios.post("http://localhost:3001/get_categories", {
+      mega_category: megacategory,
+    });
+    setCategories(res.data.categories);
+    // console.log(res.data.categories);
+  };
+
+  //   useEffect(() => {
+  //     console.log("categories updated!");
+  //   }, categories);
+
+  return (
+    <DropdownButton
+      isBackgroundVisible={true}
+      className={"more_options_button"}
+      button={
+        <img
+          src="../../public/three_lines.png"
+          className="more_options_image"
+        />
+      }
+    >
+      <div className="dropdown_categories_row">
+        <div className="megacategories_name_and_icon_column">
+          {megaCategories.map((megaCat, index) => (
+            <MegaCategoryRow
+              key={index}
+              megacategory={megaCat}
+              setCategoriesOpen={setCategoriesOpen}
+              FetchCategories={FetchCategories}
+            />
+          ))}
+        </div>
+        {areCategoriesOpen && (
+          <div className="categories_row">
+            {categories.map((cat, index) => (
+              <CategoryColumn category={cat} key={cat.name + index} />
+            ))}
+          </div>
+        )}
+      </div>
+    </DropdownButton>
+  );
+};
+
+export default CategoriesButton;

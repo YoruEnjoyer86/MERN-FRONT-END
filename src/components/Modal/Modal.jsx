@@ -4,7 +4,7 @@ const Modal = ({ children, isBackgroundVisible }) => {
   return (
     <div
       className={
-        "modal_container " + (isBackgroundVisible && "colored_background")
+        "modal_container " + (isBackgroundVisible ? "colored_background" : "")
       }
     >
       {children}
