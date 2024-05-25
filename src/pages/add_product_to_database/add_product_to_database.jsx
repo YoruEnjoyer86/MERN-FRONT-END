@@ -92,11 +92,7 @@ const Add_product_to_database = () => {
       description == "" ||
       quantity == "" ||
       seller == "" ||
-      price == "" ||
-      megaCategoryIndex == "" ||
-      categoryIndex == "" ||
-      subCategoryIndex == "" ||
-      uploadedImage == noImageUploadedImage
+      price == ""
     ) {
       setProductAddedSuccessfully(false);
       setProductAddNotification(true);
@@ -137,6 +133,7 @@ const Add_product_to_database = () => {
           setProductAddedSuccessfully(true);
           setProductAddNotification(true);
         } else {
+          console.log("REQUEST FAILED!");
           setProductAddedSuccessfully(false);
           setProductAddNotification(true);
         }

@@ -12,6 +12,7 @@ import Register from "./pages/Register/Register";
 import App from "./components/App/App";
 import Test from "./pages/test/test";
 import ProductPage from "./pages/product_page/product_page.jsx";
+import SearchPage from "./pages/SearchPage/SearchPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "product",
     element: <ProductPage />,
+  },
+  {
+    path: "search",
+    element: <SearchPage />,
   },
 ]);
 

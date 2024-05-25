@@ -34,6 +34,10 @@ const SearchBar = ({ className }) => {
     navigate("/product");
   };
 
+  const GoToSearchPage = () => {
+    navigate("/search");
+  };
+
   const HandleOnChange = async (event) => {
     text = event.target.value;
     if (text.length != 0) {
@@ -60,7 +64,7 @@ const SearchBar = ({ className }) => {
 
   useEffect(() => {
     // console.log(searchResults);
-    for (let res of searchResults) console.log(res.price == undefined);
+    // for (let res of searchResults) console.log(res.price == undefined);
   }, [searchResults]);
   return (
     <>
@@ -103,7 +107,8 @@ const SearchBar = ({ className }) => {
                 <p
                   className="result_search_bar_text"
                   onClick={() => {
-                    GoToProduct(res);
+                    if (res.price == undefined) GoToSearchPage();
+                    else GoToProduct(res);
                   }}
                 >
                   {res.name}
