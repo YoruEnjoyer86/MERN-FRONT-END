@@ -16,26 +16,75 @@ const Add_product_to_database = () => {
   const [quantity, setQuantity] = useState("");
   const [seller, setSeller] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [megaCategoryIndex, setMegaCategoryIndex] = useState(0);
+  const [subCategoryIndex, setSubCategoryIndex] = useState(0);
   const [uploadedImage, setUploadedImage] = useState(noImageUploadedImage);
   const [uploadedImageFile, setUploadedImageFile] = useState(undefined);
   const [proudctAddNotification, setProductAddNotification] = useState(false);
   const [productAddedSuccessfully, setProductAddedSuccessfully] =
     useState(false);
+  const [megaCategories, setMegaCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
 
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
-    console.log("CONNECTED : " + res.data.ok);
+    // console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
+  };
+
+  const FetchCategories = async () => {
+    // console.log(megaCategoryIndex);
+    let res;
+    if (megaCategories.length != 0)
+      res = await axios.post("http://localhost:3001/get_categories", {
+        mega_category: megaCategories[megaCategoryIndex],
+      });
+    if (res != undefined) {
+      // console.log(res.data.categories);
+      setCategories(res.data.categories);
+    }
+  };
+
+  const FetchSubCategories = async () => {
+    let res;
+    if (categories.length != 0) {
+      res = await axios.post("http://localhost:3001/get_subcategories", {
+        category: categories[categoryIndex],
+      });
+      // console.log(res.data);
+    }
+    if (res != undefined) setSubcategories(res.data.subcategories);
   };
 
   const Initialize = async () => {
     if ((await CheckUserConnected()) == false) navigate("/register");
+    else {
+      let res = await axios.post("http://localhost:3001/get_mega_categories");
+      setMegaCategories(res.data.megaCategories);
+      let cats = await axios.post("http://localhost:3001/get_categories", {
+        mega_category: res.data.megaCategories[0],
+      });
+      setCategories(cats.data.categories);
+      // console.log(cats.data);
+      // console.log(res.data.megaCategories);
+    }
   };
 
   useEffect(() => {
     Initialize();
   }, []);
+
+  useEffect(() => {
+    setCategoryIndex(0);
+    FetchCategories();
+  }, [megaCategoryIndex, megaCategories]);
+
+  useEffect(() => {
+    setSubCategoryIndex(0);
+    FetchSubCategories();
+  }, [categories, categoryIndex]);
 
   const OnAddProduct = async () => {
     if (
@@ -44,7 +93,9 @@ const Add_product_to_database = () => {
       quantity == "" ||
       seller == "" ||
       price == "" ||
-      category == "" ||
+      megaCategoryIndex == "" ||
+      categoryIndex == "" ||
+      subCategoryIndex == "" ||
       uploadedImage == noImageUploadedImage
     ) {
       setProductAddedSuccessfully(false);
@@ -61,7 +112,7 @@ const Add_product_to_database = () => {
     );
     console.log("NAME: " + imageToUpload.name);
     console.log("TYPE: " + imageToUpload.type);
-    axios
+    await axios
       .post(
         "http://localhost:3001/api/add_product",
         {
@@ -70,7 +121,9 @@ const Add_product_to_database = () => {
           quantity,
           seller,
           price,
-          category,
+          category: categories[categoryIndex],
+          mega_category: megaCategories[megaCategoryIndex],
+          subcategory: subcategories[subCategoryIndex],
           file: imageToUpload,
         },
         {
@@ -81,22 +134,14 @@ const Add_product_to_database = () => {
       )
       .then((res) => {
         if (res.data.ok) {
-          // setName("");
-          // setDescription("");
-          // setQuantity("");
-          // setSeller("");
-          // setPrice("");
-          // setCategory("");
-          // setUploadedImage(noImageUploadedImage);
           setProductAddedSuccessfully(true);
           setProductAddNotification(true);
         } else {
           setProductAddedSuccessfully(false);
           setProductAddNotification(true);
-          // console.log("CE??");
         }
       });
-    setUploadedImageFile(imageToUpload);
+    // setUploadedImageFile(imageToUpload);
   };
 
   const [profileNotifications, setProfileNotifications] = useState(1);
@@ -157,9 +202,26 @@ const Add_product_to_database = () => {
           <InputWithLabel label="seller" value={seller} setValue={setSeller} />
           <InputWithLabel label="price" value={price} setValue={setPrice} />
           <InputWithLabel
+            label="mega category"
+            inputType="choices"
+            value={megaCategoryIndex}
+            setValue={setMegaCategoryIndex}
+            selectId="mega_category_select"
+            options={megaCategories}
+          />
+          <InputWithLabel
             label="category"
-            value={category}
-            setValue={setCategory}
+            inputType="choices"
+            value={categoryIndex}
+            setValue={setCategoryIndex}
+            options={categories}
+          />
+          <InputWithLabel
+            label="sub category"
+            inputType="choices"
+            value={subCategoryIndex}
+            setValue={setSubCategoryIndex}
+            options={subcategories}
           />
           <InputWithLabel
             label="image"

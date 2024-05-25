@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./InputWithLabel.css";
 import { AddProductToDatabaseContext } from "../../Contexts/AddProductToDatabaseContext";
 
@@ -15,8 +15,11 @@ const InputWithLabel = ({
   value,
   setValue,
   inputType = "text",
+  options = [],
+  selectId = "",
   uploadedImage,
   setUploadedImage,
+  OnValChange,
 }) => {
   const { setUploadedImageFile } = useContext(AddProductToDatabaseContext);
 
@@ -54,6 +57,10 @@ const InputWithLabel = ({
     //sa testez daca e png
   };
 
+  useEffect(() => {
+    // console.log(options);
+  }, []);
+
   return (
     <div className="input_label_row">
       <h1 className="input_label_text">{label}</h1>
@@ -64,9 +71,10 @@ const InputWithLabel = ({
           value={value}
           onChange={() => {
             OnValueChange(event, setValue);
+            if (OnValChange != undefined) OnValChange();
           }}
         />
-      ) : (
+      ) : inputType === "image" ? (
         <div className="input_label_row">
           <img src={uploadedImage} className="uploaded_image" />
           <div className="input_buttons_column">
@@ -75,6 +83,7 @@ const InputWithLabel = ({
               id="file_input"
               onChange={() => {
                 OnFileChange(event);
+                if (OnValChange != undefined) OnValChange();
               }}
             />
             <div
@@ -98,6 +107,22 @@ const InputWithLabel = ({
             </div>
           </div>
         </div>
+      ) : (
+        <select
+          id={selectId}
+          className="options_menu_input_label"
+          value={value}
+          onChange={(event) => {
+            if (OnValChange != undefined) OnValChange();
+            setValue(event.target.value);
+          }}
+        >
+          {options.map((opt, index) => (
+            <option key={index} className="input_label_option" value={index}>
+              {opt.name}
+            </option>
+          ))}
+        </select>
       )}
     </div>
   );
