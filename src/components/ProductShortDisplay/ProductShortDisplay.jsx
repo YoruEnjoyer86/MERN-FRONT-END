@@ -11,24 +11,33 @@ const noImage = "../../public/no_image.png";
 
 const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
-  const [isFavorite, setFavorite] = useState(false);
-  const { productsFavoriteStatuses, setProductsFavoriteStatuses } =
-    useContext(HomeContext);
+  const [isFavorite, setFavorite] = useState();
+  // const { productsFavoriteStatuses, setProductsFavoriteStatuses } =
+  //   useContext(HomeContext);
 
-  useEffect(() => {
-    for (let i = 0; i < productsFavoriteStatuses.length; i++) {
-      let prod = productsFavoriteStatuses[i];
-      if (prod.id == product._id) {
-        setFavorite(prod.value);
-        return;
-      }
-    }
-  }, [productsFavoriteStatuses]);
+  // useEffect(() => {
+  //   for (let i = 0; i < productsFavoriteStatuses.length; i++) {
+  //     let prod = productsFavoriteStatuses[i];
+  //     if (prod.id == product._id) {
+  //       setFavorite(prod.value);
+  //       return;
+  //     }
+  //   }
+  // }, [productsFavoriteStatuses]);
+
+  const FetchIsFavorite = async () => {
+    let res = await axios.post("http://localhost:3001/is_product_favorite", {
+      id: product._id,
+    });
+    if (res.data.ok) setFavorite(res.data.isFavorite);
+    console.log(res.data.isFavorite);
+  };
 
   const OnInitialize = async () => {
     if ((await CheckUserConnected()) == true) {
     } else console.log("user not connected");
 
+    FetchIsFavorite();
     RequestImageFromBackend();
   };
 
@@ -80,19 +89,20 @@ const ProductShortDisplay = ({ product, className }) => {
           "Error at adding product to favorites : " + res.data.message
         );
     }
-    let indexToChange = 0;
-    for (let i = 0; i < productsFavoriteStatuses.length; i++) {
-      let prod = productsFavoriteStatuses[i];
-      if (prod.id == product._id) {
-        indexToChange = i;
-        break;
-      }
-    }
-    setProductsFavoriteStatuses(
-      productsFavoriteStatuses.map((prod, index) =>
-        index == indexToChange ? { id: prod.id, value: !prod.value } : prod
-      )
-    );
+    setFavorite(!isFavorite);
+    // let indexToChange = 0;
+    // for (let i = 0; i < productsFavoriteStatuses.length; i++) {
+    //   let prod = productsFavoriteStatuses[i];
+    //   if (prod.id == product._id) {
+    //     indexToChange = i;
+    //     break;
+    //   }
+    // }
+    // setProductsFavoriteStatuses(
+    //   productsFavoriteStatuses.map((prod, index) =>
+    //     index == indexToChange ? { id: prod.id, value: !prod.value } : prod
+    //   )
+    // );
   };
 
   useEffect(() => {

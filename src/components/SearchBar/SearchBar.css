@@ -62,3 +62,14 @@
 .x_icon_search_bar:focus {
   transform: scale(90%);
 }
+
+.products_categories_search_separator {
+  width: 100%;
+  padding: 1em;
+}
+
+.products_categories_separator_text {
+  font-size: 1.7rem;
+  /* font-weight: 800; */
+  color: rgb(143, 75, 216);
+}

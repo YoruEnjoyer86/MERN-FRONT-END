@@ -18,6 +18,12 @@ const GetProducts = () => {
 
 const Home = () => {
   const navigate = useNavigate();
+  let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
+  // let [productsFavoriteStatuses, setProductsFavoriteStatuses] = useState([]);
+  const popularCategoriesIDs = [
+    "665064a513faede67f9ef7c3",
+    "665064c313faede67f9ef7c4",
+  ];
 
   const AddProductToCart = async (productId) => {
     if ((await CheckUserConnected()) == false) {
@@ -34,86 +40,69 @@ const Home = () => {
     console.log(res.data);
   };
 
-  let [productsFromBackEnd, setProductsFromBackEnd] = useState([]);
-  let [productsFavoriteStatuses, setProductsFavoriteStatuses] = useState([]);
-
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
     return res.data.ok;
   };
 
-  useEffect(() => {
-    //console.log(productsFavoriteStatuses);
-  }, [productsFavoriteStatuses]);
-
-  const GetProductsFromBackend = async () => {
-    let res = await axios.post(
-      "http://localhost:3001/api/get_products_of_category",
-      {
-        category: "everything",
-      }
-    );
-    setProductsFromBackEnd(res.data);
+  const AddToCurrentlyDisplayedProducts = async (newProducts) => {
+    setProductsFromBackEnd([...productsFromBackEnd], ...newProducts);
   };
 
-  const CheckIfProductFavorited = async (id, index) => {
-    let res = await axios.post("http://localhost:3001/is_product_favorite", {
-      id,
-    });
-    // console.log(
-    //   productsFromBackEnd[index].name + " favorit : " + res.data.isFavorite
-    // );
-    if (res.data.ok) return res.data.isFavorite;
-    return false;
-  };
+  // const CheckIfProductFavorited = async (id, index) => {
+  //   let res = await axios.post("http://localhost:3001/is_product_favorite", {
+  //     id,
+  //   });
+  //   if (res.data.ok) return res.data.isFavorite;
+  //   return false;
+  // };
 
-  const UpdateProductFavoriteStatuses = async () => {
-    let newFavArray = [];
-    for (let index = 0; index < productsFromBackEnd.length; index++)
-      newFavArray.push({
-        id: productsFromBackEnd[index]._id,
-        value: await CheckIfProductFavorited(
-          productsFromBackEnd[index]._id,
-          index
-        ),
-      });
-    setProductsFavoriteStatuses(newFavArray);
-  };
-
-  useEffect(() => {
-    UpdateProductFavoriteStatuses();
-  }, [productsFromBackEnd]);
-
-  useEffect(() => {
-    GetProductsFromBackend();
-  }, []);
+  // const UpdateProductFavoriteStatuses = async () => {
+  //   let newFavArray = [];
+  //   for (let index = 0; index < productsFromBackEnd.length; index++)
+  //     newFavArray.push({
+  //       id: productsFromBackEnd[index]._id,
+  //       value: await CheckIfProductFavorited(
+  //         productsFromBackEnd[index]._id,
+  //         index
+  //       ),
+  //     });
+  //   setProductsFavoriteStatuses(newFavArray);
+  // };
 
   const HandleAddItemToCart = (productName) => {
     setCartNotifications(cartNotifications + 1);
     alert("Added " + productName + " to your cart!");
   };
 
+  // useEffect(() => {
+  //   UpdateProductFavoriteStatuses();
+  // }, [productsFromBackEnd]);
+
+  // useEffect(() => {
+  //   //console.log(productsFavoriteStatuses);
+  // }, [productsFavoriteStatuses]);
+
   return (
     <div className="home">
       <HomeContext.Provider
         value={{
-          productsFavoriteStatuses,
-          setProductsFavoriteStatuses,
+          // productsFavoriteStatuses,
+          // setProductsFavoriteStatuses,
           AddProductToCart,
+          AddToCurrentlyDisplayedProducts,
         }}
       >
         <NavBar />
         <ProductsRow
           maxDisplayedItems={5}
-          products={[]}
           HandleAddItemToCart={HandleAddItemToCart}
-          category="Food"
+          megacategoryID={popularCategoriesIDs[0]}
         />
         <ProductsRow
           maxDisplayedItems={5}
-          products={[]}
           HandleAddItemToCart={HandleAddItemToCart}
-          category="Clothing"
+          megacategoryID={popularCategoriesIDs[1]}
         />
       </HomeContext.Provider>
     </div>

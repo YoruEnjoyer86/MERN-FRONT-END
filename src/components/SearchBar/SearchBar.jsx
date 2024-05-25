@@ -19,6 +19,7 @@ const SearchBar = ({ className }) => {
   const { setOnLickFunction } = useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [isXVisible, setXVisible] = useState(false);
   const navigate = useNavigate();
 
   const EraseSearchText = () => {
@@ -26,6 +27,7 @@ const SearchBar = ({ className }) => {
     document.getElementById("search_bar_input").value = "";
     setSearchResults([]);
     document.getElementById("search_bar_input").focus();
+    setXVisible(false);
   };
 
   const GoToProduct = (prod) => {
@@ -41,7 +43,12 @@ const SearchBar = ({ className }) => {
       });
       setSearchResults(res.data.results);
       // console.log(res.data.results);
-    } else setSearchResultsVisible(false);
+      setXVisible(true);
+    } else {
+      setSearchResults([]);
+      setSearchResultsVisible(false);
+      setXVisible(false);
+    }
     // console.log(text.length);
   };
 
@@ -53,6 +60,7 @@ const SearchBar = ({ className }) => {
 
   useEffect(() => {
     // console.log(searchResults);
+    for (let res of searchResults) console.log(res.price == undefined);
   }, [searchResults]);
   return (
     <>
@@ -72,7 +80,7 @@ const SearchBar = ({ className }) => {
           }}
           placeholder="Search something!"
         />
-        {areSearchResultsVisible && (
+        {isXVisible && (
           <img
             className="x_icon_search_bar"
             src="../../../public/x.jpg"
@@ -82,15 +90,25 @@ const SearchBar = ({ className }) => {
         {areSearchResultsVisible && (
           <div className="search_results_column">
             {searchResults.map((res, index) => (
-              <p
-                key={index}
-                className="result_search_bar_text"
-                onClick={() => {
-                  GoToProduct(res);
-                }}
-              >
-                {res.name}
-              </p>
+              <div key={index}>
+                {res.price == undefined &&
+                  index - 1 >= 0 &&
+                  searchResults[index - 1].price != undefined && (
+                    <div className="products_categories_search_separator">
+                      <p className="products_categories_separator_text">
+                        Categories
+                      </p>
+                    </div>
+                  )}
+                <p
+                  className="result_search_bar_text"
+                  onClick={() => {
+                    GoToProduct(res);
+                  }}
+                >
+                  {res.name}
+                </p>
+              </div>
             ))}
           </div>
         )}
