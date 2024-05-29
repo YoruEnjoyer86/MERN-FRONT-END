@@ -14,6 +14,7 @@ const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
   const [isFavorite, setFavorite] = useState();
   const navigate = useNavigate();
+  const { set_product_page_product_id } = useContext(AppContext);
 
   const FetchIsFavorite = async () => {
     let res = await axios.post("http://localhost:3001/is_product_favorite", {
@@ -86,7 +87,11 @@ const ProductShortDisplay = ({ product, className }) => {
     OnInitialize();
   }, [product]);
 
-  const OnProductClick = () => {
+  const OnProductClick = async () => {
+    await axios.post("http://localhost:3001/set_product_page_product_id", {
+      id: product._id,
+    });
+    set_product_page_product_id(product._id);
     navigate("/product");
   };
 

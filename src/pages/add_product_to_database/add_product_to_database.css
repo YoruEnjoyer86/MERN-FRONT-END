@@ -72,6 +72,7 @@ input[type="file"] {
 }
 
 .product_added_success_notification {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   margin: 1em 0 0 1em;
@@ -86,6 +87,7 @@ input[type="file"] {
 }
 
 .product_addded_fail_notification {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   margin: 1em 0 0 1em;

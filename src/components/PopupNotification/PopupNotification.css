@@ -1,4 +1,5 @@
 .popup_notification_container {
+  align-self: start;
   display: flex;
   justify-content: space-between;
   position: absolute;

@@ -121,6 +121,10 @@
   font-size: 1.2rem;
 }
 
+.product_image:hover {
+  cursor: pointer;
+}
+
 .seller_name_shopping_cart_page {
   font-size: 1.5rem;
   color: white;

@@ -43,6 +43,18 @@
   font-weight: 500;
   padding: 0.3em 0.7em;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+.search_result_text_container {
+  height: fit-content;
+  /* max-height: 5rem;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
 }
 
 .result_search_bar_text:hover {

@@ -38,7 +38,7 @@ const RowWithItems = ({
   };
 
   return (
-    <div className="container">
+    <div className="container_row_with_items">
       {category != "" && <p className="category_text_text">{category}</p>}
       <div className={"items_and_arrows_row " + className}>
         {firstItemIndex - maxDisplayedItems >= 0 && (

@@ -12,6 +12,7 @@ const SearchBar = ({ className }) => {
     set_search_data,
     searched_data,
     setAppliedSearchFilters,
+    set_product_page_product_id,
   } = useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -91,6 +92,15 @@ const SearchBar = ({ className }) => {
     // console.log(searchResults);
     // for (let res of searchResults) console.log(res.price == undefined);
   }, [searchResults]);
+
+  const OnProductClick = async (prod) => {
+    await axios.post("http://localhost:3001/set_product_page_product_id", {
+      id: prod._id,
+    });
+    set_product_page_product_id(prod._id);
+    GoToProduct(prod);
+  };
+
   return (
     <>
       <div className={"main_search_bar " + className}>
@@ -129,17 +139,19 @@ const SearchBar = ({ className }) => {
                       </p>
                     </div>
                   )}
-                <p
-                  className="result_search_bar_text"
-                  onClick={() => {
-                    if (res.price == undefined) {
-                      OnCategoryClick(res);
-                    } else GoToProduct(res);
-                    EraseSearchText();
-                  }}
-                >
-                  {res.name}
-                </p>
+                <div className="search_result_text_container">
+                  <p
+                    className="result_search_bar_text"
+                    onClick={() => {
+                      if (res.price == undefined) {
+                        OnCategoryClick(res);
+                      } else OnProductClick(res);
+                      EraseSearchText();
+                    }}
+                  >
+                    {res.name}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

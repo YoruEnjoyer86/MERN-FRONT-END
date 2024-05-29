@@ -4,10 +4,14 @@ import axios from "axios";
 import RatingStars from "../RatingStars/RatingStars";
 import PriceRow from "../PriceRow/PriceRow.jsx";
 import { FavoritePageContext } from "../../Contexts/FavoritePageContext.js";
+import { AppContext } from "../../Contexts/AppContext.js";
+import { useNavigate } from "react-router-dom";
 
 const FavoriteProductDisplay = ({ product }) => {
   const { GetProductsOfSelectedList, currentListProducts } =
     useContext(FavoritePageContext);
+  const navigate = useNavigate();
+  const { set_product_page_product_id } = useContext(AppContext);
 
   const [imageSrc, setImageSrc] = useState("");
 
@@ -42,8 +46,13 @@ const FavoriteProductDisplay = ({ product }) => {
     RequestImageFromBackend();
   }, [currentListProducts]);
 
+  const GoToProductPage = () => {
+    set_product_page_product_id(product._id);
+    navigate("/product");
+  };
+
   return (
-    <div className="favorite_product">
+    <div className="favorite_product" onClick={GoToProductPage}>
       <img src={imageSrc} className="favorite_product_image"></img>
       <div className="name_and_reviews_column">
         <p className="product_name_favorite_product">{product.name}</p>

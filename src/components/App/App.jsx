@@ -14,6 +14,8 @@ const App = ({ children }) => {
   const [invisibleBoxState, setInvisibleBoxState] = useState(false); // stateul asta o sa fie 0 sau 1, e irelevanta valoarea, il folosesc doar ca sa dea rerender unei componente
   const [search_data, set_search_data] = useState(undefined);
   const [appliedSearchFilters, setAppliedSearchFilters] = useState({});
+  const [product_page_product_id, set_product_page_product_id] =
+    useState(undefined);
   const setOnLickFunction = (val) => {
     setInvisibleBoxState(!invisibleBoxState);
     invisibleBoxOnClick = val;
@@ -26,6 +28,8 @@ const App = ({ children }) => {
   const Initialize = async () => {
     let res = await axios.get("http://localhost:3001/get_search_data");
     set_search_data(res.data.search_data);
+    res = await axios.get("http://localhost:3001/get_product_page_product_id");
+    set_product_page_product_id(res.data);
     // console.log(res.data.search_categories);
   };
 
@@ -33,16 +37,16 @@ const App = ({ children }) => {
     Initialize();
   }, []);
 
+  useEffect(() => {
+    // console.log("PROD PAGE P ID : ", product_page_product_id);
+  }, [product_page_product_id]);
+
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
     return res.data.ok;
   };
 
   const AddProductToCart = async (productId) => {
-    if ((await CheckUserConnected()) == false) {
-      navigate("/register");
-      return;
-    }
     console.log("ADDING ITEM TO CART");
     let res = await axios.post(
       "http://localhost:3001/increase_product_quantity_in_cart",
@@ -65,6 +69,9 @@ const App = ({ children }) => {
           AddProductToCart,
           appliedSearchFilters,
           setAppliedSearchFilters,
+          product_page_product_id,
+          set_product_page_product_id,
+          CheckUserConnected,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

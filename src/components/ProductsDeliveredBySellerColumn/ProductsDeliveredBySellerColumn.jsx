@@ -1,6 +1,8 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import "./ProductsDeliveredBySellerColumn.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../Contexts/AppContext";
 
 const noImageSrc = "../../../public/no_image.png";
 
@@ -13,6 +15,8 @@ const ProductsDeliveredBySellerColumn = ({
   priceWithoutDelivery,
   fetchProductsFromBackend,
 }) => {
+  const { set_product_page_product_id } = useContext(AppContext);
+  const navigate = useNavigate();
   let productsCost = 0;
   let deliveryCost = 0;
   const [images, setImages] = useState([]);
@@ -77,6 +81,11 @@ const ProductsDeliveredBySellerColumn = ({
     return price;
   };
 
+  const GoToProductPage = (prodIndex) => {
+    set_product_page_product_id(products[prodIndex]._id);
+    navigate("/product");
+  };
+
   const GetProductImagesFromBackend = async () => {
     let newImages = [];
     for (let i = 0; i < products.length; i++) {
@@ -109,7 +118,13 @@ const ProductsDeliveredBySellerColumn = ({
       </p>
       {products.map((product, index) => (
         <div className="product_row" key={index}>
-          <img src={images[index]} className="product_image" />
+          <img
+            src={images[index]}
+            className="product_image"
+            onClick={() => {
+              GoToProductPage(index);
+            }}
+          />
           <div className="product_information_row">
             <div className="name_and_notifications_column">
               {product.quantity === 0 && (

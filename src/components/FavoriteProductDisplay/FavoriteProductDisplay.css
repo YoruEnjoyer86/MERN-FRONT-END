@@ -1,9 +1,14 @@
 .favorite_product {
+  z-index: 1;
   display: flex;
   margin-bottom: 20px;
   padding: 10px;
   background-color: rgb(68, 68, 75);
   height: 250px;
+}
+
+.favorite_product:hover {
+  cursor: pointer;
 }
 
 .favorite_product_image {
