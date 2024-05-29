@@ -3,7 +3,7 @@ import "./ProductShortDisplay.css";
 import RatingStars from "../RatingStars/RatingStars.jsx";
 import PriceRow from "../PriceRow/PriceRow.jsx";
 import axios from "axios";
-import { HomeContext } from "../../Contexts/HomeContext.js";
+import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 
 const favoriteImage = "../../public/favorites_hover.png";
@@ -14,18 +14,6 @@ const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
   const [isFavorite, setFavorite] = useState();
   const navigate = useNavigate();
-  // const { productsFavoriteStatuses, setProductsFavoriteStatuses } =
-  //   useContext(HomeContext);
-
-  // useEffect(() => {
-  //   for (let i = 0; i < productsFavoriteStatuses.length; i++) {
-  //     let prod = productsFavoriteStatuses[i];
-  //     if (prod.id == product._id) {
-  //       setFavorite(prod.value);
-  //       return;
-  //     }
-  //   }
-  // }, [productsFavoriteStatuses]);
 
   const FetchIsFavorite = async () => {
     let res = await axios.post("http://localhost:3001/is_product_favorite", {
@@ -60,8 +48,6 @@ const ProductShortDisplay = ({ product, className }) => {
       }
     );
     if (response.data.ok != false) {
-      //console.log(response.data.img);
-      // console.log("FETCHING IMAGE FOR PROD:" + product.name);
       setImageSrc(response.data.img);
     } else console.log(response.data.error);
   };
@@ -94,19 +80,6 @@ const ProductShortDisplay = ({ product, className }) => {
         );
     }
     setFavorite(!isFavorite);
-    // let indexToChange = 0;
-    // for (let i = 0; i < productsFavoriteStatuses.length; i++) {
-    //   let prod = productsFavoriteStatuses[i];
-    //   if (prod.id == product._id) {
-    //     indexToChange = i;
-    //     break;
-    //   }
-    // }
-    // setProductsFavoriteStatuses(
-    //   productsFavoriteStatuses.map((prod, index) =>
-    //     index == indexToChange ? { id: prod.id, value: !prod.value } : prod
-    //   )
-    // );
   };
 
   useEffect(() => {
@@ -122,7 +95,13 @@ const ProductShortDisplay = ({ product, className }) => {
       className={"product_short_display " + className}
       onClick={OnProductClick}
     >
-      <div className="favorite_button" onClick={HandleFavoriteButtonClick}>
+      <div
+        className="favorite_button"
+        onClick={(event) => {
+          event.stopPropagation();
+          HandleFavoriteButtonClick();
+        }}
+      >
         <img
           className="favorite_button_image"
           src={isFavorite ? favoriteImage : notFavoriteImage}

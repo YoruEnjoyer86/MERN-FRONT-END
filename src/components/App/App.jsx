@@ -13,6 +13,7 @@ const App = ({ children }) => {
   const [isRegisterPageActive, setIsRegisterPageActive] = useState(false);
   const [invisibleBoxState, setInvisibleBoxState] = useState(false); // stateul asta o sa fie 0 sau 1, e irelevanta valoarea, il folosesc doar ca sa dea rerender unei componente
   const [search_data, set_search_data] = useState(undefined);
+  const [appliedSearchFilters, setAppliedSearchFilters] = useState({});
   const setOnLickFunction = (val) => {
     setInvisibleBoxState(!invisibleBoxState);
     invisibleBoxOnClick = val;
@@ -32,6 +33,26 @@ const App = ({ children }) => {
     Initialize();
   }, []);
 
+  const CheckUserConnected = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    return res.data.ok;
+  };
+
+  const AddProductToCart = async (productId) => {
+    if ((await CheckUserConnected()) == false) {
+      navigate("/register");
+      return;
+    }
+    console.log("ADDING ITEM TO CART");
+    let res = await axios.post(
+      "http://localhost:3001/increase_product_quantity_in_cart",
+      {
+        id: productId,
+      }
+    );
+    console.log(res.data);
+  };
+
   return (
     <div className="app_container">
       <AppContext.Provider
@@ -41,6 +62,9 @@ const App = ({ children }) => {
           setIsRegisterPageActive,
           search_data,
           set_search_data,
+          AddProductToCart,
+          appliedSearchFilters,
+          setAppliedSearchFilters,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

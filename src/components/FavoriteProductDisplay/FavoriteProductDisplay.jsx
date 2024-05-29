@@ -73,6 +73,7 @@ const FavoriteProductDisplay = ({ product }) => {
           textClass="favorite_product_price_text"
           price={product.price}
           className="favorite_product_list_price_row"
+          productId={product._id}
         />
         <div className="remove_from_list_row" onClick={RemoveFromFavorites}>
           <p className="remove_item_text">Remove</p>

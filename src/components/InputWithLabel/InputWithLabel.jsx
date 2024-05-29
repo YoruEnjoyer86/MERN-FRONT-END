@@ -110,16 +110,20 @@ const InputWithLabel = ({
       ) : (
         <select
           id={selectId}
-          className="options_menu_input_label"
+          className={
+            "options_menu_input_label " +
+            (options.length == 0 && "disabled_input")
+          }
           value={value}
           onChange={(event) => {
             if (OnValChange != undefined) OnValChange();
             setValue(event.target.value);
           }}
+          disabled={options.length == 0}
         >
           {options.map((opt, index) => (
             <option key={index} className="input_label_option" value={index}>
-              {opt.name}
+              {opt === undefined ? "" : opt.name}
             </option>
           ))}
         </select>

@@ -1,8 +1,9 @@
 .input_label_row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   object-fit: contain;
+  width: 100%;
 }
 
 .input_label_text {
@@ -62,6 +63,10 @@ input[type="file"] {
 
 .button_with_image_text:hover {
   cursor: pointer;
+}
+
+.disabled_input:hover {
+  cursor: not-allowed;
 }
 
 .options_menu_input_label {

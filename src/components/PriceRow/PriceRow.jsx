@@ -1,15 +1,10 @@
 import React, { useContext } from "react";
 import "./PriceRow.css";
-import { HomeContext } from "../../Contexts/HomeContext";
-import { FavoritePageContext } from "../../Contexts/FavoritePageContext";
-
+import { AppContext } from "../../Contexts/AppContext";
 const addToCartImage = "../../public/shopping_cart.png";
 
 const PriceRow = ({ className, price, textClass, productId, context }) => {
-  const currentContext = useContext(HomeContext)
-    ? useContext(HomeContext)
-    : useContext(FavoritePageContext);
-  const { AddProductToCart } = currentContext;
+  const { AddProductToCart } = useContext(AppContext);
 
   // console.log(useContext(HomeContext));
 
@@ -18,7 +13,8 @@ const PriceRow = ({ className, price, textClass, productId, context }) => {
       <p className={"price_text " + textClass}>{price + " $"}</p>
       <div
         className="cart_image_container"
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           AddProductToCart(productId);
         }}
       >

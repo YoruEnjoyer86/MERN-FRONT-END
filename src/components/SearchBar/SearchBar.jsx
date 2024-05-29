@@ -7,8 +7,12 @@ import { AppContext } from "../../Contexts/AppContext";
 let text = "";
 
 const SearchBar = ({ className }) => {
-  const { setOnLickFunction, set_search_data, searched_data } =
-    useContext(AppContext);
+  const {
+    setOnLickFunction,
+    set_search_data,
+    searched_data,
+    setAppliedSearchFilters,
+  } = useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isXVisible, setXVisible] = useState(false);
@@ -24,6 +28,7 @@ const SearchBar = ({ className }) => {
     set_search_data(new_search_data);
     navigate("/search");
     EraseSearchText();
+    setAppliedSearchFilters({});
   };
 
   const HandleOnKeyUp = (event) => {

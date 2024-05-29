@@ -25,21 +25,6 @@ const Home = () => {
     "665064c313faede67f9ef7c4",
   ];
 
-  const AddProductToCart = async (productId) => {
-    if ((await CheckUserConnected()) == false) {
-      navigate("/register");
-      return;
-    }
-    console.log("ADDING ITEM TO CART");
-    let res = await axios.post(
-      "http://localhost:3001/increase_product_quantity_in_cart",
-      {
-        id: productId,
-      }
-    );
-    console.log(res.data);
-  };
-
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
     return res.data.ok;
@@ -87,9 +72,6 @@ const Home = () => {
     <div className="home">
       <HomeContext.Provider
         value={{
-          // productsFavoriteStatuses,
-          // setProductsFavoriteStatuses,
-          AddProductToCart,
           AddToCurrentlyDisplayedProducts,
         }}
       >

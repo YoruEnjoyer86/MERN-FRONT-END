@@ -13,6 +13,7 @@
 }
 
 .cart_image_container {
+  z-index: 1;
   background-color: #e5d5f6;
   box-sizing: border-box;
   width: 40px;
@@ -25,6 +26,11 @@
 
 .cart_image_container:hover {
   cursor: pointer;
+  transform: scale(110%);
+}
+
+.cart_image_container:active {
+  background-color: #242424;
 }
 
 .price_row {

@@ -15,24 +15,27 @@ const SearchPage = () => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [foundProducts, setFoundProducts] = useState([]);
-  const { search_data, set_search_data } = useContext(AppContext);
+  const {
+    search_data,
+    set_search_data,
+    appliedSearchFilters,
+    setAppliedSearchFilters,
+  } = useContext(AppContext);
 
   const FetchProductsFromSearchData = async () => {
     if (search_data == undefined) {
-      console.log("IN SEARCH PAGE, SEARCH DATA UNDEFINED!");
+      // console.log("IN SEARCH PAGE, SEARCH DATA UNDEFINED!");
       return;
     }
-    if (
-      search_data.mega_category == undefined &&
-      search_data.category == undefined &&
-      search_data.subcategory == undefined &&
-      search_data.text != undefined
-    ) {
+    if (search_data.text != undefined) {
       console.log("SEARCHING FOR TEXT!");
       let res = await axios.post(
         "http://localhost:3001/get_products_with_name_and_categories",
         {
           text: search_data.text,
+          mega_category: search_data.mega_category,
+          category: search_data.category,
+          subcategory: search_data.subcategory,
         }
       );
       // console.log(res.data);
@@ -66,6 +69,22 @@ const SearchPage = () => {
     setFoundProducts(res.data.products);
   };
 
+  const FetchFilteredProducts = () => {
+    let new_search_data = { ...search_data };
+    new_search_data.mega_category = megaCategories[megaCategoryIndex];
+    new_search_data.category = categories[categoryIndex];
+    new_search_data.subcategory =
+      subcategories.length == 0 ? undefined : subcategories[subCategoryIndex];
+    set_search_data(new_search_data);
+    setAppliedSearchFilters({
+      mega_category: new_search_data.mega_category,
+      category: new_search_data.category,
+      subcategory: new_search_data.subcategory,
+    });
+    // console.log("FILTER:");
+    // console.log(new_search_data);
+  };
+
   const GetSearchedThing = () => {
     if (search_data == undefined) return "search_data_undefined";
     if (search_data.text != undefined) return search_data.text;
@@ -83,18 +102,28 @@ const SearchPage = () => {
         mega_category: megaCategories[megaCategoryIndex],
       });
     if (res != undefined) {
-      setCategories(res.data.categories);
+      let cats = res.data.categories;
+      cats.push(undefined);
+      setCategories(cats);
     }
   };
 
   const FetchSubCategories = async () => {
+    if (categories.length == 0) return;
     let res;
-    if (categories.length != 0) {
-      res = await axios.post("http://localhost:3001/get_subcategories", {
-        category: categories[categoryIndex],
-      });
+    if (typeof categories[categoryIndex] == "undefined") {
+      setSubcategories([]);
+      return;
     }
-    if (res != undefined) setSubcategories(res.data.subcategories);
+    // console.log(typeof categories[categoryIndex]);
+    res = await axios.post("http://localhost:3001/get_subcategories", {
+      category: categories[categoryIndex],
+    });
+    if (res != undefined) {
+      let subcats = res.data.subcategories;
+      subcats.push(undefined);
+      setSubcategories(subcats);
+    }
   };
 
   const Initialize = async () => {
@@ -178,7 +207,12 @@ const SearchPage = () => {
             setValue={setSubCategoryIndex}
             options={subcategories}
           />
-          <button className="search_button_search_page">Filter</button>
+          <button
+            className="filter_button_search_page"
+            onClick={FetchFilteredProducts}
+          >
+            Filter
+          </button>
         </div>
       </div>
 
@@ -190,6 +224,15 @@ const SearchPage = () => {
               {GetSearchedThing()}
             </span>
             <span>"</span>
+            {Object.keys(appliedSearchFilters).length > 0 &&
+              " in " +
+                (appliedSearchFilters.subcategory != undefined
+                  ? appliedSearchFilters.subcategory.name
+                  : appliedSearchFilters.category != undefined
+                  ? appliedSearchFilters.category.name
+                  : appliedSearchFilters.mega_category != undefined
+                  ? appliedSearchFilters.mega_category.name
+                  : "HOW ?")}
           </p>
         </div>
         <div className="search_page_products_container">
