@@ -52,8 +52,12 @@ const FavoriteProductDisplay = ({ product }) => {
   };
 
   return (
-    <div className="favorite_product" onClick={GoToProductPage}>
-      <img src={imageSrc} className="favorite_product_image"></img>
+    <div className="favorite_product">
+      <img
+        src={imageSrc}
+        className="favorite_product_image"
+        onClick={GoToProductPage}
+      ></img>
       <div className="name_and_reviews_column">
         <p className="product_name_favorite_product">{product.name}</p>
         <RatingStars

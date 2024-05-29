@@ -7,13 +7,10 @@
   height: 250px;
 }
 
-.favorite_product:hover {
-  cursor: pointer;
-}
-
 .favorite_product_image {
   object-fit: contain;
   width: 20%;
+  cursor: pointer;
 }
 
 .name_and_reviews_column {
