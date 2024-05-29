@@ -6,21 +6,30 @@ import { AppContext } from "../../Contexts/AppContext";
 
 let text = "";
 
-const HandleOnKeyUp = (event) => {
-  //console.log(event.key) ;
-  if (event.key == "Enter") HandleSearch();
-};
-
-const HandleSearch = () => {
-  alert("Searching for " + text);
-};
-
 const SearchBar = ({ className }) => {
-  const { setOnLickFunction } = useContext(AppContext);
+  const { setOnLickFunction, set_search_data, searched_data } =
+    useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isXVisible, setXVisible] = useState(false);
   const navigate = useNavigate();
+
+  const HandleSearch = async (text) => {
+    let new_search_data = {
+      text,
+    };
+    await axios.post("http://localhost:3001/set_search_data", {
+      search_data: new_search_data,
+    });
+    set_search_data(new_search_data);
+    navigate("/search");
+    EraseSearchText();
+  };
+
+  const HandleOnKeyUp = (event) => {
+    //console.log(event.key) ;
+    if (event.key == "Enter") HandleSearch(event.target.value);
+  };
 
   const EraseSearchText = () => {
     // console.log(document.getElementById("search_bar_input"));
@@ -61,6 +70,17 @@ const SearchBar = ({ className }) => {
       setSearchResultsVisible(false);
     });
   }, []);
+
+  const OnCategoryClick = async (cat) => {
+    let res = await axios.post("http://localhost:3001/set_search_data", {
+      search_data: {
+        category_of_unknown_type: cat,
+      },
+    });
+    set_search_data(res.data);
+    // console.log("SEARCH DATA AFTER ON CAT CLICK : ", res.data);
+    GoToSearchPage();
+  };
 
   useEffect(() => {
     // console.log(searchResults);
@@ -107,8 +127,10 @@ const SearchBar = ({ className }) => {
                 <p
                   className="result_search_bar_text"
                   onClick={() => {
-                    if (res.price == undefined) GoToSearchPage();
-                    else GoToProduct(res);
+                    if (res.price == undefined) {
+                      OnCategoryClick(res);
+                    } else GoToProduct(res);
+                    EraseSearchText();
                   }}
                 >
                   {res.name}

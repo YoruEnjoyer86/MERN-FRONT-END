@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 import "./App.css";
 import NavBar from "../NavBar/NavBar";
+import axios from "axios";
 
 let invisibleBoxOnClick = () => {
   console.log("CLICKED INVISIBLE BOX!");
@@ -11,15 +12,36 @@ const App = ({ children }) => {
   const [notifications, setNotification] = useState(0);
   const [isRegisterPageActive, setIsRegisterPageActive] = useState(false);
   const [invisibleBoxState, setInvisibleBoxState] = useState(false); // stateul asta o sa fie 0 sau 1, e irelevanta valoarea, il folosesc doar ca sa dea rerender unei componente
+  const [search_data, set_search_data] = useState(undefined);
   const setOnLickFunction = (val) => {
     setInvisibleBoxState(!invisibleBoxState);
     invisibleBoxOnClick = val;
   };
 
+  useEffect(() => {
+    // console.log("SEARCH DATA UPDATED", search_data);
+  }, [search_data]);
+
+  const Initialize = async () => {
+    let res = await axios.get("http://localhost:3001/get_search_data");
+    set_search_data(res.data.search_data);
+    // console.log(res.data.search_categories);
+  };
+
+  useEffect(() => {
+    Initialize();
+  }, []);
+
   return (
     <div className="app_container">
       <AppContext.Provider
-        value={{ notifications, setOnLickFunction, setIsRegisterPageActive }}
+        value={{
+          notifications,
+          setOnLickFunction,
+          setIsRegisterPageActive,
+          search_data,
+          set_search_data,
+        }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}
         <div

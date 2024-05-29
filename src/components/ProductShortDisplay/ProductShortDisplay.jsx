@@ -4,6 +4,7 @@ import RatingStars from "../RatingStars/RatingStars.jsx";
 import PriceRow from "../PriceRow/PriceRow.jsx";
 import axios from "axios";
 import { HomeContext } from "../../Contexts/HomeContext.js";
+import { useNavigate } from "react-router-dom";
 
 const favoriteImage = "../../public/favorites_hover.png";
 const notFavoriteImage = "../../public/favorites.png";
@@ -12,6 +13,7 @@ const noImage = "../../public/no_image.png";
 const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
   const [isFavorite, setFavorite] = useState();
+  const navigate = useNavigate();
   // const { productsFavoriteStatuses, setProductsFavoriteStatuses } =
   //   useContext(HomeContext);
 
@@ -30,14 +32,15 @@ const ProductShortDisplay = ({ product, className }) => {
       id: product._id,
     });
     if (res.data.ok) setFavorite(res.data.isFavorite);
-    console.log(res.data.isFavorite);
+    // console.log(res.data.isFavorite);
   };
 
   const OnInitialize = async () => {
     if ((await CheckUserConnected()) == true) {
-    } else console.log("user not connected");
+      FetchIsFavorite();
+    }
+    // } else console.log("user not connected");
 
-    FetchIsFavorite();
     RequestImageFromBackend();
   };
 
@@ -58,6 +61,7 @@ const ProductShortDisplay = ({ product, className }) => {
     );
     if (response.data.ok != false) {
       //console.log(response.data.img);
+      // console.log("FETCHING IMAGE FOR PROD:" + product.name);
       setImageSrc(response.data.img);
     } else console.log(response.data.error);
   };
@@ -107,10 +111,17 @@ const ProductShortDisplay = ({ product, className }) => {
 
   useEffect(() => {
     OnInitialize();
-  }, []);
+  }, [product]);
+
+  const OnProductClick = () => {
+    navigate("/product");
+  };
 
   return (
-    <div className={"product_short_display " + className}>
+    <div
+      className={"product_short_display " + className}
+      onClick={OnProductClick}
+    >
       <div className="favorite_button" onClick={HandleFavoriteButtonClick}>
         <img
           className="favorite_button_image"

@@ -6,6 +6,8 @@ import "../DotsRow/DotsRow.jsx";
 import DotsRow from "../DotsRow/DotsRow.jsx";
 import axios from "axios";
 import { HomeContext } from "../../Contexts/HomeContext.js";
+import { AppContext } from "../../Contexts/AppContext.js";
+import { useNavigate } from "react-router-dom";
 
 const rigtArrowImg = "../../public/right_arrow.png";
 const leftArrowImg = "../../public/left_arrow.png";
@@ -20,7 +22,8 @@ const ProductsRow = ({
   const [firstItemIndex, setFirstItemIndex] = useState(0);
   const [products, setProducts] = useState([]);
   const [actualCategory, setActualCategory] = useState({}); // o sa fie ori category ori megacategory ori subcategory in functie de id-ul care nu e -1
-  const { AddToCurrentlyDisplayedProducts } = useContext(HomeContext);
+  const navigate = useNavigate();
+  const { set_search_data } = useContext(AppContext);
 
   const FetchActualCategory = async () => {
     let axiosResult;
@@ -87,13 +90,23 @@ const ProductsRow = ({
     setFirstItemIndex(dotIndex * maxDisplayedItems);
   };
 
-  const HandleOnCategoryClick = () => {
-    //TODO CAUTA CATEGORIA CATEGORY
+  const OnActualCategoryNameClick = async () => {
+    let new_search_data = {};
+    if (subcategoryID != -1) new_search_data.subcategory = actualCategory;
+    else if (categoryID != -1) new_search_data.category = actualCategory;
+    else new_search_data.mega_category = actualCategory;
+    await axios.post("http://localhost:3001/set_search_data", {
+      search_data: new_search_data,
+    });
+    set_search_data(new_search_data);
+    navigate("/search");
   };
 
   return (
     <div className="container">
-      <p className="category_text">{actualCategory.name}</p>
+      <p className="category_text" onClick={OnActualCategoryNameClick}>
+        {actualCategory.name}
+      </p>
       <div className={"products_and_arrows_row " + className}>
         {firstItemIndex - maxDisplayedItems >= 0 && (
           <img
