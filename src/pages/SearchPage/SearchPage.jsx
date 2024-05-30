@@ -138,26 +138,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     FetchProductsFromSearchData();
-    if (search_data != undefined) {
-      if (search_data.mega_category != undefined)
-        for (let i = 0; i < megaCategories.length; i++)
-          if (megaCategories[i]._id == search_data.mega_category._id) {
-            setMegaCategoryIndex(i);
-            break;
-          }
-      if (search_data.category != undefined)
-        for (let i = 0; i < categories.length; i++)
-          if (categories[i]._id == search_data.category._id) {
-            setCategoryIndex(i);
-            break;
-          }
-      if (search_data.subcategory != undefined)
-        for (let i = 0; i < subcategories.length; i++)
-          if (subcategories[i]._id == search_data.subcategory._id) {
-            setSubCategoryIndex(i);
-            break;
-          }
-    }
+
     // console.log("GETTING PRODUCTS");
   }, [search_data]);
 
