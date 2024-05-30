@@ -4,6 +4,7 @@
   align-items: center;
   object-fit: contain;
   width: 100%;
+  z-index: 1;
 }
 
 .input_label_text {

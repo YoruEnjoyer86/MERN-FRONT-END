@@ -17,8 +17,8 @@ const App = ({ children }) => {
   const [product_page_product_id, set_product_page_product_id] =
     useState(undefined);
   const setOnLickFunction = (val) => {
-    setInvisibleBoxState(!invisibleBoxState);
     invisibleBoxOnClick = val;
+    setInvisibleBoxState(!invisibleBoxState);
   };
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const App = ({ children }) => {
           product_page_product_id,
           set_product_page_product_id,
           CheckUserConnected,
+          invisibleBoxOnClick,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

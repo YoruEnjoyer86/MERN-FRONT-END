@@ -11,6 +11,7 @@
   display: flex;
   height: 46.4rem;
   gap: 1rem;
+  filter: drop-shadow(0 0.5rem 0.75rem black);
 }
 
 .dropdown_categories_row:hover {

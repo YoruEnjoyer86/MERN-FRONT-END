@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CategoriesButton.css";
 import MegaCategoryRow from "../MegaCategoryRow/MegaCategoryRow";
 import DropdownButton from "../DropdownButton/DropdownButton";
@@ -8,7 +8,6 @@ import CategoryColumn from "../CategoryColumn/CategoryColumn";
 
 const CategoriesButton = () => {
   const [megaCategories, setMegaCategories] = useState([]);
-
   const FetchMegaCategories = async () => {
     let res = await axios.post("http://localhost:3001/get_mega_categories");
     setMegaCategories(res.data.megaCategories);
@@ -21,6 +20,7 @@ const CategoriesButton = () => {
 
   const [areCategoriesOpen, setCategoriesOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+
   const FetchCategories = async (megacategory) => {
     let res = await axios.post("http://localhost:3001/get_categories", {
       mega_category: megacategory,

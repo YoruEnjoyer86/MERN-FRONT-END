@@ -13,6 +13,7 @@ const SearchBar = ({ className }) => {
     searched_data,
     setAppliedSearchFilters,
     set_product_page_product_id,
+    invisibleBoxOnClick,
   } = useContext(AppContext);
   const [areSearchResultsVisible, setSearchResultsVisible] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -72,9 +73,12 @@ const SearchBar = ({ className }) => {
   };
 
   useEffect(() => {
-    setOnLickFunction(() => {
+    console.log("added onCLICK TO INVISIBLE BOX FROM SEARCH BAR");
+    let newInvisibleBoxClick = () => {
+      invisibleBoxOnClick();
       setSearchResultsVisible(false);
-    });
+    };
+    setOnLickFunction(newInvisibleBoxClick);
   }, []);
 
   const OnCategoryClick = async (cat) => {
