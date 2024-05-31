@@ -28,7 +28,7 @@ const SearchPage = () => {
       return;
     }
     if (search_data.text != undefined) {
-      console.log("SEARCHING FOR TEXT!");
+      // console.log("SEARCHING FOR TEXT!");
       let res = await axios.post(
         "http://localhost:3001/get_products_with_name_and_categories",
         {

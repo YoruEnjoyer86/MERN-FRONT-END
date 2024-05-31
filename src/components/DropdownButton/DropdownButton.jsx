@@ -10,21 +10,9 @@ const DropdownButton = ({
   isBackgroundVisible = false,
 }) => {
   const [isOpen, setOpen] = useState(false);
-  const { setOnLickFunction, invisibleBoxOnClick } = useContext(AppContext);
-
   const HandleOnClick = () => {
     setOpen(!isOpen);
   };
-
-  useEffect(() => {
-    let newInvisibleBoxClick = () => {
-      invisibleBoxOnClick();
-      console.log("closed drop down button on invisible box click!");
-      setOpen(false);
-    };
-    // console.log("added onCLICK TO INVISIBLE BOX FROM DROPDOWN BUTTOn");
-    setOnLickFunction(newInvisibleBoxClick);
-  }, []);
 
   return (
     <div
@@ -36,7 +24,14 @@ const DropdownButton = ({
     >
       {<div className="drop_down_image">{button}</div>}
       {isOpen && (
-        <Modal isBackgroundVisible={isBackgroundVisible}>{children}</Modal>
+        <Modal
+          isBackgroundVisible={isBackgroundVisible}
+          onMouseLeave={() => {
+            setOpen(false);
+          }}
+        >
+          {children}
+        </Modal>
       )}
     </div>
   );

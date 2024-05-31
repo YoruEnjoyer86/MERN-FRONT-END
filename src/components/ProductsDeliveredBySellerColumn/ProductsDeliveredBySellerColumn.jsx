@@ -107,6 +107,10 @@ const ProductsDeliveredBySellerColumn = ({
     // console.log(sellerIndex);
   }, []);
 
+  useEffect(() => {
+    GetProductImagesFromBackend();
+  }, [products]);
+
   return (
     <div className="products_delivered_by_seller_column">
       <p className="seller_text_product_in_cart">
