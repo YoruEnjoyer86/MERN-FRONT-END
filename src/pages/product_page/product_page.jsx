@@ -30,10 +30,10 @@ const ProductPage = () => {
       name: prod.data.name,
       seller: prod.data.seller,
     };
-    let img = await axios.post("http://localhost:3001/api/get_product_image", {
-      productDetails,
+    let res = await axios.post("http://localhost:3001/api/get_product_image", {
+      product_id: product_page_product_id,
     });
-    if (img.data.ok) set_prod_image_src(img.data.img);
+    if (res.status === 200) set_prod_image_src(res.data.img);
     else
       console.log(
         "eroare la get_image_from_database pt produs : " + prod.data.name

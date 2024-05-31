@@ -42,15 +42,16 @@ const ProductShortDisplay = ({ product, className }) => {
     let response = await axios.post(
       "http://localhost:3001/api/get_product_image",
       {
-        productDetails: {
-          name: product.name,
-          seller: product.seller,
+        product_id: product._id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
       }
     );
-    if (response.data.ok != false) {
-      setImageSrc(response.data.img);
-    } else console.log(response.data.error);
+    if (response.status === 200) setImageSrc(response.data.img);
+    else console.log(response.data.message);
   };
 
   const HandleFavoriteButtonClick = async () => {

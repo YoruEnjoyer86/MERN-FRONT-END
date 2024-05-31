@@ -22,7 +22,7 @@ const DropdownButton = ({
       console.log("closed drop down button on invisible box click!");
       setOpen(false);
     };
-    console.log("added onCLICK TO INVISIBLE BOX FROM DROPDOWN BUTTOn");
+    // console.log("added onCLICK TO INVISIBLE BOX FROM DROPDOWN BUTTOn");
     setOnLickFunction(newInvisibleBoxClick);
   }, []);
 

@@ -92,13 +92,10 @@ const ProductsDeliveredBySellerColumn = ({
       let res = await axios.post(
         "http://localhost:3001/api/get_product_image",
         {
-          productDetails: {
-            name: products[i].name,
-            seller: products[i].seller,
-          },
+          product_id: products[i]._id,
         }
       );
-      if (res.data.ok) newImages.push(res.data.img);
+      if (res.status === 200) newImages.push(res.data.img);
       else newImages.push(noImageSrc);
     }
     setImages(newImages);

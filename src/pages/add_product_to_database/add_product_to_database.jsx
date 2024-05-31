@@ -99,46 +99,62 @@ const Add_product_to_database = () => {
       return;
     }
 
+    let res = await axios.post(
+      "http://localhost:3001/add_product_to_database",
+      {
+        name,
+        description,
+        quantity,
+        seller,
+        price,
+        mega_category: megaCategories[megaCategoryIndex],
+        category: categories[categoryIndex],
+        subcategory: subcategories[subCategoryIndex],
+      }
+    );
+    if (res.status !== 200) {
+      console.log(res.data.message);
+      return;
+    }
+    console.log("ADDING PRODUCT TO DATABASE SUCCEDED!");
+    let product_id = res.data.product_id;
+
     let imageToUpload = new File(
       [uploadedImageFile],
-      name + "_" + seller + "." + uploadedImageFile.type.split("/")[1],
+      product_id + "." + uploadedImageFile.type.split("/")[1],
       {
         type: uploadedImageFile.type,
       }
     );
-    console.log("NAME: " + imageToUpload.name);
-    console.log("TYPE: " + imageToUpload.type);
-    await axios
-      .post(
-        "http://localhost:3001/api/add_product",
-        {
-          name,
-          description,
-          quantity,
-          seller,
-          price,
-          category: categories[categoryIndex],
-          mega_category: megaCategories[megaCategoryIndex],
-          subcategory: subcategories[subCategoryIndex],
-          file: imageToUpload,
+    // console.log("NAME: " + imageToUpload.name);
+    // console.log("TYPE: " + imageToUpload.type);
+    res = await axios.post(
+      "http://localhost:3001/add_product_image",
+      {
+        file: imageToUpload,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
+      }
+    );
+    if (res.status !== 200) {
+      console.log(res.data.message);
+      setProductAddedSuccessfully(false);
+      setProductAddNotification(true);
+      res = await axios.post(
+        "http://localhost:3001/delete_product_from_database",
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          product_id,
         }
-      )
-      .then((res) => {
-        if (res.data.ok) {
-          setProductAddedSuccessfully(true);
-          setProductAddNotification(true);
-        } else {
-          console.log("REQUEST FAILED!");
-          setProductAddedSuccessfully(false);
-          setProductAddNotification(true);
-        }
-      });
-    // setUploadedImageFile(imageToUpload);
+      );
+      if (res.status === 200)
+        console.log("SUCCESSFULLY REMOVED PRODUCT FROM DATABASE!");
+      return;
+    }
+    setProductAddedSuccessfully(true);
+    setProductAddNotification(true);
   };
 
   const [profileNotifications, setProfileNotifications] = useState(1);

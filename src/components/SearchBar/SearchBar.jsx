@@ -73,7 +73,7 @@ const SearchBar = ({ className }) => {
   };
 
   useEffect(() => {
-    console.log("added onCLICK TO INVISIBLE BOX FROM SEARCH BAR");
+    // console.log("added onCLICK TO INVISIBLE BOX FROM SEARCH BAR");
     let newInvisibleBoxClick = () => {
       invisibleBoxOnClick();
       setSearchResultsVisible(false);

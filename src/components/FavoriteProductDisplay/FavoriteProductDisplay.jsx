@@ -26,20 +26,17 @@ const FavoriteProductDisplay = ({ product }) => {
     GetProductsOfSelectedList();
   };
   const RequestImageFromBackend = async () => {
-    console.log("IMAGE CHANGED!");
+    // console.log("IMAGE CHANGED!");
     let response = await axios.post(
       "http://localhost:3001/api/get_product_image",
       {
-        productDetails: {
-          name: product.name,
-          seller: product.seller,
-        },
+        product_id: product._id,
       }
     );
-    if (response.data.ok) {
+    if (response.status === 200) {
       // console.log(response.data.img);
       setImageSrc(response.data.img);
-    } else console.log(response.data.error);
+    } else console.log(response.data.message);
   };
 
   useEffect(() => {

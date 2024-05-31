@@ -20,7 +20,6 @@ const SearchPage = () => {
     set_search_data,
     appliedSearchFilters,
     setAppliedSearchFilters,
-    invisibleBoxOnClick,
   } = useContext(AppContext);
 
   const FetchProductsFromSearchData = async () => {

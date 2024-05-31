@@ -13,7 +13,7 @@ const profile = () => {
 
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
-    console.log("CONNECTED : " + res.data.ok);
+    // console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
 
@@ -22,7 +22,7 @@ const profile = () => {
       axios
         .get("http://localhost:3001/profile")
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setUserName(res.data.username);
           setEmail(res.data.email);
           setNickname(res.data.nickname);
@@ -50,7 +50,7 @@ const profile = () => {
 
   const HandleLogoutClick = async () => {
     let res = await axios.get("http://localhost:3001/logout");
-    console.log("RASPUNS LOGOUT : " + res);
+    // console.log("RASPUNS LOGOUT : " + res);
     navigate("/register");
   };
 

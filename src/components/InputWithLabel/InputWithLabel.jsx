@@ -28,7 +28,7 @@ const InputWithLabel = ({
     let item = clipboardItems[0];
     for (let type of item.types) {
       let blob = await item.getType(type);
-      console.log("BLOB TYPE : " + blob.type);
+      // console.log("BLOB TYPE : " + blob.type);
       if (blob.type.includes("image/")) {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -39,7 +39,7 @@ const InputWithLabel = ({
           type: blob.type,
         });
         setUploadedImageFile(imgFile);
-        console.log("ADDED IMAGE FROM CLIP");
+        // console.log("ADDED IMAGE FROM CLIP");
         break;
       }
     }
