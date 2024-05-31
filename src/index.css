@@ -33,3 +33,39 @@
   font-family: acmeregular, sans-serif, serif;
   line-height: normal;
 }
+
+@media screen and (max-width: 1920px) and (min-width: 1400px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1399px) and (min-width: 900px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 899px) and (min-width: 0px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+@media screen and (max-height: 1080px) and (min-height: 750px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-height: 749px) and (min-height: 400px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-height: 399px) and (min-height: 0px) {
+  html {
+    font-size: 6px;
+  }
+}

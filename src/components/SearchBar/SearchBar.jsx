@@ -108,58 +108,60 @@ const SearchBar = ({ className }) => {
   return (
     <>
       <div className={"main_search_bar " + className}>
-        <input
-          id="search_bar_input"
-          className="input_search_bar"
-          type="text"
-          onFocus={() => {
-            setSearchResultsVisible(true);
-          }}
-          onChange={() => {
-            HandleOnChange(event);
-          }}
-          onKeyUp={() => {
-            HandleOnKeyUp(event);
-          }}
-          placeholder="Search something!"
-        />
-        {isXVisible && (
-          <img
-            className="x_icon_search_bar"
-            src="../../../public/x.jpg"
-            onClick={EraseSearchText}
+        <div className="padding_handler">
+          <input
+            id="search_bar_input"
+            className="input_search_bar"
+            type="text"
+            onFocus={() => {
+              setSearchResultsVisible(true);
+            }}
+            onChange={() => {
+              HandleOnChange(event);
+            }}
+            onKeyUp={() => {
+              HandleOnKeyUp(event);
+            }}
+            placeholder="Search something!"
           />
-        )}
-        {areSearchResultsVisible && (
-          <div className="search_results_column">
-            {searchResults.map((res, index) => (
-              <div key={index}>
-                {res.price == undefined &&
-                  index - 1 >= 0 &&
-                  searchResults[index - 1].price != undefined && (
-                    <div className="products_categories_search_separator">
-                      <p className="products_categories_separator_text">
-                        Categories
-                      </p>
-                    </div>
-                  )}
-                <div className="search_result_text_container">
-                  <p
-                    className="result_search_bar_text"
-                    onClick={() => {
-                      if (res.price == undefined) {
-                        OnCategoryClick(res);
-                      } else OnProductClick(res);
-                      EraseSearchText();
-                    }}
-                  >
-                    {res.name}
-                  </p>
+          {isXVisible && (
+            <img
+              className="x_icon_search_bar"
+              src="../../../public/x.jpg"
+              onClick={EraseSearchText}
+            />
+          )}
+          {areSearchResultsVisible && (
+            <div className="search_results_column">
+              {searchResults.map((res, index) => (
+                <div key={index}>
+                  {res.price == undefined &&
+                    index - 1 >= 0 &&
+                    searchResults[index - 1].price != undefined && (
+                      <div className="products_categories_search_separator">
+                        <p className="products_categories_separator_text">
+                          Categories
+                        </p>
+                      </div>
+                    )}
+                  <div className="search_result_text_container">
+                    <p
+                      className="result_search_bar_text"
+                      onClick={() => {
+                        if (res.price == undefined) {
+                          OnCategoryClick(res);
+                        } else OnProductClick(res);
+                        EraseSearchText();
+                      }}
+                    >
+                      {res.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

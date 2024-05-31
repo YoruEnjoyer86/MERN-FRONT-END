@@ -1,7 +1,7 @@
 .more_options_button {
-  position: absolute;
-  left: 0;
-  transform: translateX(6rem);
+  position: relative;
+  /* left: 0; */
+  /* transform: translateX(6rem); */
 }
 
 .dropdown_categories_row {

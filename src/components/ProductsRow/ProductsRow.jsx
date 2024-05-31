@@ -121,7 +121,12 @@ const ProductsRow = ({
               index >= firstItemIndex &&
               index < firstItemIndex + maxDisplayedItems && (
                 <ProductShortDisplay
-                  className=""
+                  className={
+                    index === products.length - 1 ||
+                    index % maxDisplayedItems === maxDisplayedItems - 1
+                      ? "last_product_in_product_row"
+                      : ""
+                  }
                   product={product}
                   key={index}
                 />
