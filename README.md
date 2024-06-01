@@ -6,5 +6,5 @@ The functionalities are:
 
 - Registering supporting 2 roles : seller, normal user
 - Adding items to cart, favorites list
-- Adding products
+- Uploading products
 - Searching for products, filtering by categories
