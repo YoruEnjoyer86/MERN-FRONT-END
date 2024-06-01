@@ -186,15 +186,17 @@ const ProductsDeliveredBySellerColumn = ({
                   </div>
                 </div>
               )}
-              <p className="product_option_text">Move to favorites</p>
-              <p
-                className="product_option_text"
-                onClick={() => {
-                  OnRemoveFromCart(index);
-                }}
-              >
-                Remove from cart
-              </p>
+              <div className="move_to_fav_add_to_cart_container">
+                <p className="product_option_text">Move to favorites</p>
+                <p
+                  className="product_option_text"
+                  onClick={() => {
+                    OnRemoveFromCart(index);
+                  }}
+                >
+                  Remove from cart
+                </p>
+              </div>
             </div>
           </div>
         </div>
