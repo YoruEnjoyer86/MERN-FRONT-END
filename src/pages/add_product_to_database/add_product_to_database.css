@@ -69,6 +69,7 @@ input[type="file"] {
 
 .title_add_product_page {
   align-self: center;
+  text-align: center;
 }
 
 .product_added_success_notification {
