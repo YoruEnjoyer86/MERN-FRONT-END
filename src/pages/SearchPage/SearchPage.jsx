@@ -218,7 +218,11 @@ const SearchPage = () => {
         </div>
         <div className="search_page_products_container">
           {foundProducts.map((prod, index) => (
-            <ProductShortDisplay product={prod} key={index} />
+            <ProductShortDisplay
+              product={prod}
+              key={index}
+              className="product_short_display_in_search_page"
+            />
           ))}
         </div>
       </div>

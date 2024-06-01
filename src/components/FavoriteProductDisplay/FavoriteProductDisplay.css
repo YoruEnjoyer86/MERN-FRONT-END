@@ -89,7 +89,8 @@
 }
 
 .favorite_product_list_price_row {
-  width: 9em;
+  height: 25%;
+  width: 50%;
 }
 
 .remove_from_list_row {
