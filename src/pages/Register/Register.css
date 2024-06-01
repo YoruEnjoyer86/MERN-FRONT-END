@@ -51,6 +51,7 @@
   border-radius: 5px;
   font-weight: 700;
   font-size: 1.5rem;
+  max-width: 50%;
 }
 
 .register_button:hover {
@@ -92,4 +93,39 @@ input:focus {
 
 .space {
   height: 20px;
+}
+
+.user_type_checkbox_label {
+  align-self: flex-end;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.user_type_checkbox {
+  /* display: none; */
+  appearance: none;
+  position: relative;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 15%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.user_type_checkbox:checked {
+  background-image: url("../../public/check_mark.svg");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.seller_account_text {
+  color: rgb(217, 215, 215);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: underline;
 }

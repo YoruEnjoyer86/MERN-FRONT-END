@@ -13,6 +13,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [action, setAction] = useState("Sign Up");
+  const [seller_account_selected, set_seler_account_selected] = useState(false);
 
   const HandleLogin = async () => {
     if (action != "Login") setAction("Login");
@@ -33,6 +34,7 @@ const Register = () => {
         name,
         email,
         password,
+        user_type: seller_account_selected === true ? 1 : 0,
       });
       if (res.data.ok) navigate("/profile");
       else console.log("ERROR AT SAVING ACCOUNT");
@@ -45,6 +47,10 @@ const Register = () => {
       setIsRegisterPageActive(false);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(seller_account_selected);
+  }, [seller_account_selected]);
 
   return (
     <div className="register_page">
@@ -94,7 +100,18 @@ const Register = () => {
         {action === "Login" ? (
           <p className="forgot_password_text">Forgot password?</p>
         ) : (
-          <span className="space"></span>
+          <label className="user_type_checkbox_label">
+            <p className="seller_account_text">Seller account: </p>
+            <input
+              value={seller_account_selected}
+              onChange={(event) => {
+                set_seler_account_selected(event.target.checked);
+              }}
+              className="user_type_checkbox"
+              type="checkbox"
+            ></input>
+          </label>
+          // <span className="space"></span>
         )}
 
         <div className="register_buttons_row">

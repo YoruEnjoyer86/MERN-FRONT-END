@@ -14,6 +14,7 @@ const FavoriteProductDisplay = ({ product }) => {
   const { set_product_page_product_id } = useContext(AppContext);
 
   const [imageSrc, setImageSrc] = useState("");
+  const [seller_object, set_seller_object] = useState(undefined);
 
   const RemoveFromFavorites = async () => {
     let res = await axios.post(
@@ -48,6 +49,18 @@ const FavoriteProductDisplay = ({ product }) => {
     navigate("/product");
   };
 
+  const GetSellerObject = async () => {
+    let res = await axios.post("http://localhost:3001/fetch_user_by_id", {
+      id: product.seller,
+    });
+    if (res.status === 200) set_seller_object(res.data);
+    else console.log(res.data.message);
+  };
+
+  useEffect(() => {
+    GetSellerObject();
+  }, []);
+
   return (
     <div className="favorite_product">
       <img
@@ -73,7 +86,9 @@ const FavoriteProductDisplay = ({ product }) => {
         </p>
         <div className="seller_text_row">
           <p className="sold_by_text_favorite_product">Sold by</p>
-          <p className="seller_text_favorite_product">{product.seller}</p>
+          <p className="seller_text_favorite_product">
+            {seller_object != undefined ? seller_object.name : ""}
+          </p>
           <div className="seller_rating_row">
             <p className="number_stars_text">{4.3}</p>
             <img className="seller_star" src="../../../public/full_star.png" />

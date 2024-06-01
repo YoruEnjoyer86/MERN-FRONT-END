@@ -50,7 +50,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(calc(max(25%, 50px)));
+  transform: translateY(calc(max(5rem, 50px)));
 }
 
 .result_search_bar_text {

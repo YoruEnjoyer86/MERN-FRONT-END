@@ -121,6 +121,10 @@
 }
 
 .product_name_favorite_product {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: white;
   font-size: 2rem;
 }

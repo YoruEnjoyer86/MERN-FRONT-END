@@ -14,6 +14,7 @@ const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
 const NavBar = ({ className = "" }) => {
   const { notifications } = useContext(AppContext);
   const navigate = useNavigate();
+  const [user_type, set_user_type] = useState(undefined);
 
   const HandleLogoClick = () => {
     navigate("/");
@@ -35,6 +36,22 @@ const NavBar = ({ className = "" }) => {
     navigate("/add_product_to_database");
   };
 
+  const GetUserType = async () => {
+    let res = await axios.get("http://localhost:3001/check_connected");
+    if (res.data.ok) {
+      let type_response = await axios.get(
+        "http://localhost:3001/get_user_type"
+      );
+      set_user_type(type_response.data);
+      console.log(type_response.data);
+      // console.log("USER CONNECTED!");
+    }
+  };
+
+  useState(() => {
+    GetUserType();
+  }, []);
+
   return (
     <div className={"nav_bar " + className}>
       <CategoriesButton />
@@ -53,30 +70,37 @@ const NavBar = ({ className = "" }) => {
         imgSrc="../../../public/profile.png"
         hoverImgSrc="../../../public/profile_hover.png"
       ></NavBarIcon>
-      <NavBarIcon
-        nrNotifications={notifications[1]}
-        onClick={HandleFavoritesClick}
-        className="noShrink"
-        text=""
-        imgSrc="../../../public/favorites.png"
-        hoverImgSrc="../../../public/favorites_hover.png"
-      ></NavBarIcon>
-      <NavBarIcon
-        nrNotifications={notifications[2]}
-        onClick={HandleShoppingCartClick}
-        className="noShrink"
-        text=""
-        imgSrc="../../../public/shopping_cart.png"
-        hoverImgSrc="../../../public/shopping_cart_hover.png"
-      ></NavBarIcon>
-      <NavBarIcon
-        nrNotifications={0}
-        onClick={HandleGoToAddProductToDatabase}
-        className="noShrink"
-        text=""
-        imgSrc="../../../public/upload_image.png"
-        hoverImgSrc="../../../public/upload_image_hover.png"
-      ></NavBarIcon>
+      {(user_type === undefined || user_type === 0) && (
+        <>
+          <NavBarIcon
+            nrNotifications={notifications[1]}
+            onClick={HandleFavoritesClick}
+            className="noShrink"
+            text=""
+            imgSrc="../../../public/favorites.png"
+            hoverImgSrc="../../../public/favorites_hover.png"
+          ></NavBarIcon>
+          <NavBarIcon
+            nrNotifications={notifications[2]}
+            onClick={HandleShoppingCartClick}
+            className="noShrink"
+            text=""
+            imgSrc="../../../public/shopping_cart.png"
+            hoverImgSrc="../../../public/shopping_cart_hover.png"
+          ></NavBarIcon>
+        </>
+      )}
+
+      {user_type === 1 && (
+        <NavBarIcon
+          nrNotifications={0}
+          onClick={HandleGoToAddProductToDatabase}
+          className="noShrink"
+          text=""
+          imgSrc="../../../public/upload_image.png"
+          hoverImgSrc="../../../public/upload_image_hover.png"
+        ></NavBarIcon>
+      )}
     </div>
   );
 };

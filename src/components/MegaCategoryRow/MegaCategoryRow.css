@@ -1,6 +1,6 @@
 .megacategory_details_text {
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 0;
   width: 20ch;
   text-align: center;
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 1em 1em 1em 1em;
+  padding: 0.7em 1em 0.7em 1em;
   position: relative;
 }
 

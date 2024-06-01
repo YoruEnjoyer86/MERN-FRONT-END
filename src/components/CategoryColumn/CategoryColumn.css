@@ -14,7 +14,7 @@
 
 .category_text_categories_dropdown {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: white;
   margin-right: 1em;
   font-weight: 800;
@@ -27,7 +27,7 @@
 
 .subcategory_name_text {
   color: rgb(221, 221, 221);
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .subcategory_name_text:hover {

@@ -14,7 +14,6 @@ const Add_product_to_database = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [seller, setSeller] = useState("");
   const [price, setPrice] = useState("");
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [megaCategoryIndex, setMegaCategoryIndex] = useState(0);
@@ -87,17 +86,14 @@ const Add_product_to_database = () => {
   }, [categories, categoryIndex]);
 
   const OnAddProduct = async () => {
-    if (
-      name == "" ||
-      description == "" ||
-      quantity == "" ||
-      seller == "" ||
-      price == ""
-    ) {
+    if (name == "" || description == "" || quantity == "" || price == "") {
       setProductAddedSuccessfully(false);
       setProductAddNotification(true);
       return;
     }
+
+    let user_id = await axios.get("http://localhost:3001/check_connected");
+    user_id = user_id.data.user_id;
 
     let res = await axios.post(
       "http://localhost:3001/add_product_to_database",
@@ -105,7 +101,7 @@ const Add_product_to_database = () => {
         name,
         description,
         quantity,
-        seller,
+        seller: user_id,
         price,
         mega_category: megaCategories[megaCategoryIndex],
         category: categories[categoryIndex],
@@ -212,7 +208,6 @@ const Add_product_to_database = () => {
             value={quantity}
             setValue={setQuantity}
           />
-          <InputWithLabel label="seller" value={seller} setValue={setSeller} />
           <InputWithLabel label="price" value={price} setValue={setPrice} />
           <InputWithLabel
             label="mega category"

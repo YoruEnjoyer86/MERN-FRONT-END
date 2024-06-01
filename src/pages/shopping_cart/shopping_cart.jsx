@@ -67,6 +67,7 @@ const shopping_cart = () => {
             : 0;
       }
     // console.log("new price " + price);
+    price = price.toFixed(2);
     setTotaProductPrice(price);
   };
 

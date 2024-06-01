@@ -20,6 +20,7 @@ const ProductsDeliveredBySellerColumn = ({
   let productsCost = 0;
   let deliveryCost = 0;
   const [images, setImages] = useState([]);
+  const [seller_object, set_seller_object] = useState(undefined);
 
   const OnRemoveFromCart = async (prodIndex) => {
     let res = await axios.post(
@@ -101,9 +102,18 @@ const ProductsDeliveredBySellerColumn = ({
     setImages(newImages);
   };
 
+  const GetSellerObject = async () => {
+    let res = await axios.post("http://localhost:3001/fetch_user_by_id", {
+      id: seller,
+    });
+    if (res.status === 200) set_seller_object(res.data);
+    else console.log(res.data.message);
+  };
+
   useEffect(() => {
     setImages(products.map((product) => noImageSrc));
     GetProductImagesFromBackend();
+    GetSellerObject();
     // console.log(sellerIndex);
   }, []);
 
@@ -115,7 +125,9 @@ const ProductsDeliveredBySellerColumn = ({
     <div className="products_delivered_by_seller_column">
       <p className="seller_text_product_in_cart">
         {"Products delivered by "}
-        <span className="seller_name_shopping_cart_page">{seller}</span>
+        <span className="seller_name_shopping_cart_page">
+          {seller_object != undefined ? seller_object.name : ""}
+        </span>
       </p>
       {products.map((product, index) => (
         <div className="product_row" key={index}>
@@ -143,7 +155,7 @@ const ProductsDeliveredBySellerColumn = ({
               <p className="sold_by_text">
                 {"Sold by "}{" "}
                 <span className="seller_text_small_prod_delivered_by_seller">
-                  {seller}
+                  {seller_object != undefined ? seller_object.name : ""}
                 </span>
               </p>
             </div>
@@ -192,7 +204,7 @@ const ProductsDeliveredBySellerColumn = ({
           <p className="price_row_text">
             {"Products cost: "}
             <span className="cost_text_small_in_cart">
-              {CalcPriceOfSellerItemsWithoutDelivery().toString()}
+              {CalcPriceOfSellerItemsWithoutDelivery().toFixed(2).toString()}
               <span className="dollar_sign_small">$</span>
             </span>
           </p>
@@ -208,9 +220,9 @@ const ProductsDeliveredBySellerColumn = ({
           <p className="price_row_text">
             {"Subtotal: "}
             <span className="cost_text_small_in_cart">
-              {(
-                CalcPriceOfSellerItemsWithoutDelivery() + deliveryCost
-              ).toString()}
+              {(CalcPriceOfSellerItemsWithoutDelivery() + deliveryCost)
+                .toFixed(2)
+                .toString()}
               <span className="dollar_sign_small">$</span>
             </span>
           </p>
