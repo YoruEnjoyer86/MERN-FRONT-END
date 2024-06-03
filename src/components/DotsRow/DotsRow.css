@@ -5,16 +5,16 @@
   align-items: center;
   flex-direction: row;
   width: fit-content;
-  gap: 0.3rem;
+  gap: 0.5rem;
   height: 2rem;
-  width: 10%;
+  width: fit-content;
   /* transform: translateX(6rem); */
 }
 
 .dot {
   object-fit: contain;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .dot:hover {
