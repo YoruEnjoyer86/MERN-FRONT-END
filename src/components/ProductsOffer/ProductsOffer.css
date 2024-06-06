@@ -1,0 +1,43 @@
+.products_offer {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(143, 75, 216);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+  gap: 1rem;
+}
+
+.products_offer .content {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: 100%;
+  gap: 2rem;
+}
+
+.products_offer h1 {
+  font-size: 3rem;
+}
+
+.products_offer .description {
+  max-width: 40%;
+}
+
+.products_offer .description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: white;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.products {
+  height: 100%;
+  max-width: 60%;
+  width: 100%;
+  background-color: red;
+}

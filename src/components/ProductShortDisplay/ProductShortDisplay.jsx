@@ -114,7 +114,9 @@ const ProductShortDisplay = ({ product, className }) => {
         />
       </div>
       <img className="product_short_display_image" src={imageSrc} />
-      <p className="product_short_display_text">{product.name}</p>
+      <div className="name_container">
+        <p className="product_short_display_text">{product.name}</p>
+      </div>
       <RatingStars
         className="margin_bottom"
         value={product.rating}

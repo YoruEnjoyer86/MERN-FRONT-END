@@ -6,6 +6,9 @@ import NavBar from "../../components/NavBar/NavBar.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../Contexts/HomeContext.js";
+import MainSales from "../../components/MainSales/MainSales.jsx";
+import ClothesOffer from "../../components/ProductsOffer/ProductsOffer.jsx";
+import ProductsOffer from "../../components/ProductsOffer/ProductsOffer.jsx";
 
 const GetProducts = () => {
   //TODO IA PRODUSE
@@ -76,6 +79,12 @@ const Home = () => {
         }}
       >
         <NavBar />
+        <MainSales
+          offers={[
+            <ProductsOffer title="Fashion" />,
+            <ProductsOffer title="Create your own computer!" />,
+          ]}
+        />
         <ProductsRow
           maxDisplayedItems={5}
           HandleAddItemToCart={HandleAddItemToCart}
