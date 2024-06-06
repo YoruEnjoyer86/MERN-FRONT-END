@@ -43,6 +43,7 @@ const Register = () => {
 
   useEffect(() => {
     setIsRegisterPageActive(true);
+    window.scrollTo(0, 0);
     return () => {
       setIsRegisterPageActive(false);
     };

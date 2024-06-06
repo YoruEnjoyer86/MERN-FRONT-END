@@ -108,10 +108,12 @@ const ProductShortDisplay = ({ product, className }) => {
           HandleFavoriteButtonClick();
         }}
       >
-        <img
-          className="favorite_button_image"
-          src={isFavorite ? favoriteImage : notFavoriteImage}
-        />
+        <div className="heart_icon_container">
+          <img
+            className="favorite_button_image"
+            src={isFavorite ? favoriteImage : notFavoriteImage}
+          />
+        </div>
       </div>
       <img className="product_short_display_image" src={imageSrc} />
       <div className="name_container">

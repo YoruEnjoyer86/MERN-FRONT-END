@@ -73,6 +73,7 @@ const Add_product_to_database = () => {
 
   useEffect(() => {
     Initialize();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

@@ -31,6 +31,7 @@ const shopping_cart = () => {
 
   useEffect(() => {
     Initialize();
+    window.scrollTo(0, 0);
   }, []);
 
   const GetProductsFromBackend = async () => {

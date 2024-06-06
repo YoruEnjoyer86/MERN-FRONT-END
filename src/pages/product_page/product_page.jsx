@@ -51,6 +51,10 @@ const ProductPage = () => {
     navigate("/product");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="product_page">
       <NavBar />

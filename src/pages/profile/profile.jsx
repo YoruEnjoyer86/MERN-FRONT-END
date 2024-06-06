@@ -38,6 +38,7 @@ const profile = () => {
 
   useEffect(() => {
     ProfileInitialize();
+    window.scrollTo(0, 0);
   }, []);
 
   const HandleProfileClick = () => {

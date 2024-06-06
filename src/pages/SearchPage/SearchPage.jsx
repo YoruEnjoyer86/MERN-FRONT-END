@@ -144,6 +144,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     Initialize();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

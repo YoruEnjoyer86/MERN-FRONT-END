@@ -51,6 +51,7 @@ const favorites = () => {
 
   useEffect(() => {
     FavoritesInitialize();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

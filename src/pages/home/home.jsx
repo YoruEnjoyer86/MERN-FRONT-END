@@ -71,6 +71,10 @@ const Home = () => {
   //   //console.log(productsFavoriteStatuses);
   // }, [productsFavoriteStatuses]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="home">
       <HomeContext.Provider
