@@ -62,7 +62,7 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 1em;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .filter_button_search_page {

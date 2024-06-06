@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductsOffer.css";
+import ProductInOfferDisplay from "../ProductInOfferDisplay/ProductInOfferDisplay";
+import axios from "axios";
 
 const ProductsOffer = ({
-  list_of_categories,
+  cat_id,
   description,
   reverse_layout,
   title,
-  products,
   type_of_display,
 }) => {
+  const [products, set_products] = useState([]);
+
+  const GetMostSoldProducts = async () => {
+    let response = await axios.post(
+      "http://localhost:3001/get_most_sold_products_from_category",
+      {
+        cat_id,
+      }
+    );
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    GetMostSoldProducts();
+  }, []);
+
   return (
     <div className="products_offer">
       <h1>{title}</h1>
@@ -66,7 +83,11 @@ const ProductsOffer = ({
             Donec ac rhoncus lorem, eget aliquam justo. Sed id elit dui.
           </p>
         </div>
-        <div className="products"></div>
+        <div className="products">
+          {products.map((prod) => (
+            <ProductInOfferDisplay product={prod} />
+          ))}
+        </div>
       </div>
     </div>
   );
