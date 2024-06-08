@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "acmeregular";
+  src: url("Acme-Regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("Acme-Regular-webfont.woff2") format("woff2"),
+    url("Acme-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   font-family: acmeregular;
   line-height: 1.5;
@@ -11,20 +20,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@font-face {
-  src: url("./assets/fonts/Roboto-Medium.ttf");
-  font-family: roboto;
-}
-
-@font-face {
-  font-family: "acmeregular";
-  src: url("Acme-Regular-webfont.eot?#iefix") format("embedded-opentype"),
-    url("Acme-Regular-webfont.woff2") format("woff2"),
-    url("Acme-Regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
 }
 
 * {
