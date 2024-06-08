@@ -6,7 +6,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
+  filter: drop-shadow(0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.446));
 }
 
 .main_sales button:nth-of-type(1) .arrow {
@@ -29,6 +30,7 @@
   align-items: start;
   justify-content: start;
   flex-direction: row;
+  overflow: hidden;
 }
 
 .main_sales .arrow_button {

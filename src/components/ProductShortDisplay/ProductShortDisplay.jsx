@@ -6,7 +6,7 @@ import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 
-const favoriteImage = "../../public/favorites_hover.png";
+const favoriteImage = "../../public/favorites_black_heart.png";
 const notFavoriteImage = "../../public/favorites.png";
 const noImage = "../../public/no_image.png";
 

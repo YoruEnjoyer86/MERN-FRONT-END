@@ -31,8 +31,9 @@ const MainSales = ({ offers }) => {
 
   const GoToPrevOffer = () => {
     clearTimeout(timeout_id.current);
-
-    set_displayed_offer_index((displayed_offer_index - 1) % offers.length);
+    set_displayed_offer_index(
+      displayed_offer_index > 0 ? displayed_offer_index - 1 : offers.length - 1
+    );
   };
 
   return (

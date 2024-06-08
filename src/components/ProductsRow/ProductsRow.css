@@ -28,20 +28,48 @@
   cursor: pointer;
 }
 
-.next_products_arrow {
-  object-fit: contain;
-  height: 20%;
+.products_and_arrows_row .right_arrow_button {
+  z-index: 2;
   position: absolute;
   right: 0;
-  /* transform: translateX(11rem); */
+  transform: translateX(2rem);
+  cursor: pointer;
+  background-color: white;
+  height: 70px;
+  width: 70px;
+  border: 0px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.prev_products_arrow {
-  object-fit: contain;
-  height: 20%;
+.products_and_arrows_row .left_arrow_button {
+  z-index: 2;
   position: absolute;
   left: 0;
-  /* transform: translateX(2rem); */
+  transform: translateX(-2rem);
+  cursor: pointer;
+  background-color: white;
+  height: 70px;
+  width: 70px;
+  border: 0px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left_button_arrow {
+  object-fit: contain;
+  height: 100%;
+  transform: scale(130%) translateX(-2%);
+}
+
+.right_button_arrow {
+  object-fit: contain;
+  height: 100%;
+  transform: scale(130%) translateX(2%);
 }
 
 .container {

@@ -5,7 +5,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 
 const shopping_cart = () => {
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
@@ -32,6 +31,7 @@ const shopping_cart = () => {
   useEffect(() => {
     Initialize();
     window.scrollTo(0, 0);
+    console.log("AHAAHAH");
   }, []);
 
   const GetProductsFromBackend = async () => {

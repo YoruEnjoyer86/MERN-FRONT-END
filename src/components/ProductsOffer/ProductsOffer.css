@@ -3,8 +3,7 @@
   width: 100%;
   background-color: rgb(143, 75, 216);
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  align-items: center;
   position: relative;
   gap: 1rem;
 }
@@ -12,17 +11,24 @@
 .products_offer .content {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  /* overflow: hidden; */
   height: 100%;
+  width: 100%;
   gap: 2rem;
 }
 
 .products_offer h1 {
   font-size: 3rem;
+  font-weight: 800;
+  color: black;
+  margin-bottom: 0.5rem;
 }
 
 .products_offer .description {
   max-width: 40%;
+  width: 100%;
+  line-height: normal;
+  transform: translateY(-1rem);
 }
 
 .products_offer .description p {
@@ -31,13 +37,21 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: white;
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: 1.7rem;
+  font-weight: 100;
 }
 
-.products {
+.products_offer .products {
   height: 100%;
   max-width: 60%;
   width: 100%;
-  background-color: red;
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.products_offer .product {
+  max-width: 33%;
+  width: 100%;
 }

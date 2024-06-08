@@ -26,6 +26,10 @@ const Home = () => {
     "665064c313faede67f9ef7c4",
   ];
 
+  const GetFeaturedCategories = () => {
+    return ["6650660c13faede67f9ef7d1", "6650659013faede67f9ef7ca"];
+  };
+
   const CheckUserConnected = async () => {
     let res = await axios.get("http://localhost:3001/check_connected");
     return res.data.ok;
@@ -54,8 +58,18 @@ const Home = () => {
         <NavBar />
         <MainSales
           offers={[
-            <ProductsOffer title="Fashion" />,
-            <ProductsOffer title="Create your own computer!" />,
+            <ProductsOffer
+              key={112}
+              cat_id={GetFeaturedCategories()[0]}
+              description="Discover unbeatable prices on top-quality computer components."
+              title="Build your own PC!"
+            />,
+            <ProductsOffer
+              key={113}
+              cat_id={GetFeaturedCategories()[1]}
+              title="Choose your laptop!"
+              description="Pick a nice laptop!"
+            />,
           ]}
         />
         <ProductsRow

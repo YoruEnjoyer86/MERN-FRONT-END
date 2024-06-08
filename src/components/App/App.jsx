@@ -9,7 +9,11 @@ let invisibleBoxOnClick = () => {
 };
 
 const App = ({ children }) => {
-  const [notifications, setNotification] = useState(0);
+  const [notifications, set_notifications] = useState({
+    profile: 0,
+    cart: 0,
+    favorites: 0,
+  });
   const [isRegisterPageActive, setIsRegisterPageActive] = useState(false);
   const [invisibleBoxState, setInvisibleBoxState] = useState(false); // stateul asta o sa fie 0 sau 1, e irelevanta valoarea, il folosesc doar ca sa dea rerender unei componente
   const [search_data, set_search_data] = useState(undefined);
@@ -54,6 +58,11 @@ const App = ({ children }) => {
         id: productId,
       }
     );
+    set_notifications({
+      profile: notifications.profile,
+      favorites: notifications.favorites,
+      cart: notifications.cart + 1,
+    });
     console.log(res.data);
   };
 

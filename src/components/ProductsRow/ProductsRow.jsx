@@ -9,8 +9,8 @@ import { HomeContext } from "../../Contexts/HomeContext.js";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 
-const rigtArrowImg = "../../public/right_arrow.png";
-const leftArrowImg = "../../public/left_arrow.png";
+const rigtArrowImg = "../../public/arrow_rounded_right.svg";
+const leftArrowImg = "../../public/arrow_rounded_left.svg";
 
 const ProductsRow = ({
   className,
@@ -109,11 +109,13 @@ const ProductsRow = ({
       </p>
       <div className={"products_and_arrows_row " + className}>
         {firstItemIndex - maxDisplayedItems >= 0 && (
-          <img
-            className="prev_products_arrow"
-            src={leftArrowImg}
-            onClick={HandleOnLeftArrowClick}
-          />
+          <button className="left_arrow_button">
+            <img
+              className="left_button_arrow"
+              src={leftArrowImg}
+              onClick={HandleOnLeftArrowClick}
+            />
+          </button>
         )}
         <div className="products_row">
           {products.map(
@@ -134,11 +136,13 @@ const ProductsRow = ({
           )}
         </div>
         {firstItemIndex + maxDisplayedItems < products.length && (
-          <img
-            className="next_products_arrow"
-            src={rigtArrowImg}
-            onClick={HandleOnRightArrowClick}
-          />
+          <button className="right_arrow_button">
+            <img
+              className="right_button_arrow"
+              src={rigtArrowImg}
+              onClick={HandleOnRightArrowClick}
+            />
+          </button>
         )}
       </div>
       <DotsRow

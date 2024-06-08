@@ -63,7 +63,7 @@ const NavBar = ({ className = "" }) => {
       />
       <SearchBar />
       <NavBarIcon
-        nrNotifications={notifications[1]}
+        nrNotifications={notifications.profile}
         onClick={HandleProfileClick}
         className="noShrink"
         text=""
@@ -73,7 +73,7 @@ const NavBar = ({ className = "" }) => {
       {(user_type === undefined || user_type === 0) && (
         <>
           <NavBarIcon
-            nrNotifications={notifications[1]}
+            nrNotifications={notifications.favorites}
             onClick={HandleFavoritesClick}
             className="noShrink"
             text=""
@@ -81,7 +81,7 @@ const NavBar = ({ className = "" }) => {
             hoverImgSrc="../../../public/favorites_hover.png"
           ></NavBarIcon>
           <NavBarIcon
-            nrNotifications={notifications[2]}
+            nrNotifications={notifications.cart}
             onClick={HandleShoppingCartClick}
             className="noShrink"
             text=""
