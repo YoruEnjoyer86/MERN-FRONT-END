@@ -66,7 +66,7 @@ const NavBar = ({ className = "" }) => {
         onClick={HandleProfileClick}
         className="noShrink"
         text=""
-        imgSrc="../../../public/profile.png"
+        imgSrc="/public/profile.png"
         hoverImgSrc="../../../public/profile_hover.png"
       ></NavBarIcon>
       {(user_type === undefined || user_type === 0) && (
