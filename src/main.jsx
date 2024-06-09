@@ -16,7 +16,7 @@ import SearchPage from "./pages/SearchPage/SearchPage.jsx";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
 if (process.env.NODE_ENV === "production") {
-  disableReactDevtools();
+  disableReactDevTools();
   console.log("suntem in deployment");
 }
 // pt cand e deployed
