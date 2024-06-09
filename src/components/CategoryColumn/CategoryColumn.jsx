@@ -3,6 +3,7 @@ import "./CategoryColumn.css";
 import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url";
 
 const CategoryColumn = ({ category }) => {
   //   console.log(pair);
@@ -11,7 +12,7 @@ const CategoryColumn = ({ category }) => {
   const navigate = useNavigate();
 
   const FetchSubcategories = async () => {
-    let res = await axios.post("http://localhost:3001/get_subcategories", {
+    let res = await axios.post(base_url + "/get_subcategories", {
       category,
     });
     setSubcategories(res.data.subcategories);
@@ -21,7 +22,7 @@ const CategoryColumn = ({ category }) => {
     let new_search_data = {
       category,
     };
-    let res = await axios.post("http://localhost:3001/set_search_data", {
+    let res = await axios.post(base_url + "/set_search_data", {
       search_data: new_search_data,
     });
     set_search_data(new_search_data);
@@ -32,7 +33,7 @@ const CategoryColumn = ({ category }) => {
     let new_search_data = {
       subcategory,
     };
-    let res = await axios.post("http://localhost:3001/set_search_data", {
+    let res = await axios.post(base_url + "/set_search_data", {
       search_data: new_search_data,
     });
     set_search_data(new_search_data);

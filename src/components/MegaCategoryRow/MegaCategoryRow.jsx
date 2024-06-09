@@ -4,6 +4,7 @@ import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url";
 
 const MegaCategoryRow = ({
   megacategory,
@@ -27,7 +28,7 @@ const MegaCategoryRow = ({
     let new_search_data = {
       mega_category: megacategory,
     };
-    let res = await axios.post("http://localhost:3001/set_search_data", {
+    let res = await axios.post(base_url + "/set_search_data", {
       search_data: new_search_data,
     });
     set_search_data(new_search_data);

@@ -3,6 +3,7 @@ import "./SearchBar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext";
+import base_url from "../../base_url";
 
 let text = "";
 
@@ -24,7 +25,7 @@ const SearchBar = ({ className }) => {
     let new_search_data = {
       text,
     };
-    await axios.post("http://localhost:3001/set_search_data", {
+    await axios.post(base_url + "/set_search_data", {
       search_data: new_search_data,
     });
     set_search_data(new_search_data);
@@ -58,7 +59,7 @@ const SearchBar = ({ className }) => {
     text = event.target.value;
     if (text.length != 0) {
       setSearchResultsVisible(true);
-      let res = await axios.post("http://localhost:3001/get_search_results", {
+      let res = await axios.post(base_url + "/get_search_results", {
         text,
       });
       setSearchResults(res.data.results);
@@ -82,7 +83,7 @@ const SearchBar = ({ className }) => {
   }, []);
 
   const OnCategoryClick = async (cat) => {
-    let res = await axios.post("http://localhost:3001/set_search_data", {
+    let res = await axios.post(base_url + "/set_search_data", {
       search_data: {
         category_of_unknown_type: cat,
       },
@@ -98,7 +99,7 @@ const SearchBar = ({ className }) => {
   }, [searchResults]);
 
   const OnProductClick = async (prod) => {
-    await axios.post("http://localhost:3001/set_product_page_product_id", {
+    await axios.post(base_url + "/set_product_page_product_id", {
       id: prod._id,
     });
     set_product_page_product_id(prod._id);

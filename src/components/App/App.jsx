@@ -3,6 +3,7 @@ import { AppContext } from "../../Contexts/AppContext";
 import "./App.css";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
+import base_url from "../../base_url";
 
 let invisibleBoxOnClick = () => {
   console.log("CLICKED INVISIBLE BOX!");
@@ -30,9 +31,9 @@ const App = ({ children }) => {
   }, [search_data]);
 
   const Initialize = async () => {
-    let res = await axios.get("http://localhost:3001/get_search_data");
+    let res = await axios.get(base_url + "/get_search_data");
     set_search_data(res.data.search_data);
-    res = await axios.get("http://localhost:3001/get_product_page_product_id");
+    res = await axios.get(base_url + "/get_product_page_product_id");
     set_product_page_product_id(res.data);
     // console.log(res.data.search_categories);
   };
@@ -46,14 +47,14 @@ const App = ({ children }) => {
   }, [product_page_product_id]);
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     return res.data.ok;
   };
 
   const AddProductToCart = async (productId) => {
     console.log("ADDING ITEM TO CART");
     let res = await axios.post(
-      "http://localhost:3001/increase_product_quantity_in_cart",
+      base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
       }

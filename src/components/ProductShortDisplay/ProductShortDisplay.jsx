@@ -5,6 +5,7 @@ import PriceRow from "../PriceRow/PriceRow.jsx";
 import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url.js";
 
 const favoriteImage = "../../public/favorites_black_heart.png";
 const notFavoriteImage = "../../public/favorites.png";
@@ -17,7 +18,7 @@ const ProductShortDisplay = ({ product, className }) => {
   const { set_product_page_product_id } = useContext(AppContext);
 
   const FetchIsFavorite = async () => {
-    let res = await axios.post("http://localhost:3001/is_product_favorite", {
+    let res = await axios.post(base_url + "/is_product_favorite", {
       id: product._id,
     });
     if (res.data.ok) setFavorite(res.data.isFavorite);
@@ -34,13 +35,13 @@ const ProductShortDisplay = ({ product, className }) => {
   };
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     return res.data.ok;
   };
 
   const RequestImageFromBackend = async () => {
     let response = await axios.post(
-      "http://localhost:3001/api/get_product_image",
+      base_url + "/api/get_product_image",
       {
         product_id: product._id,
       },
@@ -56,24 +57,18 @@ const ProductShortDisplay = ({ product, className }) => {
 
   const HandleFavoriteButtonClick = async () => {
     if (isFavorite) {
-      let res = await axios.post(
-        "http://localhost:3001/remove_product_from_favorites",
-        {
-          id: product._id,
-        }
-      );
+      let res = await axios.post(base_url + "/remove_product_from_favorites", {
+        id: product._id,
+      });
       if (res.data.ok) console.log("product removed from favorites!");
       else
         console.log(
           "Error at removing product to favorites : " + res.data.message
         );
     } else {
-      let res = await axios.post(
-        "http://localhost:3001/add_product_to_favorites",
-        {
-          id: product._id,
-        }
-      );
+      let res = await axios.post(base_url + "/add_product_to_favorites", {
+        id: product._id,
+      });
       if (res.data.ok) {
         console.log("product added to favorites!");
       } else
@@ -89,7 +84,7 @@ const ProductShortDisplay = ({ product, className }) => {
   }, [product]);
 
   const OnProductClick = async () => {
-    await axios.post("http://localhost:3001/set_product_page_product_id", {
+    await axios.post(base_url + "/set_product_page_product_id", {
       id: product._id,
     });
     set_product_page_product_id(product._id);

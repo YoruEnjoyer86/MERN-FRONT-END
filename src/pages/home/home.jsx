@@ -9,6 +9,7 @@ import { HomeContext } from "../../Contexts/HomeContext.js";
 import MainSales from "../../components/MainSales/MainSales.jsx";
 import ClothesOffer from "../../components/ProductsOffer/ProductsOffer.jsx";
 import ProductsOffer from "../../components/ProductsOffer/ProductsOffer.jsx";
+import base_url from "../../base_url.js";
 
 const GetProducts = () => {
   return products;
@@ -31,7 +32,7 @@ const Home = () => {
   };
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     return res.data.ok;
   };
 

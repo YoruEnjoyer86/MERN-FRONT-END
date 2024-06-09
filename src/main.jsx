@@ -13,6 +13,13 @@ import App from "./components/App/App";
 import Test from "./pages/test/test";
 import ProductPage from "./pages/product_page/product_page.jsx";
 import SearchPage from "./pages/SearchPage/SearchPage.jsx";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+if (process.env.NODE_ENV === "production") {
+  disableReactDevtools();
+  console.log("suntem in deployment");
+}
+// pt cand e deployed
 
 const router = createBrowserRouter([
   {
@@ -56,8 +63,6 @@ const router = createBrowserRouter([
     element: <SearchPage />,
   },
 ]);
-
-const a = 1;
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

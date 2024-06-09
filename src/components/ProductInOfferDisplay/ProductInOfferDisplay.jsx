@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./ProductInOfferDisplay.css";
 import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext";
+import base_url from "../../base_url";
 
 const loading_img = "../../../public/no_image.png";
 
@@ -12,17 +13,14 @@ const ProductInOfferDisplay = ({ product, className }) => {
   const { set_product_page_product_id } = useContext(AppContext);
 
   let FetchProductImage = async () => {
-    let response = await axios.post(
-      "http://localhost:3001/api/get_product_image",
-      {
-        product_id: product._id,
-      }
-    );
+    let response = await axios.post(base_url + "/api/get_product_image", {
+      product_id: product._id,
+    });
     set_image(response.data.img);
   };
 
   let GoToProductPage = async () => {
-    await axios.post("http://localhost:3001/set_product_page_product_id", {
+    await axios.post(base_url + "/set_product_page_product_id", {
       id: product._id,
     });
     set_product_page_product_id(product._id);

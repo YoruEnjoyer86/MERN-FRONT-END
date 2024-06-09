@@ -8,6 +8,7 @@ import axios from "axios";
 import { HomeContext } from "../../Contexts/HomeContext.js";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url.js";
 
 const rigtArrowImg = "../../public/arrow_rounded_right.svg";
 const leftArrowImg = "../../public/arrow_rounded_left.svg";
@@ -29,7 +30,7 @@ const ProductsRow = ({
     let axiosResult;
     if (subcategoryID != -1)
       axiosResult = await axios.post(
-        "http://localhost:3001/get_category_of_any_type_by_id",
+        base_url + "/get_category_of_any_type_by_id",
         {
           id: subcategoryID,
           categoryType: 0,
@@ -37,7 +38,7 @@ const ProductsRow = ({
       );
     else if (categoryID != -1)
       axiosResult = await axios.post(
-        "http://localhost:3001/get_category_of_any_type_by_id",
+        base_url + "/get_category_of_any_type_by_id",
         {
           id: categoryID,
           categoryType: 1,
@@ -45,7 +46,7 @@ const ProductsRow = ({
       );
     else
       axiosResult = await axios.post(
-        "http://localhost:3001/get_category_of_any_type_by_id",
+        base_url + "/get_category_of_any_type_by_id",
         {
           id: megacategoryID,
           categoryType: 2,
@@ -56,7 +57,7 @@ const ProductsRow = ({
 
   const GetProductsFromBackend = async () => {
     let res = await axios.post(
-      "http://localhost:3001/get_products_of_any_type_categoryID",
+      base_url + "/get_products_of_any_type_categoryID",
       {
         id: actualCategory._id,
         categoryType: subcategoryID != -1 ? 0 : categoryID != -1 ? 1 : 2,
@@ -95,7 +96,7 @@ const ProductsRow = ({
     if (subcategoryID != -1) new_search_data.subcategory = actualCategory;
     else if (categoryID != -1) new_search_data.category = actualCategory;
     else new_search_data.mega_category = actualCategory;
-    await axios.post("http://localhost:3001/set_search_data", {
+    await axios.post(base_url + "/set_search_data", {
       search_data: new_search_data,
     });
     set_search_data(new_search_data);

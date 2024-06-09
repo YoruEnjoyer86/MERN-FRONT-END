@@ -10,6 +10,7 @@ import FavoritesListColumn from "../../components/FavoritesListColumn/FavoritesL
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FavoritePageContext } from "../../Contexts/FavoritePageContext.js";
+import base_url from "../../base_url.js";
 
 const favorites = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const favorites = () => {
     }
     console.log("ADDING ITEM TO CART");
     let res = await axios.post(
-      "http://localhost:3001/increase_product_quantity_in_cart",
+      base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
       }
@@ -37,7 +38,7 @@ const favorites = () => {
   };
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -62,7 +63,7 @@ const favorites = () => {
     // console.log(lists);
     if (lists[currentListIndex] != undefined) {
       let res = await axios.post(
-        "http://localhost:3001/get_products_from_favorite_list",
+        base_url + "/get_products_from_favorite_list",
         {
           name: lists[currentListIndex].name,
         }
@@ -77,7 +78,7 @@ const favorites = () => {
   };
 
   const GetListsFromBackend = async () => {
-    let res = await axios.get("http://localhost:3001/get_favorite_lists");
+    let res = await axios.get(base_url + "/get_favorite_lists");
     let listsDetails = res.data.lists;
     setLists(listsDetails);
     setListsReactItems(

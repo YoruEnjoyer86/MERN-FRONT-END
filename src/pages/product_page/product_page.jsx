@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import { AppContext } from "../../Contexts/AppContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -23,14 +24,14 @@ const ProductPage = () => {
 
   const FetchProduct = async () => {
     if (product_page_product_id == undefined) return;
-    let prod = await axios.post("http://localhost:3001/get_product_with_id", {
+    let prod = await axios.post(base_url + "/get_product_with_id", {
       id: product_page_product_id,
     });
     let productDetails = {
       name: prod.data.name,
       seller: prod.data.seller,
     };
-    let res = await axios.post("http://localhost:3001/api/get_product_image", {
+    let res = await axios.post(base_url + "/api/get_product_image", {
       product_id: product_page_product_id,
     });
     if (res.status === 200) set_prod_image_src(res.data.img);

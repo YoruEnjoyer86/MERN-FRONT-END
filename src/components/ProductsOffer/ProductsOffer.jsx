@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductsOffer.css";
 import ProductInOfferDisplay from "../ProductInOfferDisplay/ProductInOfferDisplay";
 import axios from "axios";
+import base_url from "../../base_url";
 
 const ProductsOffer = ({
   cat_id,
@@ -15,7 +16,7 @@ const ProductsOffer = ({
   const GetMostSoldProducts = async () => {
     // console.log("CATIT", cat_id);
     let response = await axios.post(
-      "http://localhost:3001/get_most_sold_products_from_category",
+      base_url + "/get_most_sold_products_from_category",
       {
         cat_id,
       }

@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Register.css";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import { AppContext } from "../../Contexts/AppContext.js";
+import base_url from "../../base_url.js";
 
 const Register = () => {
   const { setIsRegisterPageActive } = useContext(AppContext);
@@ -18,7 +19,7 @@ const Register = () => {
   const HandleLogin = async () => {
     if (action != "Login") setAction("Login");
     else if (email != "" && password != "") {
-      let res = await axios.post("http://localhost:3001/api/login", {
+      let res = await axios.post(base_url + "/api/login", {
         email,
         password,
       });
@@ -30,7 +31,7 @@ const Register = () => {
   const HandleSignUp = async () => {
     if (action != "Sign Up") setAction("Sign Up");
     else if (email != "" && password != "" && name != "") {
-      let res = await axios.post("http://localhost:3001/api/sign_up", {
+      let res = await axios.post(base_url + "/api/sign_up", {
         name,
         email,
         password,

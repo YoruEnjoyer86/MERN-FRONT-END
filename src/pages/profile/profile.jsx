@@ -5,6 +5,7 @@ import AccountDetailsCard from "../../components/AccountDetailsCard/AccountDetai
 import UserOptionsColumn from "../../components/UserOptionsColumn/UserOptionsColumn";
 import "./profile.css";
 import axios from "axios";
+import base_url from "../../base_url";
 
 axios.defaults.withCredentials = true;
 
@@ -12,7 +13,7 @@ const profile = () => {
   const navigate = useNavigate();
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     // console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -20,7 +21,7 @@ const profile = () => {
   const ProfileInitialize = async () => {
     if ((await CheckUserConnected()) == true) {
       axios
-        .get("http://localhost:3001/profile")
+        .get(base_url + "/profile")
         .then((res) => {
           // console.log(res);
           setUserName(res.data.username);
@@ -50,7 +51,7 @@ const profile = () => {
   };
 
   const HandleLogoutClick = async () => {
-    let res = await axios.get("http://localhost:3001/logout");
+    let res = await axios.get(base_url + "/logout");
     // console.log("RASPUNS LOGOUT : " + res);
     navigate("/register");
   };

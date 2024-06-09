@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url";
 
 const shopping_cart = () => {
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
@@ -14,7 +15,7 @@ const shopping_cart = () => {
   const navigate = new useNavigate();
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -35,7 +36,7 @@ const shopping_cart = () => {
   }, []);
 
   const GetProductsFromBackend = async () => {
-    let res = await axios.post("http://localhost:3001/get_products_from_cart");
+    let res = await axios.post(base_url + "/get_products_from_cart");
     let products = res.data.products;
     let prodSellerMap = new Map();
     products.forEach((product) => {

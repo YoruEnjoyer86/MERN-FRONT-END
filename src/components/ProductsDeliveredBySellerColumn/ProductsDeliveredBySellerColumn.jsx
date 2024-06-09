@@ -3,6 +3,7 @@ import "./ProductsDeliveredBySellerColumn.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext";
+import base_url from "../../base_url";
 
 const noImageSrc = "../../../public/no_image.png";
 
@@ -23,19 +24,16 @@ const ProductsDeliveredBySellerColumn = ({
   const [seller_object, set_seller_object] = useState(undefined);
 
   const OnRemoveFromCart = async (prodIndex) => {
-    let res = await axios.post(
-      "http://localhost:3001/remove_product_from_cart",
-      {
-        id: products[prodIndex]._id,
-      }
-    );
+    let res = await axios.post(base_url + "/remove_product_from_cart", {
+      id: products[prodIndex]._id,
+    });
     fetchProductsFromBackend();
     // console.log(res);
   };
 
   const OnPlusClick = async (prodIndex) => {
     let res = await axios.post(
-      "http://localhost:3001/increase_product_quantity_in_cart",
+      base_url + "/increase_product_quantity_in_cart",
       {
         id: products[prodIndex]._id,
       }
@@ -52,7 +50,7 @@ const ProductsDeliveredBySellerColumn = ({
   const OnMinusClick = async (prodIndex) => {
     //console.log(products[prodIndex]);
     let res = await axios.post(
-      "http://localhost:3001/decrese_quantity_product_from_cart",
+      base_url + "/decrese_quantity_product_from_cart",
       {
         id: products[prodIndex]._id,
       }
@@ -90,12 +88,9 @@ const ProductsDeliveredBySellerColumn = ({
   const GetProductImagesFromBackend = async () => {
     let newImages = [];
     for (let i = 0; i < products.length; i++) {
-      let res = await axios.post(
-        "http://localhost:3001/api/get_product_image",
-        {
-          product_id: products[i]._id,
-        }
-      );
+      let res = await axios.post(base_url + "/api/get_product_image", {
+        product_id: products[i]._id,
+      });
       if (res.status === 200) newImages.push(res.data.img);
       else newImages.push(noImageSrc);
     }
@@ -103,7 +98,7 @@ const ProductsDeliveredBySellerColumn = ({
   };
 
   const GetSellerObject = async () => {
-    let res = await axios.post("http://localhost:3001/fetch_user_by_id", {
+    let res = await axios.post(base_url + "/fetch_user_by_id", {
       id: seller,
     });
     if (res.status === 200) set_seller_object(res.data);

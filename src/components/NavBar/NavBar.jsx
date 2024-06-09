@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext.js";
 import axios from "axios";
 import CategoriesButton from "../CategoriesButton/CategoriesButton.jsx";
+import base_url from "../../base_url.js";
 
 const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
 
@@ -37,11 +38,9 @@ const NavBar = ({ className = "" }) => {
   };
 
   const GetUserType = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     if (res.data.ok) {
-      let type_response = await axios.get(
-        "http://localhost:3001/get_user_type"
-      );
+      let type_response = await axios.get(base_url + "/get_user_type");
       set_user_type(type_response.data);
       console.log(type_response.data);
       // console.log("USER CONNECTED!");

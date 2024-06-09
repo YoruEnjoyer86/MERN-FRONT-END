@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import PopupNotification from "../../components/PopupNotification/PopupNotification";
 import { AddProductToDatabaseContext } from "../../Contexts/AddProductToDatabaseContext";
+import base_url from "../../base_url";
 
 const noImageUploadedImage = "../../public/no_image.png";
 
@@ -28,7 +29,7 @@ const Add_product_to_database = () => {
   const [subcategories, setSubcategories] = useState([]);
 
   const CheckUserConnected = async () => {
-    let res = await axios.get("http://localhost:3001/check_connected");
+    let res = await axios.get(base_url + "/check_connected");
     // console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -37,7 +38,7 @@ const Add_product_to_database = () => {
     // console.log(megaCategoryIndex);
     let res;
     if (megaCategories.length != 0)
-      res = await axios.post("http://localhost:3001/get_categories", {
+      res = await axios.post(base_url + "/get_categories", {
         mega_category: megaCategories[megaCategoryIndex],
       });
     if (res != undefined) {
@@ -49,7 +50,7 @@ const Add_product_to_database = () => {
   const FetchSubCategories = async () => {
     let res;
     if (categories.length != 0) {
-      res = await axios.post("http://localhost:3001/get_subcategories", {
+      res = await axios.post(base_url + "/get_subcategories", {
         category: categories[categoryIndex],
       });
       // console.log(res.data);
@@ -60,9 +61,9 @@ const Add_product_to_database = () => {
   const Initialize = async () => {
     if ((await CheckUserConnected()) == false) navigate("/register");
     else {
-      let res = await axios.post("http://localhost:3001/get_mega_categories");
+      let res = await axios.post(base_url + "/get_mega_categories");
       setMegaCategories(res.data.megaCategories);
-      let cats = await axios.post("http://localhost:3001/get_categories", {
+      let cats = await axios.post(base_url + "/get_categories", {
         mega_category: res.data.megaCategories[0],
       });
       setCategories(cats.data.categories);
@@ -93,22 +94,19 @@ const Add_product_to_database = () => {
       return;
     }
 
-    let user_id = await axios.get("http://localhost:3001/check_connected");
+    let user_id = await axios.get(base_url + "/check_connected");
     user_id = user_id.data.user_id;
 
-    let res = await axios.post(
-      "http://localhost:3001/add_product_to_database",
-      {
-        name,
-        description,
-        quantity,
-        seller: user_id,
-        price,
-        mega_category: megaCategories[megaCategoryIndex],
-        category: categories[categoryIndex],
-        subcategory: subcategories[subCategoryIndex],
-      }
-    );
+    let res = await axios.post(base_url + "/add_product_to_database", {
+      name,
+      description,
+      quantity,
+      seller: user_id,
+      price,
+      mega_category: megaCategories[megaCategoryIndex],
+      category: categories[categoryIndex],
+      subcategory: subcategories[subCategoryIndex],
+    });
     if (res.status !== 200) {
       console.log(res.data.message);
       return;
@@ -126,7 +124,7 @@ const Add_product_to_database = () => {
     // console.log("NAME: " + imageToUpload.name);
     // console.log("TYPE: " + imageToUpload.type);
     res = await axios.post(
-      "http://localhost:3001/add_product_image",
+      base_url + "/add_product_image",
       {
         file: imageToUpload,
       },
@@ -140,12 +138,9 @@ const Add_product_to_database = () => {
       console.log(res.data.message);
       setProductAddedSuccessfully(false);
       setProductAddNotification(true);
-      res = await axios.post(
-        "http://localhost:3001/delete_product_from_database",
-        {
-          product_id,
-        }
-      );
+      res = await axios.post(base_url + "/delete_product_from_database", {
+        product_id,
+      });
       if (res.status === 200)
         console.log("SUCCESSFULLY REMOVED PRODUCT FROM DATABASE!");
       return;

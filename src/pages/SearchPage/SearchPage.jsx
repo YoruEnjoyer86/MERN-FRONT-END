@@ -6,6 +6,7 @@ import axios from "axios";
 import InputWithLabel from "../../components/InputWithLabel/InputWithLabel.jsx";
 import ProductShortDisplay from "../../components/ProductShortDisplay/ProductShortDisplay.jsx";
 import { AppContext } from "../../Contexts/AppContext.js";
+import base_url from "../../base_url.js";
 
 const SearchPage = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -30,7 +31,7 @@ const SearchPage = () => {
     if (search_data.text != undefined) {
       // console.log("SEARCHING FOR TEXT!");
       let res = await axios.post(
-        "http://localhost:3001/get_products_with_name_and_categories",
+        base_url + "/get_products_with_name_and_categories",
         {
           text: search_data.text,
           mega_category: search_data.mega_category,
@@ -60,7 +61,7 @@ const SearchPage = () => {
       catType = 2;
     }
     let res = await axios.post(
-      "http://localhost:3001/get_products_of_any_type_categoryID",
+      base_url + "/get_products_of_any_type_categoryID",
       {
         id: catId,
         categoryType: catType,
@@ -98,7 +99,7 @@ const SearchPage = () => {
   const FetchCategories = async () => {
     let res;
     if (megaCategories.length != 0)
-      res = await axios.post("http://localhost:3001/get_categories", {
+      res = await axios.post(base_url + "/get_categories", {
         mega_category: megaCategories[megaCategoryIndex],
       });
     if (res != undefined) {
@@ -116,7 +117,7 @@ const SearchPage = () => {
       return;
     }
     // console.log(typeof categories[categoryIndex]);
-    res = await axios.post("http://localhost:3001/get_subcategories", {
+    res = await axios.post(base_url + "/get_subcategories", {
       category: categories[categoryIndex],
     });
     if (res != undefined) {
@@ -127,9 +128,9 @@ const SearchPage = () => {
   };
 
   const Initialize = async () => {
-    let res = await axios.post("http://localhost:3001/get_mega_categories");
+    let res = await axios.post(base_url + "/get_mega_categories");
     setMegaCategories(res.data.megaCategories);
-    let cats = await axios.post("http://localhost:3001/get_categories", {
+    let cats = await axios.post(base_url + "/get_categories", {
       mega_category: res.data.megaCategories[0],
     });
     setCategories(cats.data.categories);

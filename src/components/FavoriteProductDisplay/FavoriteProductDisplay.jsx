@@ -6,6 +6,7 @@ import PriceRow from "../PriceRow/PriceRow.jsx";
 import { FavoritePageContext } from "../../Contexts/FavoritePageContext.js";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
+import base_url from "../../base_url.js";
 
 const FavoriteProductDisplay = ({ product }) => {
   const { GetProductsOfSelectedList, currentListProducts } =
@@ -17,23 +18,17 @@ const FavoriteProductDisplay = ({ product }) => {
   const [seller_object, set_seller_object] = useState(undefined);
 
   const RemoveFromFavorites = async () => {
-    let res = await axios.post(
-      "http://localhost:3001/remove_product_from_favorites",
-      {
-        id: product._id,
-      }
-    );
+    let res = await axios.post(base_url + "/remove_product_from_favorites", {
+      id: product._id,
+    });
     // console.log(res.data);
     GetProductsOfSelectedList();
   };
   const RequestImageFromBackend = async () => {
     // console.log("IMAGE CHANGED!");
-    let response = await axios.post(
-      "http://localhost:3001/api/get_product_image",
-      {
-        product_id: product._id,
-      }
-    );
+    let response = await axios.post(base_url + "/api/get_product_image", {
+      product_id: product._id,
+    });
     if (response.status === 200) {
       // console.log(response.data.img);
       setImageSrc(response.data.img);
@@ -50,7 +45,7 @@ const FavoriteProductDisplay = ({ product }) => {
   };
 
   const GetSellerObject = async () => {
-    let res = await axios.post("http://localhost:3001/fetch_user_by_id", {
+    let res = await axios.post(base_url + "/fetch_user_by_id", {
       id: product.seller,
     });
     if (res.status === 200) set_seller_object(res.data);
