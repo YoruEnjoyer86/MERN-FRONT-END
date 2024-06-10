@@ -21,20 +21,29 @@ const NavBar = ({ className = "" }) => {
     navigate("/");
   };
 
-  const HandleProfileClick = () => {
-    navigate("/profile");
+  const CheckConnected = async () => {
+    let response = await axios.get(base_url + "/check_connected");
+    return response.data.ok === true;
   };
 
-  const HandleFavoritesClick = () => {
-    navigate("/favorites");
+  const HandleProfileClick = async () => {
+    if ((await CheckConnected()) === true) navigate("/profile");
+    else navigate("/register");
   };
 
-  const HandleShoppingCartClick = () => {
-    navigate("/shopping_cart");
+  const HandleFavoritesClick = async () => {
+    if ((await CheckConnected()) === true) navigate("/favorites");
+    else navigate("/register");
   };
 
-  const HandleGoToAddProductToDatabase = () => {
-    navigate("/add_product_to_database");
+  const HandleShoppingCartClick = async () => {
+    if ((await CheckConnected()) === true) navigate("/shopping_cart");
+    else navigate("/register");
+  };
+
+  const HandleGoToAddProductToDatabase = async () => {
+    if ((await CheckConnected()) === true) navigate("/add_product_to_database");
+    else navigate("/register");
   };
 
   const GetUserType = async () => {
