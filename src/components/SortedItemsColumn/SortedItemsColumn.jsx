@@ -34,10 +34,7 @@ const SortedItemsColumn = ({
           button={
             <div className="filter_button">
               <p className="filter_button_text">FILTER</p>
-              <img
-                src="../../public/down_arrow.png"
-                className="filter_button_image"
-              />
+              <img src="/down_arrow.png" className="filter_button_image" />
             </div>
           }
         >

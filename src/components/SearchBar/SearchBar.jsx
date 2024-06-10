@@ -128,7 +128,7 @@ const SearchBar = ({ className }) => {
           {isXVisible && (
             <img
               className="x_icon_search_bar"
-              src="../../../public/x.jpg"
+              src="/x.jpg"
               onClick={EraseSearchText}
             />
           )}

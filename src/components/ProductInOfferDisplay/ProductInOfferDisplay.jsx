@@ -5,7 +5,7 @@ import axios from "axios";
 import { AppContext } from "../../Contexts/AppContext";
 import base_url from "../../base_url";
 
-const loading_img = "../../../public/no_image.png";
+const loading_img = "/no_image.png";
 
 const ProductInOfferDisplay = ({ product, className }) => {
   const navigate = useNavigate();

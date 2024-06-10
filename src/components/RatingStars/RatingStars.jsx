@@ -1,8 +1,8 @@
 import React from "react";
 import "./RatingStars.css";
 
-const emptyStarPath = "../../public/empty_star.png";
-const fullStarPath = "../../public/full_star.png";
+const emptyStarPath = "/empty_star.png";
+const fullStarPath = "/full_star.png";
 
 const RatingStars = ({ value, className, nrReviews }) => {
   const stars = [1, 2, 3, 4, 5];

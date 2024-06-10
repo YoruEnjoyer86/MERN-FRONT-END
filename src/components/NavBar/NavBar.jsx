@@ -10,7 +10,7 @@ import axios from "axios";
 import CategoriesButton from "../CategoriesButton/CategoriesButton.jsx";
 import base_url from "../../base_url.js";
 
-const placeHolderCategoryImage = "../../public/shopping_cart_hover.png";
+const placeHolderCategoryImage = "/shopping_cart_hover.png";
 
 const NavBar = ({ className = "" }) => {
   const { notifications } = useContext(AppContext);
@@ -56,7 +56,7 @@ const NavBar = ({ className = "" }) => {
       <CategoriesButton />
       <img
         className="logo_image"
-        src="../../../public/logo.png"
+        src="/logo.png"
         subcategories={[]}
         onClick={HandleLogoClick}
       />
@@ -66,8 +66,8 @@ const NavBar = ({ className = "" }) => {
         onClick={HandleProfileClick}
         className="noShrink"
         text=""
-        imgSrc="/public/profile.png"
-        hoverImgSrc="../../../public/profile_hover.png"
+        imgSrc="/profile.png"
+        hoverImgSrc="/profile_hover.png"
       ></NavBarIcon>
       {(user_type === undefined || user_type === 0) && (
         <>
@@ -76,16 +76,16 @@ const NavBar = ({ className = "" }) => {
             onClick={HandleFavoritesClick}
             className="noShrink"
             text=""
-            imgSrc="../../../public/favorites.png"
-            hoverImgSrc="../../../public/favorites_hover.png"
+            imgSrc="/favorites.png"
+            hoverImgSrc="/favorites_hover.png"
           ></NavBarIcon>
           <NavBarIcon
             nrNotifications={notifications.cart}
             onClick={HandleShoppingCartClick}
             className="noShrink"
             text=""
-            imgSrc="../../../public/shopping_cart.png"
-            hoverImgSrc="../../../public/shopping_cart_hover.png"
+            imgSrc="/shopping_cart.png"
+            hoverImgSrc="/shopping_cart_hover.png"
           ></NavBarIcon>
         </>
       )}
@@ -96,8 +96,8 @@ const NavBar = ({ className = "" }) => {
           onClick={HandleGoToAddProductToDatabase}
           className="noShrink"
           text=""
-          imgSrc="../../../public/upload_image.png"
-          hoverImgSrc="../../../public/upload_image_hover.png"
+          imgSrc="/upload_image.png"
+          hoverImgSrc="/upload_image_hover.png"
         ></NavBarIcon>
       )}
     </div>

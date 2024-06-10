@@ -83,6 +83,7 @@ const App = ({ children }) => {
           set_product_page_product_id,
           CheckUserConnected,
           invisibleBoxOnClick,
+          set_notifications,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

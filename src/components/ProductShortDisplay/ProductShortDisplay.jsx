@@ -7,9 +7,9 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import base_url from "../../base_url.js";
 
-const favoriteImage = "../../public/favorites_black_heart.png";
-const notFavoriteImage = "../../public/favorites.png";
-const noImage = "../../public/no_image.png";
+const favoriteImage = "/favorites_black_heart.png";
+const notFavoriteImage = "/favorites.png";
+const noImage = "/no_image.png";
 
 const ProductShortDisplay = ({ product, className }) => {
   const [imageSrc, setImageSrc] = useState(noImage);

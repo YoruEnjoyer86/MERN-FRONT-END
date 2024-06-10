@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./PriceRow.css";
 import { AppContext } from "../../Contexts/AppContext";
 import { useNavigate } from "react-router-dom";
-const addToCartImage = "../../public/shopping_cart.png";
+const addToCartImage = "/shopping_cart.png";
 
 const PriceRow = ({ className, price, textClass, productId, context }) => {
   const { AddProductToCart, CheckUserConnected } = useContext(AppContext);

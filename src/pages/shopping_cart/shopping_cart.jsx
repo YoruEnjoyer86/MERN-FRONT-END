@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./shopping_cart.css";
 import "./shopping_cart.css";
 import NavBar from "../../components/NavBar/NavBar";
@@ -6,11 +6,13 @@ import axios from "axios";
 import ProductsDeliveredBySellerColumn from "../../components/ProductsDeliveredBySellerColumn/ProductsDeliveredBySellerColumn";
 import { useNavigate } from "react-router-dom";
 import base_url from "../../base_url";
+import { AppContext } from "../../Contexts/AppContext";
 
 const shopping_cart = () => {
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
   const [sellerProductsQuantity, setSellerProductsQuantity] = useState([]);
   const [totalProductPrice, setTotaProductPrice] = useState(0);
+  const { set_notifications, notifications } = useContext(AppContext);
 
   const navigate = new useNavigate();
 
@@ -30,6 +32,10 @@ const shopping_cart = () => {
   };
 
   useEffect(() => {
+    set_notifications({
+      ...notifications,
+      cart: 0,
+    });
     Initialize();
     window.scrollTo(0, 0);
     console.log("AHAAHAH");

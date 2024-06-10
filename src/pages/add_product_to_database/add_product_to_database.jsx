@@ -8,7 +8,7 @@ import PopupNotification from "../../components/PopupNotification/PopupNotificat
 import { AddProductToDatabaseContext } from "../../Contexts/AddProductToDatabaseContext";
 import base_url from "../../base_url";
 
-const noImageUploadedImage = "../../public/no_image.png";
+const noImageUploadedImage = "/no_image.png";
 
 const Add_product_to_database = () => {
   const navigate = useNavigate();
@@ -187,7 +187,7 @@ const Add_product_to_database = () => {
                     setProductAddNotification(false);
                   }}
                   className="x_icon_add_product_notification"
-                  src="../../public/x.jpg"
+                  src="/x.jpg"
                 />
               </div>
             </PopupNotification>

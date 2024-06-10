@@ -10,8 +10,8 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import base_url from "../../base_url.js";
 
-const rigtArrowImg = "../../public/arrow_rounded_right.svg";
-const leftArrowImg = "../../public/arrow_rounded_left.svg";
+const rigtArrowImg = "/arrow_rounded_right.svg";
+const leftArrowImg = "/arrow_rounded_left.svg";
 
 const ProductsRow = ({
   className,

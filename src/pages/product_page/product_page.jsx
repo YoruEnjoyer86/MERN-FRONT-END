@@ -18,9 +18,7 @@ const ProductPage = () => {
     FetchProduct();
   }, [product_page_product_id]);
 
-  const [prod_image_src, set_prod_image_src] = useState(
-    "../../public/no_image.png"
-  );
+  const [prod_image_src, set_prod_image_src] = useState("/no_image.png");
 
   const FetchProduct = async () => {
     if (product_page_product_id == undefined) return;

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext";
 import base_url from "../../base_url";
 
-const noImageSrc = "../../../public/no_image.png";
+const noImageSrc = "/no_image.png";
 
 const ProductsDeliveredBySellerColumn = ({
   seller,
@@ -137,10 +137,7 @@ const ProductsDeliveredBySellerColumn = ({
             <div className="name_and_notifications_column">
               {product.quantity === 0 && (
                 <div className="notification_row">
-                  <img
-                    src="../../../public/warning.png"
-                    className="notification_image"
-                  />
+                  <img src="/warning.png" className="notification_image" />
                   <p className="product_notification_text">
                     This product is no longer available.
                   </p>
@@ -162,7 +159,7 @@ const ProductsDeliveredBySellerColumn = ({
                   </p>
                   <div className="modify_quantity_row">
                     <img
-                      src="../../../public/minus.png"
+                      src="/minus.png"
                       className="plus_image"
                       onMouseUp={() => {
                         OnMinusClick(index);
@@ -174,7 +171,7 @@ const ProductsDeliveredBySellerColumn = ({
                         sellerProductsQuantity[sellerIndex][index]}
                     </p>
                     <img
-                      src="../../../public/plus.png"
+                      src="/plus.png"
                       className="plus_image"
                       onMouseUp={() => OnPlusClick(index)}
                     />
