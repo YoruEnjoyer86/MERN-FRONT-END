@@ -1,8 +1,18 @@
 import React from "react";
 import "./DotsRow.css";
+import axios from "axios";
+import base_url from "../../base_url";
 
-const unselectedDotImg = "../../public/circle.png";
-const selectedDotImg = "../../public/selected_dot.png";
+const unselectedDotImg = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "circle.png",
+  })
+).data.img;
+const selectedDotImg = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "selected_dot.png",
+  })
+).data.img;
 
 const DotsRow = ({ nrDots, currentDot, ChangeCurrentDot }) => {
   let a = Array(nrDots)

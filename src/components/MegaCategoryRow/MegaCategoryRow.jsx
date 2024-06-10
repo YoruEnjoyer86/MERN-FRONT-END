@@ -11,8 +11,15 @@ const MegaCategoryRow = ({
   setCategoriesOpen,
   FetchCategories,
 }) => {
+  const GetImage = async () => {
+    // console.log(megacategory.imageName);
+    let new_image = await axios.post(base_url + "/get_image", {
+      img_name: megacategory.imageName,
+    });
+    set_image(new_image.data.img);
+  };
+  const [image, set_image] = useState("");
   const name = megacategory.name;
-  let image = "../../../public/" + megacategory.imageName;
   const { set_search_data, search_data } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -34,6 +41,10 @@ const MegaCategoryRow = ({
     set_search_data(new_search_data);
     navigate("/search");
   };
+
+  useEffect(() => {
+    GetImage();
+  }, []);
 
   return (
     <div

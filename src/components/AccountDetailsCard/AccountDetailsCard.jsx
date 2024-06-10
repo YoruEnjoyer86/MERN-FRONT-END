@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import "./AccountDetailsCard.css";
+import axios from "axios";
+import base_url from "../../base_url";
 
-const no_image = "../../public/no_image.png";
-const edit_image_src = "../../public/edit_image.png";
+const no_image = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "no_image.png",
+  })
+).data.img;
+const edit_image_src = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "edit_image.png",
+  })
+).data.img;
 
 const AccountDetailsCard = ({ name, nickname, email, phone }) => {
   const [profilePicture, setProfilePicture] = useState(no_image);

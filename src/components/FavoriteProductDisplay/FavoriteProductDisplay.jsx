@@ -8,6 +8,18 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import base_url from "../../base_url.js";
 
+const full_star_image = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "full_star.png",
+  })
+).data.img;
+
+const red_trashcan_image = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "red_trash.png",
+  })
+).data.img;
+
 const FavoriteProductDisplay = ({ product }) => {
   const { GetProductsOfSelectedList, currentListProducts } =
     useContext(FavoritePageContext);
@@ -86,7 +98,7 @@ const FavoriteProductDisplay = ({ product }) => {
           </p>
           <div className="seller_rating_row">
             <p className="number_stars_text">{4.3}</p>
-            <img className="seller_star" src="../../../public/full_star.png" />
+            <img className="seller_star" src={full_star_image} />
           </div>
         </div>
         <PriceRow
@@ -97,7 +109,7 @@ const FavoriteProductDisplay = ({ product }) => {
         />
         <div className="remove_from_list_row" onClick={RemoveFromFavorites}>
           <p className="remove_item_text">Remove</p>
-          <img className="trash_icon" src="../../../public/red_trash.png" />
+          <img className="trash_icon" src={red_trashcan_image} />
         </div>
       </div>
     </div>

@@ -1,6 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./InputWithLabel.css";
 import { AddProductToDatabaseContext } from "../../Contexts/AddProductToDatabaseContext";
+import axios from "axios";
+import base_url from "../../base_url";
+
+const favorites_image = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "favorites.png",
+  })
+).data.img;
+
+const circle_image = (
+  await axios.post(base_url + "/get_image", {
+    img_name: "circle.png",
+  })
+).data.img;
 
 const OnValueChange = (event, setValue) => {
   setValue(event.target.value);
@@ -90,10 +104,7 @@ const InputWithLabel = ({
               className="button_with_image_text margin_down_for_button"
               onClick={OnUploadClick}
             >
-              <img
-                className="image_button"
-                src="../../../public/favorites.png"
-              />
+              <img className="image_button" src={favorites_image} />
               <h3>Upload image</h3>
             </div>
             <div
@@ -102,7 +113,7 @@ const InputWithLabel = ({
                 OnPasteImageFromClipboard(event);
               }}
             >
-              <img className="image_button" src="../../../public/circle.png" />
+              <img className={circle_image} />
               <h3>Paste from clipboard</h3>
             </div>
           </div>
