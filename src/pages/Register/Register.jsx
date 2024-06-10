@@ -113,7 +113,6 @@ const Register = () => {
               type="checkbox"
             ></input>
           </label>
-          // <span className="space"></span>
         )}
 
         <div className="register_buttons_row">

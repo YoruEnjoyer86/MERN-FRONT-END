@@ -14,7 +14,7 @@ const profile = () => {
 
   const CheckUserConnected = async () => {
     let res = await axios.get(base_url + "/check_connected");
-    // console.log("CONNECTED : " + res.data.ok);
+    console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
 
