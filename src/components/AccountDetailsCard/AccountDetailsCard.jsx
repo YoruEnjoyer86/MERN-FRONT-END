@@ -26,7 +26,7 @@ const AccountDetailsCard = ({ name, nickname, email, phone }) => {
           <div className="profile_image_container">
             <img src={profilePicture} className="profile_picture" />
             <img
-              src={"/edit_image_src.png"}
+              src="/edit_image.png"
               className="edit_image_picture"
               onClick={OnEditProfilePicture}
             ></img>
