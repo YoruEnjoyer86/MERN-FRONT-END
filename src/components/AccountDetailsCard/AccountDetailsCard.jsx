@@ -3,19 +3,19 @@ import "./AccountDetailsCard.css";
 import axios from "axios";
 import base_url from "../../base_url";
 
-const no_image = (
-  await axios.post(base_url + "/get_image", {
-    img_name: "no_image.png",
-  })
-).data.img;
-const edit_image_src = (
-  await axios.post(base_url + "/get_image", {
-    img_name: "edit_image.png",
-  })
-).data.img;
+// const no_image = (
+//   await axios.post(base_url + "/get_image", {
+//     img_name: "no_image.png",
+//   })
+// ).data.img;
+// const edit_image_src = (
+//   await axios.post(base_url + "/get_image", {
+//     img_name: "edit_image.png",
+//   })
+// ).data.img;
 
 const AccountDetailsCard = ({ name, nickname, email, phone }) => {
-  const [profilePicture, setProfilePicture] = useState(no_image);
+  const [profilePicture, setProfilePicture] = useState("no_image");
 
   const OnChangeNickName = () => {
     alert("Changing nickname!");
@@ -37,7 +37,7 @@ const AccountDetailsCard = ({ name, nickname, email, phone }) => {
           <div className="profile_image_container">
             <img src={profilePicture} className="profile_picture" />
             <img
-              src={edit_image_src}
+              src={"edit_image_src"}
               className="edit_image_picture"
               onClick={OnEditProfilePicture}
             ></img>

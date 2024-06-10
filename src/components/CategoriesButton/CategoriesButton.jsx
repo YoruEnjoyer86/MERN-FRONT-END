@@ -7,11 +7,11 @@ import axios from "axios";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import base_url from "../../base_url";
 
-const more_options_image = (
-  await axios.post(base_url + "/get_image", {
-    img_name: "three_lines.png",
-  })
-).data.img;
+// const more_options_image = (
+//   await axios.post(base_url + "/get_image", {
+//     img_name: "three_lines.png",
+//   })
+// ).data.img;
 
 const CategoriesButton = () => {
   const [megaCategories, setMegaCategories] = useState([]);
@@ -44,7 +44,7 @@ const CategoriesButton = () => {
     <DropdownButton
       isBackgroundVisible={true}
       className={"more_options_button"}
-      button={<img src={more_options_image} className="more_options_image" />}
+      button={<img src={"more_options_image"} className="more_options_image" />}
     >
       <div className="dropdown_categories_row">
         <div className="megacategories_name_and_icon_column">

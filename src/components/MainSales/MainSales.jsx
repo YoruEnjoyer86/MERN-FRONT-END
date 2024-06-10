@@ -3,17 +3,17 @@ import "./MainSales.css";
 import axios from "axios";
 import base_url from "../../base_url";
 
-const left_arrow_image = (
-  await axios.post(base_url + "/get_image", {
-    img_name: "arrow_rounded_left.svg",
-  })
-).data.img;
+// const left_arrow_image = (
+//   await axios.post(base_url + "/get_image", {
+//     img_name: "arrow_rounded_left.svg",
+//   })
+// ).data.img;
 
-const right_arrow_image = (
-  await axios.post(base_url + "/get_image", {
-    img_name: "arrow_rounded_right.svg",
-  })
-).data.img;
+// const right_arrow_image = (
+//   await axios.post(base_url + "/get_image", {
+//     img_name: "arrow_rounded_right.svg",
+//   })
+// ).data.img;
 
 const MainSales = ({ offers }) => {
   const [displayed_offer_index, set_displayed_offer_index] = useState(0);
@@ -61,11 +61,11 @@ const MainSales = ({ offers }) => {
       }}
     >
       <button className="arrow_button" onClick={GoToPrevOffer}>
-        <img className="arrow" src={left_arrow_image} />
+        <img className="arrow" src={"left_arrow_image"} />
       </button>
       <div className="contents">{offers[displayed_offer_index]}</div>
       <button className="arrow_button" onClick={GoToNextOffer}>
-        <img className="arrow" src={right_arrow_image} />
+        <img className="arrow" src="/arrow_rounded_right.svg" />
       </button>
     </div>
   );
