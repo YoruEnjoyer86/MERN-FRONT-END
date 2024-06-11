@@ -18,9 +18,18 @@ const FavoriteProductDisplay = ({ product }) => {
   const [seller_object, set_seller_object] = useState(undefined);
 
   const RemoveFromFavorites = async () => {
-    let res = await axios.post(base_url + "/remove_product_from_favorites", {
-      id: product._id,
-    });
+    let token = localStorage.getItem("access_token");
+    let res = await axios.post(
+      base_url + "/remove_product_from_favorites",
+      {
+        id: product._id,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     // console.log(res.data);
     GetProductsOfSelectedList();
   };
@@ -40,6 +49,7 @@ const FavoriteProductDisplay = ({ product }) => {
   }, [currentListProducts]);
 
   const GoToProductPage = () => {
+    localStorage.setItem("product_page_product_id", product._id);
     set_product_page_product_id(product._id);
     navigate("/product");
   };

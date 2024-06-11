@@ -12,26 +12,19 @@ axios.defaults.withCredentials = true;
 const profile = () => {
   const navigate = useNavigate();
 
-  const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
-    console.log("CONNECTED : " + res.data.ok);
-    return res.data.ok;
-  };
-
   const ProfileInitialize = async () => {
-    if ((await CheckUserConnected()) == true) {
-      axios
-        .get(base_url + "/profile")
-        .then((res) => {
-          // console.log(res);
-          setUserName(res.data.username);
-          setEmail(res.data.email);
-          setNickname(res.data.nickname);
-          setPhone(res.data.phone);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/profile", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    if (res.status === 200) {
+      // console.log(res);
+      setUserName(res.data.username);
+      setEmail(res.data.email);
+      setNickname(res.data.nickname);
+      setPhone(res.data.phone);
     } else {
       navigate("/register");
     }
@@ -51,8 +44,7 @@ const profile = () => {
   };
 
   const HandleLogoutClick = async () => {
-    let res = await axios.get(base_url + "/logout");
-    // console.log("RASPUNS LOGOUT : " + res);
+    localStorage.removeItem("access_token");
     navigate("/register");
   };
 

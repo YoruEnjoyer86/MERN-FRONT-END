@@ -32,7 +32,13 @@ const Home = () => {
   };
 
   const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
     return res.data.ok;
   };
 

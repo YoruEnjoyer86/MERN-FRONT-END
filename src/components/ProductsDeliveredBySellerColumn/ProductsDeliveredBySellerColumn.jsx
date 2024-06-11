@@ -24,18 +24,33 @@ const ProductsDeliveredBySellerColumn = ({
   const [seller_object, set_seller_object] = useState(undefined);
 
   const OnRemoveFromCart = async (prodIndex) => {
-    let res = await axios.post(base_url + "/remove_product_from_cart", {
-      id: products[prodIndex]._id,
-    });
+    let token = localStorage.getItem("access_token");
+    let res = await axios.post(
+      base_url + "/remove_product_from_cart",
+      {
+        id: products[prodIndex]._id,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     fetchProductsFromBackend();
     // console.log(res);
   };
 
   const OnPlusClick = async (prodIndex) => {
+    let token = localStorage.getItem("access_token");
     let res = await axios.post(
       base_url + "/increase_product_quantity_in_cart",
       {
         id: products[prodIndex]._id,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       }
     );
     let newProductsQuantities = sellerProductsQuantity[sellerIndex];
@@ -49,10 +64,16 @@ const ProductsDeliveredBySellerColumn = ({
 
   const OnMinusClick = async (prodIndex) => {
     //console.log(products[prodIndex]);
+    let token = localStorage.getItem("access_token");
     let res = await axios.post(
       base_url + "/decrese_quantity_product_from_cart",
       {
         id: products[prodIndex]._id,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       }
     );
 
@@ -81,6 +102,7 @@ const ProductsDeliveredBySellerColumn = ({
   };
 
   const GoToProductPage = (prodIndex) => {
+    localStorage.setItem("product_page_product_id", products[prodIndex]._id);
     set_product_page_product_id(products[prodIndex]._id);
     navigate("/product");
   };

@@ -9,7 +9,7 @@
   align-items: center;
   height: 40%;
   width: 5%;
-  z-index: 20;
+  z-index: 1;
 }
 
 .drop_down_button_container:hover {

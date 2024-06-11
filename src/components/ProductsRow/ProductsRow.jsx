@@ -96,10 +96,12 @@ const ProductsRow = ({
     if (subcategoryID != -1) new_search_data.subcategory = actualCategory;
     else if (categoryID != -1) new_search_data.category = actualCategory;
     else new_search_data.mega_category = actualCategory;
-    await axios.post(base_url + "/set_search_data", {
+
+    let res = await axios.post(base_url + "/process_search_data", {
       search_data: new_search_data,
     });
-    set_search_data(new_search_data);
+    localStorage.setItem("search_data", res.data);
+    set_search_data(res.data);
     navigate("/search");
   };
 

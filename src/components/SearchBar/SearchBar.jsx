@@ -25,10 +25,11 @@ const SearchBar = ({ className }) => {
     let new_search_data = {
       text,
     };
-    await axios.post(base_url + "/set_search_data", {
+    let res = await axios.post(base_url + "/process_search_data", {
       search_data: new_search_data,
     });
-    set_search_data(new_search_data);
+    localStorage.setItem("search_data", res.data);
+    set_search_data(res.data);
     navigate("/search");
     EraseSearchText();
     setAppliedSearchFilters({});
@@ -83,11 +84,12 @@ const SearchBar = ({ className }) => {
   }, []);
 
   const OnCategoryClick = async (cat) => {
-    let res = await axios.post(base_url + "/set_search_data", {
+    let res = await axios.post(base_url + "/process_search_data", {
       search_data: {
         category_of_unknown_type: cat,
       },
     });
+    localStorage.setItem("search_data", res.data);
     set_search_data(res.data);
     // console.log("SEARCH DATA AFTER ON CAT CLICK : ", res.data);
     GoToSearchPage();
@@ -99,9 +101,7 @@ const SearchBar = ({ className }) => {
   }, [searchResults]);
 
   const OnProductClick = async (prod) => {
-    await axios.post(base_url + "/set_product_page_product_id", {
-      id: prod._id,
-    });
+    localStorage.setItem("product_page_product_id", prod._id);
     set_product_page_product_id(prod._id);
     GoToProduct(prod);
   };

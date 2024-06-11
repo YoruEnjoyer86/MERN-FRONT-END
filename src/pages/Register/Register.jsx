@@ -23,8 +23,10 @@ const Register = () => {
         email,
         password,
       });
-      if (res.data.ok) navigate("/profile");
-      else console.log(res.data.message);
+      if (res.data.ok) {
+        navigate("/profile");
+        localStorage.setItem("access_token", res.data.access_token);
+      } else console.log(res.data.message);
     } else console.log("Missing field!");
   };
 
@@ -37,8 +39,11 @@ const Register = () => {
         password,
         user_type: seller_account_selected === true ? 1 : 0,
       });
-      if (res.data.ok) navigate("/profile");
-      else console.log("ERROR AT SAVING ACCOUNT");
+      if (res.data.ok) {
+        localStorage.setItem("access_token", res.data.access_token);
+        // console.log("TOKEN FR IS " + res.data.access_token);
+        navigate("/profile");
+      } else console.log("ERROR AT SAVING ACCOUNT");
     } else console.log("Missing field!");
   };
 

@@ -20,9 +20,7 @@ const ProductInOfferDisplay = ({ product, className }) => {
   };
 
   let GoToProductPage = async () => {
-    await axios.post(base_url + "/set_product_page_product_id", {
-      id: product._id,
-    });
+    localStorage.setItem("product_page_product_id", product._id);
     set_product_page_product_id(product._id);
     navigate("/product");
   };

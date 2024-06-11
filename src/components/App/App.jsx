@@ -31,10 +31,12 @@ const App = ({ children }) => {
   }, [search_data]);
 
   const Initialize = async () => {
-    let res = await axios.get(base_url + "/get_search_data");
-    set_search_data(res.data.search_data);
-    res = await axios.get(base_url + "/get_product_page_product_id");
-    set_product_page_product_id(res.data);
+    // let res = await axios.get(base_url + "/get_search_data");
+    let local_search_data = localStorage.getItem("search_data");
+    set_search_data(local_search_data);
+    set_product_page_product_id(
+      localStorage.getItem("product_page_product_id")
+    );
     // console.log(res.data.search_categories);
   };
 
@@ -47,16 +49,27 @@ const App = ({ children }) => {
   }, [product_page_product_id]);
 
   const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     return res.data.ok;
   };
 
   const AddProductToCart = async (productId) => {
     console.log("ADDING ITEM TO CART");
+    let token = localStorage.getItem("access_token");
     let res = await axios.post(
       base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       }
     );
     set_notifications({

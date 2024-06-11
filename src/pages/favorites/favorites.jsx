@@ -28,17 +28,29 @@ const favorites = () => {
       return;
     }
     console.log("ADDING ITEM TO CART");
+    let token = localStorage.getItem("access_token");
     let res = await axios.post(
       base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       }
     );
     console.log(res.data);
   };
 
   const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
     //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -62,10 +74,16 @@ const favorites = () => {
   const GetProductsOfSelectedList = async () => {
     // console.log(lists);
     if (lists[currentListIndex] != undefined) {
+      let token = localStorage.getItem("access_token");
       let res = await axios.post(
         base_url + "/get_products_from_favorite_list",
         {
           name: lists[currentListIndex].name,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         }
       );
       if (res.data.ok) {
@@ -78,7 +96,12 @@ const favorites = () => {
   };
 
   const GetListsFromBackend = async () => {
-    let res = await axios.get(base_url + "/get_favorite_lists");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/get_favorite_lists", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     let listsDetails = res.data.lists;
     setLists(listsDetails);
     setListsReactItems(

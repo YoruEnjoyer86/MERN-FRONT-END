@@ -17,7 +17,13 @@ const shopping_cart = () => {
   const navigate = new useNavigate();
 
   const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
     //console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -38,11 +44,16 @@ const shopping_cart = () => {
     });
     Initialize();
     window.scrollTo(0, 0);
-    console.log("AHAAHAH");
+    // console.log("AHAAHAH");
   }, []);
 
   const GetProductsFromBackend = async () => {
-    let res = await axios.post(base_url + "/get_products_from_cart");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/get_products_from_cart", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     let products = res.data.products;
     let prodSellerMap = new Map();
     products.forEach((product) => {

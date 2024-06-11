@@ -29,7 +29,13 @@ const Add_product_to_database = () => {
   const [subcategories, setSubcategories] = useState([]);
 
   const CheckUserConnected = async () => {
-    let res = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let res = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
     // console.log("CONNECTED : " + res.data.ok);
     return res.data.ok;
   };
@@ -93,15 +99,18 @@ const Add_product_to_database = () => {
       setProductAddNotification(true);
       return;
     }
-
-    let user_id = await axios.get(base_url + "/check_connected");
-    user_id = user_id.data.user_id;
+    let token = localStorage.getItem("access_token");
+    let response = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
 
     let res = await axios.post(base_url + "/add_product_to_database", {
       name,
       description,
       quantity,
-      seller: user_id,
+      seller: response.data.user._id,
       price,
       mega_category: megaCategories[megaCategoryIndex],
       category: categories[categoryIndex],

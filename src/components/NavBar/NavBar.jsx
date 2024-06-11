@@ -22,7 +22,12 @@ const NavBar = ({ className = "" }) => {
   };
 
   const CheckConnected = async () => {
-    let response = await axios.get(base_url + "/check_connected");
+    let token = localStorage.getItem("access_token");
+    let response = await axios.get(base_url + "/check_connected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     return response.data.ok === true;
   };
 
@@ -47,13 +52,16 @@ const NavBar = ({ className = "" }) => {
   };
 
   const GetUserType = async () => {
-    let res = await axios.get(base_url + "/check_connected");
-    if (res.data.ok) {
-      let type_response = await axios.get(base_url + "/get_user_type");
-      set_user_type(type_response.data);
-      console.log(type_response.data);
-      // console.log("USER CONNECTED!");
-    }
+    // console.log("GETTING USER TYPE👌");
+    let token = localStorage.getItem("access_token");
+    let type_response = await axios.get(base_url + "/get_user_type", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    if (type_response.data != undefined) set_user_type(type_response.data);
+    // console.log("USER TYPE IS : " + type_response.data);
+    // console.log("USER CONNECTED!");
   };
 
   useState(() => {

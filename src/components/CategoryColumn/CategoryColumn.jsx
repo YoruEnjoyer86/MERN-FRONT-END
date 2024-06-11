@@ -22,10 +22,11 @@ const CategoryColumn = ({ category }) => {
     let new_search_data = {
       category,
     };
-    let res = await axios.post(base_url + "/set_search_data", {
+    let res = await axios.post(base_url + "/process_search_data", {
       search_data: new_search_data,
     });
-    set_search_data(new_search_data);
+    localStorage.setItem("search_data", res.data);
+    set_search_data(res.data);
     navigate("/search");
   };
 
@@ -33,10 +34,11 @@ const CategoryColumn = ({ category }) => {
     let new_search_data = {
       subcategory,
     };
-    let res = await axios.post(base_url + "/set_search_data", {
+    let res = await axios.post(base_url + "/process_search_data", {
       search_data: new_search_data,
     });
-    set_search_data(new_search_data);
+    localStorage.setItem("search_data", res.data);
+    set_search_data(res.data);
     navigate("/search");
   };
 
