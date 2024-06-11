@@ -12,11 +12,8 @@ const MegaCategoryRow = ({
   FetchCategories,
 }) => {
   const GetImage = async () => {
-    // console.log(megacategory.imageName);
-    let new_image = await axios.post(base_url + "/get_image", {
-      img_name: megacategory.imageName,
-    });
-    set_image(new_image.data.img);
+    console.log(megacategory.imageName);
+    set_image("/" + megacategory.imageName);
   };
   const [image, set_image] = useState("");
   const name = megacategory.name;
