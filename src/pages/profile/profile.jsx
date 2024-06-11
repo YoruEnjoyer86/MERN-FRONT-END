@@ -14,10 +14,8 @@ const profile = () => {
 
   const ProfileInitialize = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/profile", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/profile", {
+      token,
     });
     if (res.status === 200) {
       // console.log(res);

@@ -33,11 +33,7 @@ const favorites = () => {
       base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
+        token,
       }
     );
     console.log(res.data);
@@ -45,10 +41,8 @@ const favorites = () => {
 
   const CheckUserConnected = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/check_connected", {
+      token,
     });
 
     //console.log("CONNECTED : " + res.data.ok);
@@ -79,11 +73,7 @@ const favorites = () => {
         base_url + "/get_products_from_favorite_list",
         {
           name: lists[currentListIndex].name,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+          token,
         }
       );
       if (res.data.ok) {
@@ -97,10 +87,8 @@ const favorites = () => {
 
   const GetListsFromBackend = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/get_favorite_lists", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/get_favorite_lists", {
+      token,
     });
     let listsDetails = res.data.lists;
     setLists(listsDetails);

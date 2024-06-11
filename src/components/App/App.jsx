@@ -50,10 +50,8 @@ const App = ({ children }) => {
 
   const CheckUserConnected = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/check_connected", {
+      token,
     });
     return res.data.ok;
   };
@@ -65,11 +63,7 @@ const App = ({ children }) => {
       base_url + "/increase_product_quantity_in_cart",
       {
         id: productId,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
+        token,
       }
     );
     set_notifications({

@@ -30,10 +30,8 @@ const Add_product_to_database = () => {
 
   const CheckUserConnected = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/check_connected", {
+      token,
     });
 
     // console.log("CONNECTED : " + res.data.ok);
@@ -100,10 +98,8 @@ const Add_product_to_database = () => {
       return;
     }
     let token = localStorage.getItem("access_token");
-    let response = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let response = await axios.post(base_url + "/check_connected", {
+      token,
     });
 
     let res = await axios.post(base_url + "/add_product_to_database", {
@@ -132,17 +128,10 @@ const Add_product_to_database = () => {
     );
     // console.log("NAME: " + imageToUpload.name);
     // console.log("TYPE: " + imageToUpload.type);
-    res = await axios.post(
-      base_url + "/add_product_image",
-      {
-        file: imageToUpload,
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    res = await axios.post(base_url + "/add_product_image", {
+      file: imageToUpload,
+      token,
+    });
     if (res.status !== 200) {
       console.log(res.data.message);
       setProductAddedSuccessfully(false);

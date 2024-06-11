@@ -19,17 +19,10 @@ const ProductShortDisplay = ({ product, className }) => {
 
   const FetchIsFavorite = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.post(
-      base_url + "/is_product_favorite",
-      {
-        id: product._id,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    let res = await axios.post(base_url + "/is_product_favorite", {
+      id: product._id,
+      token,
+    });
     if (res.status === 200) setFavorite(res.data.isFavorite);
     // console.log(res.data.isFavorite);
   };
@@ -45,27 +38,19 @@ const ProductShortDisplay = ({ product, className }) => {
 
   const CheckUserConnected = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/check_connected", {
+      token,
     });
 
     return res.data.ok;
   };
 
   const RequestImageFromBackend = async () => {
-    let response = await axios.post(
-      base_url + "/api/get_product_image",
-      {
-        product_id: product._id,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    let token = localStorage.getItem("access_token");
+    let response = await axios.post(base_url + "/api/get_product_image", {
+      product_id: product._id,
+      token,
+    });
     if (response.status === 200) setImageSrc(response.data.img);
     else console.log(response.data.message);
   };
@@ -73,17 +58,10 @@ const ProductShortDisplay = ({ product, className }) => {
   const HandleFavoriteButtonClick = async () => {
     if (isFavorite) {
       let token = localStorage.getItem("access_token");
-      let res = await axios.post(
-        base_url + "/remove_product_from_favorites",
-        {
-          id: product._id,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      let res = await axios.post(base_url + "/remove_product_from_favorites", {
+        id: product._id,
+        token,
+      });
       if (res.data.ok) console.log("product removed from favorites!");
       else
         console.log(
@@ -91,17 +69,10 @@ const ProductShortDisplay = ({ product, className }) => {
         );
     } else {
       let token = localStorage.getItem("access_token");
-      let res = await axios.post(
-        base_url + "/add_product_to_favorites",
-        {
-          id: product._id,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      let res = await axios.post(base_url + "/add_product_to_favorites", {
+        id: product._id,
+        token,
+      });
       if (res.data.ok) {
         console.log("product added to favorites!");
       } else

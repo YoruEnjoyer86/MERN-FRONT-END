@@ -19,17 +19,10 @@ const FavoriteProductDisplay = ({ product }) => {
 
   const RemoveFromFavorites = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.post(
-      base_url + "/remove_product_from_favorites",
-      {
-        id: product._id,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    let res = await axios.post(base_url + "/remove_product_from_favorites", {
+      id: product._id,
+      token,
+    });
     // console.log(res.data);
     GetProductsOfSelectedList();
   };

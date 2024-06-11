@@ -18,10 +18,8 @@ const shopping_cart = () => {
 
   const CheckUserConnected = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/check_connected", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/check_connected", {
+      token,
     });
 
     //console.log("CONNECTED : " + res.data.ok);
@@ -49,10 +47,8 @@ const shopping_cart = () => {
 
   const GetProductsFromBackend = async () => {
     let token = localStorage.getItem("access_token");
-    let res = await axios.get(base_url + "/get_products_from_cart", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    let res = await axios.post(base_url + "/get_products_from_cart", {
+      token,
     });
     let products = res.data.products;
     let prodSellerMap = new Map();
