@@ -22,7 +22,7 @@ const ProductsRow = ({
 }) => {
   const [firstItemIndex, setFirstItemIndex] = useState(0);
   const [products, setProducts] = useState([]);
-  const [actualCategory, setActualCategory] = useState({}); // o sa fie ori category ori megacategory ori subcategory in functie de id-ul care nu e -1
+  const [actualCategory, setActualCategory] = useState(undefined); // o sa fie ori category ori megacategory ori subcategory in functie de id-ul care nu e -1
   const navigate = useNavigate();
   const { set_search_data } = useContext(AppContext);
 
@@ -74,7 +74,7 @@ const ProductsRow = ({
 
   useEffect(() => {
     //console.log(actualCategory);
-    GetProductsFromBackend();
+    if (actualCategory != undefined) GetProductsFromBackend();
   }, [actualCategory]);
 
   const HandleOnRightArrowClick = () => {
@@ -108,7 +108,7 @@ const ProductsRow = ({
   return (
     <div className="container">
       <p className="category_text" onClick={OnActualCategoryNameClick}>
-        {actualCategory.name}
+        {actualCategory === undefined ? "loading..." : actualCategory.name}
       </p>
       <div className={"products_and_arrows_row " + className}>
         {firstItemIndex - maxDisplayedItems >= 0 && (
