@@ -1,6 +1,7 @@
 # E-commerce web application front end
 
-# To access the site [CLICK HERE](https://ecommerce-bibart-alexandru.onrender.com)
+# To access the site [CLICK HERE](https://ecommerce-bibart-alexandru.onrender.com). 
+Keep in mind the deployed site can be VERY slow at times.
 
 ## Made using the MERN stack.
 
