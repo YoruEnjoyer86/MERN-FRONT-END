@@ -53,6 +53,7 @@ const ProductsRow = ({
         }
       );
     setActualCategory(axiosResult.data.result);
+    console.log("Actual category is : " + axiosResult.data.result.name);
   };
 
   const GetProductsFromBackend = async () => {
@@ -63,7 +64,8 @@ const ProductsRow = ({
         categoryType: subcategoryID != -1 ? 0 : categoryID != -1 ? 1 : 2,
       }
     );
-    // console.log(res.data);
+    console.log("PRODUCTS CHANGED FOR CAT: " + actualCategory._id);
+    console.log(res.data.products);
     setProducts(res.data.products);
     //AddToCurrentlyDisplayedProducts(res.data);
   };
