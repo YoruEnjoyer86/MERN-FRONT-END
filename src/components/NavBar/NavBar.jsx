@@ -13,7 +13,7 @@ import base_url from "../../base_url.js";
 const placeHolderCategoryImage = "/shopping_cart_hover.png";
 
 const NavBar = ({ className = "" }) => {
-  const { notifications } = useContext(AppContext);
+  const { notifications, window_size } = useContext(AppContext);
   const navigate = useNavigate();
   const [user_type, set_user_type] = useState(undefined);
 
@@ -68,15 +68,18 @@ const NavBar = ({ className = "" }) => {
     GetUserType();
   }, []);
 
+  //imi trebe spanu cu space pt ca am flex-grow pe searchbar si nu ia in considerare marginu. CategoriesButton e cu position absolute si nu are widthu coresp
   return (
     <div className={"nav_bar " + className}>
       <CategoriesButton />
-      <img
-        className="logo_image"
-        src="/logo.png"
-        subcategories={[]}
-        onClick={HandleLogoClick}
-      />
+      {window_size.width >= 700 && (
+        <img
+          className="logo_image"
+          src="/logo.png"
+          subcategories={[]}
+          onClick={HandleLogoClick}
+        />
+      )}
       <SearchBar />
       <NavBarIcon
         nrNotifications={notifications.profile}
@@ -86,26 +89,27 @@ const NavBar = ({ className = "" }) => {
         imgSrc="/profile.png"
         hoverImgSrc="/profile_hover.png"
       ></NavBarIcon>
-      {(user_type === undefined || user_type === 0) && (
-        <>
-          <NavBarIcon
-            nrNotifications={notifications.favorites}
-            onClick={HandleFavoritesClick}
-            className="noShrink"
-            text=""
-            imgSrc="/favorites.png"
-            hoverImgSrc="/favorites_hover.png"
-          ></NavBarIcon>
-          <NavBarIcon
-            nrNotifications={notifications.cart}
-            onClick={HandleShoppingCartClick}
-            className="noShrink"
-            text=""
-            imgSrc="/shopping_cart.png"
-            hoverImgSrc="/shopping_cart_hover.png"
-          ></NavBarIcon>
-        </>
-      )}
+      {(user_type === undefined || user_type === 0) &&
+        window_size.width >= 450 && (
+          <>
+            <NavBarIcon
+              nrNotifications={notifications.favorites}
+              onClick={HandleFavoritesClick}
+              className="noShrink"
+              text=""
+              imgSrc="/favorites.png"
+              hoverImgSrc="/favorites_hover.png"
+            ></NavBarIcon>
+            <NavBarIcon
+              nrNotifications={notifications.cart}
+              onClick={HandleShoppingCartClick}
+              className="noShrink"
+              text=""
+              imgSrc="/shopping_cart.png"
+              hoverImgSrc="/shopping_cart_hover.png"
+            ></NavBarIcon>
+          </>
+        )}
 
       {user_type === 1 && (
         <NavBarIcon

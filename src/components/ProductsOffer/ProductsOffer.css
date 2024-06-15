@@ -44,7 +44,7 @@
 .products_offer .products {
   height: 100%;
   max-width: 60%;
-  width: 100%;
+  flex-grow: 1;
   /* background-color: red; */
   display: flex;
   justify-content: space-between;
@@ -52,6 +52,5 @@
 }
 
 .products_offer .product {
-  max-width: 33%;
-  width: 100%;
+  flex-grow: 1;
 }

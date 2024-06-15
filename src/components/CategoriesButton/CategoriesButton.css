@@ -1,5 +1,6 @@
 .more_options_button {
   position: relative;
+  padding-right: 3rem;
   /* left: 0; */
   /* transform: translateX(6rem); */
 }
@@ -9,7 +10,7 @@
   z-index: 1;
   /* background-color: red; */
   display: flex;
-  height: 39.7rem;
+  height: 70vh;
   gap: 1rem;
   filter: drop-shadow(0 0.5rem 0.75rem black);
 }
@@ -35,4 +36,5 @@
 .megacategories_name_and_icon_column {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }

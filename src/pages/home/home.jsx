@@ -65,12 +65,12 @@ const Home = () => {
         <NavBar />
         <MainSales
           offers={[
-            <ProductsOffer
-              key={112}
-              cat_id={GetFeaturedCategories()[0]}
-              description="Discover unbeatable prices on top-quality computer components."
-              title="Build your own PC!"
-            />,
+            // <ProductsOffer
+            //   key={112}
+            //   cat_id={GetFeaturedCategories()[0]}
+            //   description="Discover unbeatable prices on top-quality computer components."
+            //   title="Build your own PC!"
+            // />,
             <ProductsOffer
               key={113}
               cat_id={GetFeaturedCategories()[1]}
@@ -80,12 +80,10 @@ const Home = () => {
           ]}
         />
         <ProductsRow
-          maxDisplayedItems={5}
           HandleAddItemToCart={HandleAddItemToCart}
           megacategoryID={popularCategoriesIDs[0]}
         />
         <ProductsRow
-          maxDisplayedItems={5}
           HandleAddItemToCart={HandleAddItemToCart}
           megacategoryID={popularCategoriesIDs[1]}
         />

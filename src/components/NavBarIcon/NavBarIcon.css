@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
   width: 10%;
-  margin-left: 3%;
   position: relative;
   top: 0;
   left: 0;
@@ -21,6 +20,7 @@
   width: 50%;
   height: 100%;
   object-fit: contain;
+  min-width: 3rem;
   position: relative;
   top: 0;
   left: 0;

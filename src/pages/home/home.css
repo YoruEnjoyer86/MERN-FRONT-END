@@ -6,6 +6,7 @@
   height: fit-content;
   width: 100%;
   padding: 6vh 6% 6vh 6%;
+  overflow: hidden;
 }
 
 /*nu este padding jos la home page pt ca e 100vh si e mai mult content*/

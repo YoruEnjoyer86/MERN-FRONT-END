@@ -15,7 +15,6 @@ const leftArrowImg = "/arrow_rounded_left.svg";
 
 const ProductsRow = ({
   className,
-  maxDisplayedItems,
   categoryID = -1,
   megacategoryID = -1,
   subcategoryID = -1,
@@ -25,6 +24,8 @@ const ProductsRow = ({
   const [actualCategory, setActualCategory] = useState(undefined); // o sa fie ori category ori megacategory ori subcategory in functie de id-ul care nu e -1
   const navigate = useNavigate();
   const { set_search_data } = useContext(AppContext);
+  const [screen_width, set_screen_width] = useState(window.innerWidth);
+  const [maxDisplayedItems, set_maxDisplayedItems] = useState(5);
 
   const FetchActualCategory = async () => {
     let axiosResult;
@@ -68,8 +69,23 @@ const ProductsRow = ({
     //AddToCurrentlyDisplayedProducts(res.data);
   };
 
+  const OnWindowWidthChange = () => {
+    set_screen_width(window.innerWidth);
+    // console.log(window.innerWidth);
+    if (window.innerWidth > 1600) set_maxDisplayedItems(5);
+    else if (window.innerWidth > 1360) set_maxDisplayedItems(4);
+    else if (window.innerWidth > 1000) set_maxDisplayedItems(3);
+    else if (window.innerWidth > 600) set_maxDisplayedItems(2);
+    else set_maxDisplayedItems(1);
+  };
+
   useEffect(() => {
     FetchActualCategory();
+    addEventListener("resize", OnWindowWidthChange);
+    OnWindowWidthChange();
+    return () => {
+      removeEventListener("resize", OnWindowWidthChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -134,6 +150,9 @@ const ProductsRow = ({
                   }
                   product={product}
                   key={index}
+                  // style={{
+                  //   width: String(100 / maxDisplayedItems) + "%",
+                  // }}
                 />
               )
           )}
@@ -148,11 +167,13 @@ const ProductsRow = ({
           </button>
         )}
       </div>
-      <DotsRow
-        nrDots={Math.ceil(products.length / maxDisplayedItems)}
-        currentDot={firstItemIndex / maxDisplayedItems}
-        ChangeCurrentDot={HandleOnDotClick}
-      />
+      {screen_width > 600 && (
+        <DotsRow
+          nrDots={Math.ceil(products.length / maxDisplayedItems)}
+          currentDot={firstItemIndex / maxDisplayedItems}
+          ChangeCurrentDot={HandleOnDotClick}
+        />
+      )}
     </div>
   );
 };

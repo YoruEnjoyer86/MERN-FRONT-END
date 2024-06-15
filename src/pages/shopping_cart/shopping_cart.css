@@ -120,9 +120,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: absolute;
-  top: 100%;
-  left: 20%;
+  margin: auto;
 
   background-color: rgba(128, 128, 128, 0.313);
   padding: 30px;

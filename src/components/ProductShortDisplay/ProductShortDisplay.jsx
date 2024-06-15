@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "./ProductShortDisplay.css";
 import RatingStars from "../RatingStars/RatingStars.jsx";
 import PriceRow from "../PriceRow/PriceRow.jsx";
@@ -11,11 +11,12 @@ const favoriteImage = "/favorites_black_heart.png";
 const notFavoriteImage = "/favorites.png";
 const noImage = "/no_image.png";
 
-const ProductShortDisplay = ({ product, className }) => {
+const ProductShortDisplay = ({ product, className, style }) => {
   const [imageSrc, setImageSrc] = useState(noImage);
   const [isFavorite, setFavorite] = useState();
   const navigate = useNavigate();
   const { set_product_page_product_id } = useContext(AppContext);
+  const self_reference = useRef(null);
 
   const FetchIsFavorite = async () => {
     let token = localStorage.getItem("access_token");
@@ -124,8 +125,10 @@ const ProductShortDisplay = ({ product, className }) => {
 
   return (
     <div
+      style={style}
       className={"product_short_display " + className}
       onClick={OnProductClick}
+      ref={self_reference}
     >
       <div
         className="favorite_button"
@@ -150,6 +153,7 @@ const ProductShortDisplay = ({ product, className }) => {
         value={product.rating}
         nrReviews={product.num_reviews}
       />
+
       <PriceRow
         className="price_row_in_product"
         price={product.price}

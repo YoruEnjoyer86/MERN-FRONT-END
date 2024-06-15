@@ -7,12 +7,12 @@
 }
 
 .megacategory_details_container {
-  height: fit-content;
+  height: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 0.7em 1em 0.7em 1em;
+  padding: 3% 5% 1% 5%;
   position: relative;
 }
 
@@ -30,12 +30,12 @@
 
 .megacategory_details_image {
   object-fit: contain;
-  height: 2.2em;
+  height: 50%;
   margin-right: 0.5em;
 }
 
 .mega_category_container {
   display: flex;
-  height: fit-content;
+  height: 9.090909091%;
   background-color: rgb(68, 68, 75);
 }

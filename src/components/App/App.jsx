@@ -21,10 +21,15 @@ const App = ({ children }) => {
   const [appliedSearchFilters, setAppliedSearchFilters] = useState({});
   const [product_page_product_id, set_product_page_product_id] =
     useState(undefined);
+  const [window_size, set_window_size] = useState({
+    height: undefined,
+    width: undefined,
+  });
   const setOnLickFunction = (val) => {
     invisibleBoxOnClick = val;
     setInvisibleBoxState(!invisibleBoxState);
   };
+  let initial_rem = -1;
 
   useEffect(() => {
     // console.log("SEARCH DATA UPDATED", search_data);
@@ -40,8 +45,30 @@ const App = ({ children }) => {
     // console.log(res.data.search_categories);
   };
 
+  const OnWindowSizeChange = () => {
+    // console.log(
+    //   "rem : " + window.getComputedStyle(document.documentElement).fontSize
+    // );
+    set_window_size({ height: window.innerHeight, width: window.innerWidth });
+    if (initial_rem === -1)
+      initial_rem = parseInt(
+        window.getComputedStyle(document.documentElement).fontSize.split("p")[0]
+      );
+    // console.log(initial_rem);
+    if (window.innerWidth < 270) {
+      document.documentElement.style.fontSize =
+        String((window.innerWidth / 270) * initial_rem) + "px";
+      // console.log(window.innerWidth / 270);
+    } else document.documentElement.style.fontSize = String(initial_rem) + "px";
+  };
+
   useEffect(() => {
     Initialize();
+    addEventListener("resize", OnWindowSizeChange);
+    OnWindowSizeChange();
+    return () => {
+      removeEventListener("resize", OnWindowSizeChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -97,6 +124,7 @@ const App = ({ children }) => {
           CheckUserConnected,
           invisibleBoxOnClick,
           set_notifications,
+          window_size,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}
