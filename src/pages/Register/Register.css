@@ -85,6 +85,7 @@ input:focus {
 }
 
 .forgot_password_text {
+  margin-top: auto;
   line-height: normal;
   font-size: 1rem;
   text-decoration: underline;
@@ -101,6 +102,7 @@ input:focus {
 }
 
 .user_type_checkbox_label {
+  margin-top: auto;
   align-self: flex-end;
   height: fit-content;
   width: fit-content;
