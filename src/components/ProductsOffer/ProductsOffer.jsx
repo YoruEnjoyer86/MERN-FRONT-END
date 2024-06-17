@@ -32,26 +32,48 @@ const ProductsOffer = ({
 
   return (
     <div className="products_offer">
-      <div className="content">
-        <div className="description">
+      {window_size.width >= 580 ? (
+        <div className="content">
+          <div className="description">
+            <h1>{title}</h1>
+            <p>{description}</p>
+          </div>
+          <div className="products">
+            {products
+              .map((prod, index) => (
+                <ProductInOfferDisplay
+                  key={index}
+                  product={prod}
+                  className="product"
+                />
+              ))
+              .filter((prod, index) => {
+                if (window_size.width <= 750 && index > 0) return false;
+                return true;
+              })}
+          </div>
+        </div>
+      ) : (
+        <div>
           <h1>{title}</h1>
-          <p>{description}</p>
+          <div className="row">
+            <div className="products">
+              {products
+                .map((prod, index) => (
+                  <ProductInOfferDisplay
+                    key={index}
+                    product={prod}
+                    className="product"
+                  />
+                ))
+                .filter((prod, index) => {
+                  if (window_size.width <= 750 && index > 0) return false;
+                  return true;
+                })}
+            </div>
+          </div>
         </div>
-        <div className="products">
-          {products
-            .map((prod, index) => (
-              <ProductInOfferDisplay
-                key={index}
-                product={prod}
-                className="product"
-              />
-            ))
-            .filter((prod, index) => {
-              if (window_size.width <= 750 && index > 0) return false;
-              return true;
-            })}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

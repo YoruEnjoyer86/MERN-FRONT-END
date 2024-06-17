@@ -2,7 +2,7 @@
   display: flex;
   height: 100%;
   max-height: 5rem;
-  min-height: 50px;
+  /* min-height: 50px; */
   /* min-width: 16rem; */
   width: 30%;
   flex-grow: 1;

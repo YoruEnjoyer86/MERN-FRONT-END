@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 import "./App.css";
 import NavBar from "../NavBar/NavBar";
@@ -21,6 +21,7 @@ const App = ({ children }) => {
   const [appliedSearchFilters, setAppliedSearchFilters] = useState({});
   const [product_page_product_id, set_product_page_product_id] =
     useState(undefined);
+  let min_width_for_scale_down = useRef(270);
   const [window_size, set_window_size] = useState({
     height: undefined,
     width: undefined,
@@ -46,6 +47,7 @@ const App = ({ children }) => {
   };
 
   const OnWindowSizeChange = () => {
+    console.log(min_width_for_scale_down.current);
     // console.log(
     //   "rem : " + window.getComputedStyle(document.documentElement).fontSize
     // );
@@ -55,10 +57,12 @@ const App = ({ children }) => {
         window.getComputedStyle(document.documentElement).fontSize.split("p")[0]
       );
     // console.log(initial_rem);
-    if (window.innerWidth < 270) {
+    if (window.innerWidth < min_width_for_scale_down.current) {
       document.documentElement.style.fontSize =
-        String((window.innerWidth / 270) * initial_rem) + "px";
-      // console.log(window.innerWidth / 270);
+        String(
+          (window.innerWidth / min_width_for_scale_down.current) * initial_rem
+        ) + "px";
+      console.log(window.innerWidth / min_width_for_scale_down.current);
     } else document.documentElement.style.fontSize = String(initial_rem) + "px";
   };
 
@@ -125,6 +129,7 @@ const App = ({ children }) => {
           invisibleBoxOnClick,
           set_notifications,
           window_size,
+          min_width_for_scale_down,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

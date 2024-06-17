@@ -8,7 +8,7 @@
   /* min-height: 6rem;
   max-height: 8rem; */
   height: 8rem;
-  min-height: 100px;
+  min-height: 50px;
   width: 100%;
   background-color: rgb(18, 18, 18);
   padding: 1% 6% 1% 6%;
@@ -28,13 +28,11 @@
 }
 
 .logo_image {
-  height: 80%;
+  height: 50%;
   width: 10%;
   min-width: 6.3rem;
   overflow: hidden;
   object-fit: contain;
-  margin-right: 2em;
-  margin-left: 2em;
 }
 
 .logo_image:hover {

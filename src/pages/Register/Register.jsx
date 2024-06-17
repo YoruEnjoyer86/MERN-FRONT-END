@@ -7,7 +7,8 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import base_url from "../../base_url.js";
 
 const Register = () => {
-  const { setIsRegisterPageActive } = useContext(AppContext);
+  const { setIsRegisterPageActive, window_size } = useContext(AppContext);
+  let { min_width_for_scale_down } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -54,6 +55,12 @@ const Register = () => {
       setIsRegisterPageActive(false);
     };
   }, []);
+
+  useEffect(() => {
+    if (window_size.width < 600) {
+      min_width_for_scale_down.current = 600;
+    }
+  }, [window_size]);
 
   useEffect(() => {
     console.log(seller_account_selected);

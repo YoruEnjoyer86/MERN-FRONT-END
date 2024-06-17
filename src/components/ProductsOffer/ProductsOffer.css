@@ -6,6 +6,7 @@
   align-items: center;
   position: relative;
   gap: 1rem;
+  flex-direction: column;
 }
 
 .products_offer .content {
@@ -53,4 +54,21 @@
 
 .products_offer .product {
   flex-grow: 1;
+}
+
+.products_offer .row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 579px) {
+  .products_offer h1 {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  .products_offer .products {
+    justify-content: center;
+  }
 }
