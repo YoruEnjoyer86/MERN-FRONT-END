@@ -62,6 +62,12 @@
   justify-content: center;
 }
 
+@media (max-width: 970px) {
+  .products_offer .description p {
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 579px) {
   .products_offer h1 {
     text-align: center;

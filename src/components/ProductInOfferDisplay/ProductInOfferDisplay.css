@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  width: 33%;
 }
 
 .product_in_offer_display .name_container {
