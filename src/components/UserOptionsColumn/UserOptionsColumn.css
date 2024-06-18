@@ -1,18 +1,31 @@
 .user_options_column {
   display: flex;
   flex-direction: column;
-  height: 100%;
   object-fit: contain;
-  box-sizing: content-box;
-  margin-right: 30px;
+  box-sizing: border-box;
+  width: 30%;
+  /* background-color: greenyellow; */
+  min-width: 260px;
 }
 
 .user_option {
   background-color: rgb(143, 75, 216);
-  padding: 10px 20px 10px 20px;
+  padding: 0.5rem 1.2rem;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  margin-bottom: 1.4rem;
   /* border: 2px rgb(18, 18, 18) solid; */
+}
+
+@media (max-width: 890px) {
+  .user_options_column {
+    display: flex;
+    flex-direction: column;
+    object-fit: contain;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0px;
+    /* background-color: greenyellow; */
+  }
 }
 
 .user_option:hover {

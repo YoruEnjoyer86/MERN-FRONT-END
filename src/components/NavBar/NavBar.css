@@ -8,19 +8,29 @@
   /* min-height: 6rem;
   max-height: 8rem; */
   height: 8rem;
-  min-height: 50px;
-  width: 100%;
+  /* min-height: 50px; */
+  width: 100vw;
   background-color: rgb(18, 18, 18);
   padding: 1% 6% 1% 6%;
   margin-bottom: 3%;
   position: relative;
   border-style: solid;
   border-color: rgb(143, 75, 216);
-  border-width: 0px 0px 5px 0px;
+  border-width: 0px 0px 0.4rem 0px;
   position: fixed;
   left: 0;
   top: 0;
-  gap: 5%;
+  gap: 0;
+}
+
+.nav_bar .right_icons {
+  display: flex;
+  margin-left: 3rem;
+  width: 30%;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50%;
 }
 
 .nav_bar .space {
@@ -33,6 +43,8 @@
   min-width: 6.3rem;
   overflow: hidden;
   object-fit: contain;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .logo_image:hover {
@@ -44,4 +56,17 @@
   min-width: 3rem;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 700px) {
+  .main_search_bar {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 701px) {
+  .nav_bar .right_icons {
+    gap: 2rem;
+  }
 }

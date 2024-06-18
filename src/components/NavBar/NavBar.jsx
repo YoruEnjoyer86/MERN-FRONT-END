@@ -81,21 +81,19 @@ const NavBar = ({ className = "" }) => {
         />
       )}
       <SearchBar />
-      <NavBarIcon
-        nrNotifications={notifications.profile}
-        onClick={HandleProfileClick}
-        className="noShrink"
-        text=""
-        imgSrc="/profile.png"
-        hoverImgSrc="/profile_hover.png"
-      ></NavBarIcon>
-      {(user_type === undefined || user_type === 0) &&
-        window_size.width >= 450 && (
+      <div className="right_icons">
+        <NavBarIcon
+          nrNotifications={notifications.profile}
+          onClick={HandleProfileClick}
+          text=""
+          imgSrc="/profile.png"
+          hoverImgSrc="/profile_hover.png"
+        ></NavBarIcon>
+        {(user_type === undefined || user_type === 0) && (
           <>
             <NavBarIcon
               nrNotifications={notifications.favorites}
               onClick={HandleFavoritesClick}
-              className="noShrink"
               text=""
               imgSrc="/favorites.png"
               hoverImgSrc="/favorites_hover.png"
@@ -103,7 +101,6 @@ const NavBar = ({ className = "" }) => {
             <NavBarIcon
               nrNotifications={notifications.cart}
               onClick={HandleShoppingCartClick}
-              className="noShrink"
               text=""
               imgSrc="/shopping_cart.png"
               hoverImgSrc="/shopping_cart_hover.png"
@@ -111,16 +108,16 @@ const NavBar = ({ className = "" }) => {
           </>
         )}
 
-      {user_type === 1 && (
-        <NavBarIcon
-          nrNotifications={0}
-          onClick={HandleGoToAddProductToDatabase}
-          className="noShrink"
-          text=""
-          imgSrc="/upload_image.png"
-          hoverImgSrc="/upload_image_hover.png"
-        ></NavBarIcon>
-      )}
+        {user_type === 1 && (
+          <NavBarIcon
+            nrNotifications={0}
+            onClick={HandleGoToAddProductToDatabase}
+            text=""
+            imgSrc="/upload_image.png"
+            hoverImgSrc="/upload_image_hover.png"
+          ></NavBarIcon>
+        )}
+      </div>
     </div>
   );
 };

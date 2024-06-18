@@ -10,7 +10,7 @@
   align-items: center;
   filter: drop-shadow(0 0 0.3rem rgba(0, 0, 0, 0.4));
   background-color: rgb(41, 40, 40);
-  border-radius: 10px;
+  border-radius: 0.7rem;
 }
 
 .padding_handler {

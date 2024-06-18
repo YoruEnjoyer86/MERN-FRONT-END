@@ -10,7 +10,7 @@ const loading_img = "/no_image.png";
 const ProductInOfferDisplay = ({ product, className }) => {
   const navigate = useNavigate();
   const [image, set_image] = useState(loading_img);
-  const { set_product_page_product_id, window_size } = useContext(AppContext);
+  const { set_product_page_product_id } = useContext(AppContext);
 
   let FetchProductImage = async () => {
     let response = await axios.post(base_url + "/api/get_product_image", {

@@ -7,11 +7,21 @@
   width: 100%;
   position: relative;
   padding-left: 6%;
+  padding-right: 6%;
+  align-self: center;
+  justify-self: center;
 }
 
 .row_thing {
+  box-sizing: border-box;
   display: flex;
   height: 100%;
-  padding-top: 1rem;
+  margin-top: 3rem;
   flex-grow: 1;
+  flex-wrap: wrap-reverse;
+  align-items: flex-end;
+  /* background-color: red; */
+  gap: 2rem;
+  align-content: start;
+  width: 100%;
 }

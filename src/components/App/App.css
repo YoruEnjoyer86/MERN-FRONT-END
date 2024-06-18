@@ -1,7 +1,7 @@
 .space_for_navBar {
   flex-shrink: 0;
   height: 8rem;
-  min-height: 50px;
+  /* min-height: 50px; */
 }
 
 .invisible_click_handler {

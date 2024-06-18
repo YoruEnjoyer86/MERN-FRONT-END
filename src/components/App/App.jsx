@@ -21,7 +21,7 @@ const App = ({ children }) => {
   const [appliedSearchFilters, setAppliedSearchFilters] = useState({});
   const [product_page_product_id, set_product_page_product_id] =
     useState(undefined);
-  let min_width_for_scale_down = useRef(270);
+  let min_width_for_scale_down = useRef(600);
   const [window_size, set_window_size] = useState({
     height: undefined,
     width: undefined,

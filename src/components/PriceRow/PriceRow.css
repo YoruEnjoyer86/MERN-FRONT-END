@@ -16,12 +16,12 @@
   z-index: 1;
   background-color: #e5d5f6;
   box-sizing: border-box;
-  width: 18%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25%;
+  padding: 0.1rem 0.8em;
 }
 
 .cart_image_container:hover {

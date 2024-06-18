@@ -37,7 +37,6 @@ const NavBarIcon = ({
           </span>
         )}
       </div>
-      <p className="navBarIconText">{text}</p>
     </div>
   );
 };

@@ -1,21 +1,23 @@
 .account_details_card {
-  width: 50%;
+  flex-grow: 1;
+  flex-shrink: 0.1;
   background-color: rgb(143, 75, 216);
   height: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 10px 0px 0px 0px;
+  padding: 0.8rem 0px 0px 0px;
+  min-width: 30rem;
 }
 
 .main_text {
-  margin-left: 20px;
+  margin-left: 1.3rem;
   color: white;
   font-weight: 700;
   font-size: 1.5rem;
 }
 
 .information_part {
-  padding: 25px;
+  padding: 1.4rem;
   display: flex;
   flex-direction: column;
 }
@@ -24,10 +26,10 @@
   display: flex;
   box-sizing: border-box;
   justify-content: center;
-  padding: 10px;
+  padding: 0.7rem;
   border-top-color: white;
   width: 100%;
-  border-top: 2px;
+  border-top: 0.2rem;
   border-top-style: solid;
 }
 
@@ -51,10 +53,10 @@
 .profile_picture {
   object-fit: contain;
   aspect-ratio: 1/ 1;
-  height: 120px;
+  height: 8.6rem;
   border-radius: 100%;
   background-color: white;
-  margin-right: 20px;
+  margin-right: 1.2rem;
   position: relative;
 }
 
@@ -95,7 +97,7 @@
 
 .edit_image_picture {
   position: absolute;
-  height: 40px;
+  height: 2.5rem;
   object-fit: contain;
   bottom: 0;
   right: 0;
@@ -104,4 +106,16 @@
 
 .edit_image_picture:hover {
   cursor: pointer;
+}
+
+@media (max-width: 890px) {
+  .account_details_card {
+    flex-grow: 1;
+    background-color: rgb(143, 75, 216);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem 0px 0px 0px;
+    min-width: 0px;
+  }
 }
