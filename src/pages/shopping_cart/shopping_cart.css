@@ -7,9 +7,12 @@
 
 .contents_row {
   display: flex;
-  padding: 20px 100px 0px 100px;
-  justify-content: space-between;
+  padding: 1.5rem 4rem 0px 4rem;
+  justify-content: center;
   position: relative;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
 }
 
 .title {
@@ -38,16 +41,18 @@
 .left_column {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-right: 30px;
+  width: 48%;
+  min-width: 50rem;
+  max-width: 65rem;
 }
 
 .right_column {
   background-color: rgb(68, 68, 75);
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  width: 50%;
+  padding: 1.25rem;
+  width: 48%;
+  max-width: 50rem;
   height: fit-content;
 }
 
@@ -62,7 +67,7 @@
 .cost_row_text {
   font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 0.3rem;
   line-height: normal;
   color: rgb(214, 214, 214);
 }
@@ -77,8 +82,8 @@
 .continue_button {
   background-color: rgb(143, 75, 216);
   border: 0;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
   font-size: 2em;
 }
 
@@ -104,15 +109,15 @@
 }
 
 .order_summary_text {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   color: rgb(255, 255, 255);
   font-size: 1.5rem;
   font-weight: 600;
 }
 
 .total_price_text {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 
 .no_products_modal {
@@ -123,11 +128,75 @@
   margin: auto;
 
   background-color: rgba(128, 128, 128, 0.313);
-  padding: 30px;
-  height: 400px;
-  width: 1000px;
+  padding: 1.875rem;
+  height: 25rem;
+  width: 62.5rem;
 }
 
 .no_products {
   font-size: 3em;
+}
+
+@media (max-width: 1800px) {
+  .left_column {
+    width: 60rem;
+  }
+
+  .right_column {
+    width: 60rem;
+    max-width: none;
+  }
+
+  .left_column {
+    align-items: center;
+  }
+
+  .products_delivered_by_seller_column {
+    width: 100%;
+  }
+
+  .contents_row {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .left_column {
+    min-width: 0px;
+  }
+}
+
+@media (max-width: 800px) {
+  .contents_row {
+    padding: 1.5rem 3rem 0px 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .shopping_cart_page .title {
+    font-size: 3.2rem;
+  }
+
+  .order_summary_text {
+    font-size: 1rem;
+  }
+
+  .cost_row_text {
+    font-size: 0.9rem;
+  }
+
+  .shopping_cart_price_text {
+    font-size: 1.5rem;
+  }
+
+  .delivery_cost_dollar_sign {
+    font-size: 0.5rem;
+  }
+
+  .dollar_symbol_text {
+    font-size: 1rem;
+  }
+  .continue_button.continue_button {
+    font-size: 1.5rem;
+  }
 }
