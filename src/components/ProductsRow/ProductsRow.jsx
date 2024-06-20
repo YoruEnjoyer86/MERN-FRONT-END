@@ -151,11 +151,11 @@ const ProductsRow = ({
                   }
                   product={product}
                   key={index}
-                  // style={{
-                  //   width: `calc((100% - ${
-                  //     (maxDisplayedItems - 1) * margin_between_products
-                  //   }rem) / ${maxDisplayedItems})`,
-                  // }}
+                  style={{
+                    width: `calc((100% - ${
+                      (maxDisplayedItems - 1) * margin_between_products
+                    }rem) / ${maxDisplayedItems})`,
+                  }}
                 />
               )
           )}
