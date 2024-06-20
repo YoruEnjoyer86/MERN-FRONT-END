@@ -26,6 +26,7 @@ const ProductsRow = ({
   const { set_search_data } = useContext(AppContext);
   const [screen_width, set_screen_width] = useState(window.innerWidth);
   const [maxDisplayedItems, set_maxDisplayedItems] = useState(5);
+  let margin_between_products = 2;
 
   const FetchActualCategory = async () => {
     let axiosResult;
@@ -150,9 +151,11 @@ const ProductsRow = ({
                   }
                   product={product}
                   key={index}
-                  // style={{
-                  //   width: String(100 / maxDisplayedItems) + "%",
-                  // }}
+                  style={{
+                    width: `calc((100% - ${
+                      (maxDisplayedItems - 1) * margin_between_products
+                    }rem) / ${maxDisplayedItems})`,
+                  }}
                 />
               )
           )}
