@@ -60,8 +60,11 @@
 
 @media (max-width: 700px) {
   .main_search_bar {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin-left: 0px;
+  }
+
+  .nav_bar .right_icons {
+    margin-left: 0;
   }
 }
 

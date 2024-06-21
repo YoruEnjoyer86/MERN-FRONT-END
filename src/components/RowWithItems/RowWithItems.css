@@ -64,19 +64,19 @@
 
 .selected_item {
   border-radius: 0px;
-  border-top: 10px;
+  border-top: 0.625rem;
   border-top-style: solid;
   border-color: rebeccapurple;
   transform: scale(0.9);
 }
 
 .margin_after_item {
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 .unselected_item {
   border-radius: 0px;
-  border-top: 10px;
+  border-top: 0.625rem;
   border-top-style: solid;
   border-color: white;
 }

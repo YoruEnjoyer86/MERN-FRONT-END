@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .sorted_items_column_title_row {
@@ -14,12 +14,12 @@
   padding: 1em 0.8em 1em 0.8em;
   box-sizing: border-box;
   border-bottom-color: white;
-  border-width: 0px 0px 2px 0px;
+  border-width: 0px 0px 0.125rem 0px;
   border-style: solid;
 }
 
 .sorted_items_column_title {
-  margin-right: 10px;
+  margin-right: 0.625rem;
   color: white;
   font-size: 1.5rem;
 }
@@ -27,12 +27,12 @@
 .sorted_items_column_details {
   font-size: 1.2rem;
   color: rgb(204, 204, 204);
-  font-weight: 6018;
+  font-weight: 900;
 }
 
 .title_row_button {
-  height: 30px;
-  width: 70px;
+  height: 1.875rem;
+  width: 4.375rem;
   background-color: rebeccapurple;
   border: 0;
   font-size: 1rem;

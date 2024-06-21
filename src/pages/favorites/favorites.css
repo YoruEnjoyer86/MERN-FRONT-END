@@ -12,7 +12,7 @@
 }
 
 .main_column {
-  padding: 50px;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .new_list_button {
@@ -40,7 +40,13 @@
 }
 
 .favorite_lists_container_row {
-  padding: 10px 35px 10px 35px;
+  padding: 0.625rem 2.175rem 0.625rem 2.175rem;
   background-color: rgb(68, 68, 75);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .main_column {
+    padding: 2rem 3rem;
+  }
 }

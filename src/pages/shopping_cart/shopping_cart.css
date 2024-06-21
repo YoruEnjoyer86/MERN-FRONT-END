@@ -176,27 +176,4 @@
   .shopping_cart_page .title {
     font-size: 3.2rem;
   }
-
-  .order_summary_text {
-    font-size: 1rem;
-  }
-
-  .cost_row_text {
-    font-size: 0.9rem;
-  }
-
-  .shopping_cart_price_text {
-    font-size: 1.5rem;
-  }
-
-  .delivery_cost_dollar_sign {
-    font-size: 0.5rem;
-  }
-
-  .dollar_symbol_text {
-    font-size: 1rem;
-  }
-  .continue_button.continue_button {
-    font-size: 1.5rem;
-  }
 }

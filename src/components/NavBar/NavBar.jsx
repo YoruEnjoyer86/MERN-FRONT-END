@@ -72,23 +72,23 @@ const NavBar = ({ className = "" }) => {
   return (
     <div className={"nav_bar " + className}>
       <CategoriesButton />
-      {window_size.width >= 700 && (
-        <img
-          className="logo_image"
-          src="/logo.png"
-          subcategories={[]}
-          onClick={HandleLogoClick}
-        />
-      )}
+      <img
+        className="logo_image"
+        src="/logo.png"
+        subcategories={[]}
+        onClick={HandleLogoClick}
+      />
       <SearchBar />
       <div className="right_icons">
-        <NavBarIcon
-          nrNotifications={notifications.profile}
-          onClick={HandleProfileClick}
-          text=""
-          imgSrc="/profile.png"
-          hoverImgSrc="/profile_hover.png"
-        ></NavBarIcon>
+        {window_size.width > 700 && (
+          <NavBarIcon
+            nrNotifications={notifications.profile}
+            onClick={HandleProfileClick}
+            text=""
+            imgSrc="/profile.png"
+            hoverImgSrc="/profile_hover.png"
+          ></NavBarIcon>
+        )}
         {(user_type === undefined || user_type === 0) && (
           <>
             <NavBarIcon

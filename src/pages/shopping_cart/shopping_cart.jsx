@@ -12,7 +12,8 @@ const shopping_cart = () => {
   const [productsSortedBySeller, setproductsSortedBySeller] = useState([]);
   const [sellerProductsQuantity, setSellerProductsQuantity] = useState([]);
   const [totalProductPrice, setTotaProductPrice] = useState(0);
-  const { set_notifications, notifications } = useContext(AppContext);
+  const { set_notifications, notifications, window_size } =
+    useContext(AppContext);
 
   const navigate = new useNavigate();
 
@@ -112,10 +113,12 @@ const shopping_cart = () => {
         {productsSortedBySeller.length > 0 ? (
           <>
             <div className="left_column">
-              <div className="title_container">
-                <p className="title">Your Cart</p>
-                <div className="title_underline"></div>
-              </div>
+              {/* {window_size.width <= 1800 && (
+                <div className="title_container">
+                  <p className="title">Your Cart</p>
+                  <div className="title_underline"></div>
+                </div>
+              )} */}
               {productsSortedBySeller.map((value, index) => (
                 <ProductsDeliveredBySellerColumn
                   seller={value.seller}

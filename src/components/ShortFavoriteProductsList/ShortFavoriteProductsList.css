@@ -1,6 +1,6 @@
 .short_favorite_products_list {
-  height: 100px;
-  width: 200px;
+  height: 6.25rem;
+  width: 12.5rem;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
@@ -8,8 +8,8 @@
   align-items: center;
   box-sizing: border-box;
 
-  border-radius: 0px 0px 20px 10px;
-  border-top: 10px;
+  border-radius: 0px 0px 1.25rem 0.625rem;
+  border-top: 0.625rem;
   border-top-style: solid;
   border-color: aliceblue;
 }
@@ -32,7 +32,7 @@
 
 .selected {
   border-radius: 0px;
-  border-top: 10px;
+  border-top: 0.625rem;
   border-top-style: solid;
   border-color: rebeccapurple;
 }
