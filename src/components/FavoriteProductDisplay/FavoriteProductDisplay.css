@@ -90,7 +90,7 @@
 }
 
 .favorite_product_list_price_row {
-  height: 25%;
+  height: 40%;
   /* width: 50%; */
   margin-top: 1%;
 }
@@ -140,9 +140,9 @@
     height: 12rem;
   }
 
-  .cart_image_container {
-    height: 2.3rem;
-    width: 2.3rem;
+  .favorite_product .cart_image_container {
+    height: 3rem;
+    width: 3rem;
   }
 }
 
@@ -192,9 +192,9 @@
     font-size: 1.5rem;
   }
 
-  .cart_image_container {
-    height: 1.9rem;
-    width: 1.9rem;
+  .favorite_product .cart_image_container {
+    height: 2.3rem;
+    width: 2.3rem;
   }
 }
 
@@ -228,9 +228,9 @@
     width: 13rem;
   }
 
-  .cart_image_container {
-    height: 1.3rem;
-    width: 1.3rem;
+  .favorite_product .cart_image_container {
+    height: 1.85rem;
+    width: 1.85rem;
   }
 
   .favorite_product_price_text {
