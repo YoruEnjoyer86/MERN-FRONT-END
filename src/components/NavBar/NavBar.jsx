@@ -80,7 +80,7 @@ const NavBar = ({ className = "" }) => {
       />
       <SearchBar />
       <div className="right_icons">
-        {window_size.width > 700 && (
+        {(window_size.width > 700 || user_type != 0) && (
           <NavBarIcon
             nrNotifications={notifications.profile}
             onClick={HandleProfileClick}

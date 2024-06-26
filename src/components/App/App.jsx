@@ -129,7 +129,6 @@ const App = ({ children }) => {
           invisibleBoxOnClick,
           set_notifications,
           window_size,
-          min_width_for_scale_down,
         }}
       >
         {!isRegisterPageActive && <div className="space_for_navBar"></div>}

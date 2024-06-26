@@ -3,21 +3,23 @@
   height: 100vh;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
+  align-items: start;
   position: relative;
+  margin: 0px auto;
 }
 
 .no_margin {
   margin: 0px;
 }
 
-.contents {
+.add_product_to_database_page .contents {
   display: flex;
   flex-direction: column;
-  align-items: start;
   justify-content: space-evenly;
-  height: 100%;
-  width: 40%;
+  align-items: start;
+  height: 52rem;
+  width: 100%;
+  padding: 0 2rem;
 }
 
 .normal_button {
@@ -115,4 +117,27 @@ input[type="file"] {
 
 .x_icon_add_product_notification:hover {
   cursor: pointer;
+}
+
+.add_product_to_database_page .input_text {
+  width: 50%;
+}
+
+.add_product_to_database_page .input_buttons_column {
+  width: 16.7rem;
+}
+
+@media (min-width: 601px) {
+  .add_product_to_database_page .input_buttons_column {
+    width: 61%;
+  }
+}
+
+@media (max-width: 600px) {
+  .input_label_text {
+    font-size: 1.5rem !important ;
+  }
+  .input_text {
+    font-size: 1.5rem !important ;
+  }
 }
